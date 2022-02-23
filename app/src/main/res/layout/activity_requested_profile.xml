@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="#ffc8d7"
+    tools:context=".recievedrequestprofile.ui.ReceivedRequestedProfile">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:padding="10sp"
+        android:src="@drawable/back_icon"
+        app:tint="@color/on_boarding_blue" />
+
+    <RelativeLayout
+        android:id="@+id/requestDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButton"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/requestProfilePic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pedigree"
+            android:transitionName="requestProfileImage" />
+
+        <LinearLayout
+            android:id="@+id/descLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10sp"
+            android:layout_toStartOf="@id/menu"
+            android:layout_toEndOf="@id/requestProfilePic"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Tanvir Singh"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:transitionName="requestedProfileName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/regular"
+                android:text="Online"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="10dp"
+            android:src="@drawable/blue_menu_three_dots" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/messageButton"
+        android:layout_below="@id/requestDesc"
+        android:layout_marginTop="30dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_sheet_bg"
+            android:orientation="vertical"
+            android:paddingTop="20sp">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/italic"
+                android:text="10:32 pm"
+                android:textColor="#979797"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:id="@+id/detailLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/other_side_bg"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="Adoption Request - Boulder"
+                    android:textColor="@color/on_boarding_blue"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/on_boarding_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/regular"
+                    android:maxWidth="250dp"
+                    android:text="Ken! I would love to adopt Boulder. Let me know how we can get started."
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/youAreAvailableText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20sp"
+                android:drawableStart="@drawable/green_tick"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/italic"
+                android:gravity="center"
+                android:text="You are available at this time!"
+                android:textColor="#050505"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/youAreAvailableText"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5sp"
+                    android:fontFamily="@font/medium"
+                    android:letterSpacing="0"
+                    android:text="Accept"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/medium"
+                    android:letterSpacing="0"
+                    android:text="Reject"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_boarding_blue"
+                    android:textSize="14sp"
+                    app:cornerRadius="8dp"
+                    app:strokeColor="@color/on_boarding_blue"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/medium"
+                    android:letterSpacing="0"
+                    android:text="Block Contact"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    app:backgroundTint="#DD5F5F"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/messageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F3F2F7"
+        android:padding="10sp">
+
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10sp"
+            android:src="@drawable/cam" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/addDoc"
+            android:layout_toEndOf="@id/camera"
+            android:background="@null" android:inputType="textCapSentences"
+            android:fontFamily="@font/regular"
+            android:hint="Type a message"
+            android:textColor="#979797"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/addDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="10sp"
+            android:src="@drawable/doc" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/menuItemLayout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/requestDesc"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/my_side"
+        android:backgroundTint="#fafafa"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/viewProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:fontFamily="@font/medium"
+            android:text="View Profile"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/viewFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?selectableItemBackground"
+            android:fontFamily="@font/medium"
+            android:text="View Feed"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?selectableItemBackground"
+            android:fontFamily="@font/medium"
+            android:text="Block/Report"
+            android:textColor="@color/on_boarding_no"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

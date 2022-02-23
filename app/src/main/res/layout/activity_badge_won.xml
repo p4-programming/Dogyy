@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/background_bg"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/medium"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/ivBadge"
+        android:layout_marginBottom="50dp"
+        android:text="You won a Badge!"/>
+
+    <ImageView
+        android:id="@+id/ivBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/group"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/cal"
+        android:fontFamily="@font/bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ivBadge"
+        android:layout_marginTop="40dp"
+        android:text="Dogsitter Champ!"/>
+
+    <TextView
+        android:id="@+id/tvGoBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:text="Go Back"
+        android:gravity="center"
+        android:background="@drawable/confirm_bg"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+</RelativeLayout>

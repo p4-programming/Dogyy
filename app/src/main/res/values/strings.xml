@@ -1,0 +1,179 @@
+<resources>
+    <string name="app_name">DoggyDoo</string>
+
+    <!--    textview strings-->
+    <string name="skipLogin"><u>Skip Login</u></string>
+    <string name="sendCode">Send Code</string>
+    <string name="phoneNo">Phone No.</string>
+    <string name="verify">Verify</string>
+    <string name="resendOtp"><u>Resend OTP</u></string>
+    <string name="next">Next</string>
+    <string name="tell_us_your_name">Tell us your name!</string>
+    <string name="your_name">Your name</string>
+    <string name="skip"><u>Skip</u></string>
+    <string name="tell_us_about_your_pooch">Tell us about your pooch!</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="time_text">25th Jan 2021,10:32pm</string>
+    <string name="review_name">Jasvinder Kaur</string>
+    <string name="demo_text">Lorem Ipsum is simply dummy text Lorem Ipsum has been the industry\'s standard ..</string>
+    <string name="are_you_sure_you_want_to_check_in">Are you sure you want to check-in?</string>
+    <string name="yes_i_am">Yes I am!</string>
+    <string name="not_now">Not now</string>
+    <string name="your_review">Your Review</string>
+    <string name="choose_time_date"><![CDATA[Choose Time & Date]]></string>
+    <string name="type_a_message">Type a message</string>
+    <string name="todo">TODO</string>
+    <string name="my_friends">My Friends</string>
+    <string name="my_pets">My Pets</string>
+    <string name="new_updates">New Updates</string>
+    <string name="adoption_king">Adoption King</string>
+    <string name="dogsitter_champ">Dogsitter Champ</string>
+    <string name="dogsitting">Dogsitting</string>
+    <string name="foresting">Foresting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="credit_debit_cards">Credit/Debit Cards</string>
+    <string name="add_card">+Add Card</string>
+    <string name="upi">UPI</string>
+    <string name="add_upi">+Add UPI</string>
+    <string name="add_wallet">+Add Wallet</string>
+    <string name="e_wallet">E-Wallet</string>
+    <string name="demo_number">XXXX XXXX XXXX 4123</string>
+    <string name="remove_card">Remove Card</string>
+    <string name="adoption">Adoption</string>
+    <string name="where_are_you_looking_for">Where are you looking for?</string>
+    <string name="bruno">Bruno</string>
+    <string name="post_adoption">Post Adoption</string>
+    <string name="vaccinated">Vaccinated</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="call_a_wet">Call A Vet</string>
+    <string name="nearby_doctors">Nearby Doctors</string>
+    <string name="neaby_hospitals">Nearby Hospitals</string>
+    <string name="select_time_date"><![CDATA[Select Time & Date]]></string>
+
+    <string-array name="picker">
+        <item>Below 1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="weight_picker">
+        <item>Below 1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+        <item>Above 60</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="call_doc">Call this Doctor</string>
+    <string name="call_clinic">Call this Clinic</string>
+    <string name="google_map_api_key">AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc</string>
+    <string name="default_notification_channel_id">doggydoo</string>
+    <string name="adoption_guide">Want to put up a nearby dog for adoption? Simply <font color="#5935D5">add them in your profile as your pet and switch the bottom toggle of adoption.</font></string>
+    <string name="adoption_guide1">This way you will be opting for your dog to be available for adoption to parents looking for adopting!</string>
+    <string name="adoption_guide2"><font color="#F9BBC4">Reference image</font></string>
+    <string name="lost_found_section"><![CDATA[Lost & found section]]></string>
+    <string name="type_message">Type message</string>
+    <string name="agora_app_id">e706af12dd814d2486956e564ff28e02</string>
+    <string name="agora_access_token">006e706af12dd814d2486956e564ff28e02IAC4aqR3zze4RyGhHEeivhN5/7e2L/fII66NyXU4aSAePTAYUiwAAAAAEAACwxdSrj+OYQEAAQCuP45h</string>
+    <string name="this_feature_will">This feature will enable you to help a doggo spotted in distress by sending the location to nearby rescue medical teams &amp; shelter volunteers. <br><br>Choose either of the options to flag a dog in distress.</br></br></string>
+    <string name="sends_your">Sends your current location, so you may leave the area while marking it for heroes able to help.</string>
+    <string name="manually_drop">Manually drop a pin not restricted to location, stay anywhere and help mark the dogs in need of rescue or medical help.</string>
+    <string name="agree_to_distress">Agree to <font color="#5935D5"><u>Distress Dog Terms &amp; Conditions.</u></font></string>
+    <string name="distress_location">Distress location was sent to the nearby rescue medical teams &amp; shelter volunteers.</string>
+    <string name="you_are_a_true_hero">You are a true hero! We have also recommended your profile for DoggyDoo Heroes Badge.</string>
+    <string name="thank_you_for">Thank you for making this a better place for our four legged friends.</string>
+    <string name="are_you_sure_you">Are you sure you want to put up a notification for a dog in distress? if yes, select yes and continue.</string>
+
+
+</resources>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent"
+    android:background="#FFD956"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/back_icon_a" />
+
+        <TextView
+            android:id="@+id/tvTitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/bold"
+            android:text="Rate Anant"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlHeader"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivExpressIcon1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/bad_rate" />
+
+            <ImageView
+                android:id="@+id/ivExpressIcon2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:contentDescription="@string/todo"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:visibility="invisible"
+                android:scaleType="centerInside"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_good"/>
+
+            <ImageView
+                android:id="@+id/ivExpressIcon3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:contentDescription="@string/todo"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_amazing" />
+
+            <ImageView
+                android:id="@+id/ivExpressIcon4"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:contentDescription="@string/todo"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_good"/>
+
+            <ImageView
+                android:id="@+id/ivExpressIcon5"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:contentDescription="@string/todo"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_amazing" />
+
+
+        </LinearLayout>
+
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/custom_seekbar_progress"
+            android:thumb="@drawable/custom_seekbar_thumb" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvExpressType1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/bold"
+                android:text="Bad!"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:textColor="@color/invalid_login"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvExpressType2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="sad!"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:textColor="@color/purple_200"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tvExpressType3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Alright!"
+                android:visibility="invisible"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/valid_login"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvExpressType4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Good!"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:textColor="@color/purple_200"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvExpressType5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Amazing!"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:textColor="@color/valid_login"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_sheet_bg"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/bold"
+            android:text="Your Feedback for Anant"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:gravity="start"
+            android:padding="15dp"
+            android:inputType="textCapSentences"
+            android:maxLines="10"
+            android:fontFamily="@font/regular"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:hint="Write your review here..."
+            android:background="@drawable/unselectedtime_bg"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10sp"
+            android:background="#E3E3E3" />
+
+        <TextView
+            android:id="@+id/tvReportDelivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/bold"
+            android:padding="15dp"
+            android:background="@drawable/block_bg"
+            android:layout_marginEnd="10dp"
+            android:text="Report Delivery"
+            android:layout_marginBottom="0sp"
+            android:orientation="horizontal"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

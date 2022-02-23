@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCA10"
+    tools:context=".training.ui.UploadVideoUrlActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/back_icon_a" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/medium"
+            android:text="Video submission request"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/bottom_sheet_bg"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/bold"
+            android:text="Training video submission"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etCaption"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/edittext_bg"
+            android:fontFamily="@font/regular"
+            android:gravity="start"
+            android:hint="Caption"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+        <EditText
+            android:id="@+id/etUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/edittext_bg"
+            android:fontFamily="@font/regular"
+            android:gravity="start"
+            android:hint="Paste video URL you want to submit here."
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10sp"
+            android:background="#E3E3E3" />
+
+
+        <TextView
+            android:id="@+id/tvUploadVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Submit Video"
+            android:padding="15dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/medium"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:background="@drawable/pinkbg" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

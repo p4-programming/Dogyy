@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A899BA"
+    android:fillViewport="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/petImage"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
+
+            <RelativeLayout
+                android:id="@+id/rlHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="10sp"
+                    android:src="@drawable/back_icon_a" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layoutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="350dp"
+                android:background="@drawable/bottom_sheet_bg"
+                android:padding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvProfilePic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:text="Upload Pet Photo"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/cal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet name" />
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:fontFamily="@font/medium"
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet age" />
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:drawableEnd="@drawable/blue_dropdown_arrow"
+                        android:fontFamily="@font/medium"
+                        android:gravity="start"
+                        android:hint="Pet's age"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet’s breed" />
+
+                    <TextView
+                        android:id="@+id/tvBreed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:drawableEnd="@drawable/blue_dropdown_arrow"
+                        android:fontFamily="@font/medium"
+                        android:hint="Pet’s breed"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet’s gender" />
+
+                    <TextView
+                        android:id="@+id/tvgender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:drawableEnd="@drawable/blue_dropdown_arrow"
+                        android:fontFamily="@font/medium"
+                        android:hint="Pet’s gender"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet’s weight" />
+
+                    <TextView
+                        android:id="@+id/tvweight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:drawableEnd="@drawable/blue_dropdown_arrow"
+                        android:fontFamily="@font/medium"
+                        android:hint="Pet’s weight"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Pet's description" />
+
+                    <EditText
+                        android:id="@+id/etdescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:fontFamily="@font/medium"
+                        android:gravity="start"
+                        android:hint="Pet's description"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Medical condition (if any)" />
+
+
+                    <EditText
+                        android:id="@+id/etMedicalCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_bg"
+                        android:fontFamily="@font/medium"
+                        android:hint="Medical condition"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Is pet vaccinated" />
+
+                    <RadioGroup
+                        android:id="@+id/rgVaccination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RadioButton
+                            android:id="@+id/rbYes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="Yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="No" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/tvSubmit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/selectedtime_bg"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Confirm Changes"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/llAge"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_sheet_bg"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/medium"
+                    android:text="Select Age"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_slot_background">
+
+                        <NumberPicker
+                            android:id="@+id/fromNumber"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5"
+                            android:theme="@style/Cal.Picker" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fromType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/time_slot_background"
+                        android:fontFamily="@font/bold"
+                        android:foreground="?selectableItemBackground"
+                        android:padding="10dp"
+                        android:text="Year"
+                        android:textColor="@color/on_boarding_blue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginEnd="15sp"
+                        android:fontFamily="@font/bold"
+                        android:text="To"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_slot_background">
+
+                        <NumberPicker
+                            android:id="@+id/toNumber"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5"
+                            android:theme="@style/Cal.Picker" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/toType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/time_slot_background"
+                        android:fontFamily="@font/bold"
+                        android:foreground="?selectableItemBackground"
+                        android:padding="10dp"
+                        android:text="Month"
+                        android:textColor="@color/on_boarding_blue"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/on_boarding_view" />
+
+                <TextView
+                    android:id="@+id/tvConfirmAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/confirm_bg"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Confirm"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/cal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBreed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_sheet_bg"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Select Breed"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etBreddSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/round_corner_bg"
+                    android:drawableEnd="@drawable/search_icon"
+                    android:fontFamily="@font/regular"
+                    android:hint="Search your pets breed"
+                    android:padding="10dp"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvBreed"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/single_breed_item" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/on_boarding_view" />
+
+                <TextView
+                    android:id="@+id/tvConfirmBreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/confirm_bg"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Confirm"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/cal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_sheet_bg"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/medium"
+                    android:text="Gender"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/cal" />
+
+                <RelativeLayout
+                    android:id="@+id/rlFemale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:text="Female"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/ivTickFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/blue_single_tick"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlMale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:text="Male"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/ivTickMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/blue_single_tick"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/on_boarding_view" />
+
+                <TextView
+                    android:id="@+id/tvConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/confirm_bg"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Confirm"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/cal" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llWeight"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_sheet_bg"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/medium"
+                    android:text="Select weight"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_slot_background">
+
+                        <NumberPicker
+                            android:id="@+id/toNumberw"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5"
+                            android:theme="@style/Cal.Picker" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/fromTypew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/time_slot_background"
+                        android:fontFamily="@font/bold"
+                        android:foreground="?selectableItemBackground"
+                        android:padding="10dp"
+                        android:text="Kg"
+                        android:textColor="@color/on_boarding_blue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginEnd="15sp"
+                        android:fontFamily="@font/bold"
+                        android:text="To"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_slot_background">
+
+                        <NumberPicker
+                            android:id="@+id/fromNumberw"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5"
+                            android:theme="@style/Cal.Picker" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/toTypew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/time_slot_background"
+                        android:fontFamily="@font/bold"
+                        android:foreground="?selectableItemBackground"
+                        android:padding="10dp"
+                        android:text="gm"
+                        android:textColor="@color/on_boarding_blue"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/on_boarding_view" />
+
+                <TextView
+                    android:id="@+id/tvConfirmWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/confirm_bg"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Confirm"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/cal" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

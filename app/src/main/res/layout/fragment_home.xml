@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    tools:context=".homemodule.ui.HomeFragment">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        tools:context=".homemodule.ui.HomeActivity" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/fill_icon"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/filterData"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="110dp"
+        android:src="@mipmap/filter_map"
+        app:backgroundTint="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/humburgter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:elevation="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ham_icon"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llLocation"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/edittext_bg"
+            android:elevation="5dp"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <RelativeLayout
+                android:id="@+id/rlPlace"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/ivMap"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="5dp"
+                    android:src="@drawable/google_map" />
+
+                <TextView
+                    android:id="@+id/Place"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/ivUser"
+                    android:layout_toEndOf="@+id/ivMap"
+                    android:background="@drawable/edittext_bg"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center_vertical"
+                    android:hint="Search location"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColorHint="@color/cal" />
+
+                <!-- <fragment
+                     android:id="@+id/autocomplete_fragment"
+                     android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent" />-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivUser"
+                    android:layout_width="35dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/dummy_user" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/bottomSheetLayout"
+        layout="@layout/home_bottom_sheet" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

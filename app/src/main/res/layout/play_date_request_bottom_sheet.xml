@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/placeBS"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_bg"
+    android:padding="20sp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/playDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="Playdate Request"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/playDateDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/medium"
+        android:layout_below="@id/playDateText"
+        android:gravity="start"
+        android:text="Playdate from lana has been accepted. Do you want to block your Google Calendar?"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playDateDesc"
+        android:layout_marginTop="20sp"
+        android:layout_toStartOf="@id/yes"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/on_boarding_blue"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="10sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playDateDesc"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="20sp"
+        android:text="Yes, Please"
+        app:backgroundTint="@color/on_boarding_blue"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="10sp" />
+</RelativeLayout>

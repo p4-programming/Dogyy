@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent"
+    android:orientation="vertical">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/article"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:inputType="textMultiLine"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/regular"
+                android:gravity="start"
+                android:hint="Write your artciles here..."
+                android:padding="15dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/picText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/uploadphoto_bg"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="+ Upload Photo"
+                android:textColor="#9B7DFF"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/pic"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="80dp" android:inputType="textCapSentences"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/unselectedtime_bg"
+      android:id="@+id/caption"          android:fontFamily="@font/regular"
+                android:gravity="start"
+                android:hint="Photo Caption or Source...."
+                android:padding="15dp"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/tvUploadArticle"
+                android:layout_marginTop="20dp"
+                android:background="@color/hint_color" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvUploadArticle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/blue_bg"
+                android:elevation="2dp"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:text="Upload Article"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

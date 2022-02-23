@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bvp="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.halilibo.bvpkotlin.BetterVideoPlayer
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        bvp:bvp_autoPlay="true" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--<com.halilibo.bvpkotlin.BetterVideoPlayer
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:bvp_autoPlay="true"
+        app:bvp_disableControls="false"
+        app:bvp_hideControlsOnPlay="false"
+        app:bvp_pauseDrawable="@drawable/bvp_action_pause"
+        app:bvp_autoFullscreen="true"
+        app:bvp_playDrawable="@drawable/bvp_action_play"
+        app:bvp_restartDrawable="@drawable/bvp_action_restart"
+        app:bvp_captionSize="22sp"
+        app:bvp_captionColor="@color/transparent"
+        app:bvp_gestureType="SwipeGesture"
+        android:textAlignment="center"
+        app:bvp_loop="false" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

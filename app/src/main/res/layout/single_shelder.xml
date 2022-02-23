@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="130dp"
+    android:layout_height="175dp"
+    android:layout_marginStart="10sp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="#ffc8d7"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/shelderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+    </androidx.cardview.widget.CardView>
+
+   <!-- <ImageView
+        android:id="@+id/shelderImage"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:src="@drawable/shelter_one" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/name"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/address"
+        android:layout_height="wrap_content"
+        android:textSize="12sp" />
+</LinearLayout>

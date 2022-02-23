@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/adoption_go_button.xml" value="0.23897435897435898" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/edittext_bg.xml" value="0.25833333333333336" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_adoption.xml" value="0.19739583333333333" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2364102564102564" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon1.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon2.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon3.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon4.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon5.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_map_icon6.xml" value="0.23384615384615384" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_market.xml" value="0.23025641025641025" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/drawable/ic_playdate.xml" value="0.23025641025641025" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_addfostering_info.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_article.xml" value="0.18333333333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_article_desription.xml" value="0.18333333333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_article_details.xml" value="0.18931159420289856" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_articleviewall.xml" value="0.152" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_dogsitting_heros_details.xml" value="0.23854166666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_fostering.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_fostering_detail.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_fostering_heros_details.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_home.xml" value="0.11018237082066869" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_my_friend_description.xml" value="0.18931159420289856" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_my_friends_dog_description.xml" value="0.21041666666666667" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_other_dog_profile.xml" value="0.21041666666666667" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_playdate_detail.xml" value="0.20052083333333334" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_playdate_timedate.xml" value="0.18931159420289856" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/activity_userprofile.xml" value="0.18931159420289856" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/content_main.xml" value="0.2265625" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/frag_article_intro.xml" value="0.18333333333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_adoption_main.xml" value="0.2" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_dog_sitting_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_foster_main.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_home.xml" value="0.16354166666666667" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_sos_intro.xml" value="0.20677083333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/fragment_sos_main.xml" value="0.20677083333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/home_bottom_sheet.xml" value="0.22395833333333334" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/login.xml" value="0.10233029381965553" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/nav_header_main.xml" value="0.23867753623188406" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_adoption.xml" value="0.10764944275582573" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_friend_new_upload.xml" value="0.21041666666666667" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_friend_pet.xml" value="0.21041666666666667" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_home_feature.xml" value="0.21770833333333334" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_item_articleviewall.xml" value="0.18333333333333332" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_item_heros.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_item_nearby.xml" value="0.23072916666666668" />
+        <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_option.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/calendar.xml" value="0.3" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/dog_gender_female.xml" value="0.3375" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/online_bg.xml" value="0.3375" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_add_document.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_adoption_request_send.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_adoption_view_all.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_dog_shelter.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_fullscreen_video.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_message_request_call.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_my_profile.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_playdate_detail.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_playdate_success_sendreq.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_playdate_timedate.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_post_adoption.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_requested_profile.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_training.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/activity_upload_photo.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/adopt_dog_detail.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_adoption_main.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_calendar.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_chat_request.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_dog_info.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_play_date_main.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_train_intro.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_training_main.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_upload_photo.xml" value="0.27807971014492755" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/fragment_user_info.xml" value="0.27807971014492755" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/home_bottom_sheet.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/login.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/onboarding.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/received_frag.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_adoption.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_adoption_view_all.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_dog_info_edit_text.xml" value="0.3078125" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_playdate.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_request.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_select_time.xml" value="0.3171875" />
+        <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/layout/single_shelder.xml" value="0.3171875" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/accept_bg.xml" value="0.23697916666666666" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/accept_request.xml" value="0.2703125" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/article_foreground.xml" value="0.2703125" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/background.xml" value="0.2703125" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.2546875" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/drawable/confirm_bg.xml" value="0.2546875" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_article.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_chat.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_create_room.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_doc_details.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_dogsit_request_massage.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_dogsitting_heros_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_fostering_heros_details.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_home.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_my_dog.xml" value="0.2" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_my_profile.xml" value="0.2" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_newsfeed_deshboard.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_pet_park_description.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_petage.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_petbreed.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_rate_doctor.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_rate_user.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_receiver.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_selectdatetime.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_send_request.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_set_reminder.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_success_request_sent.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_userprofile.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_video_conference.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/activity_youtube.xml" value="0.23055555555555557" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/actvity_dogsitting_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/adopt_dog_detail.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/dialog.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/dialog_confirm.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/dialog_newfeedview.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_adoption_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_dog_sitting_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_foster_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_newsfeed_data.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_play_date_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_sos_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/fragment_training_main.xml" value="0.2388888888888889" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/nav_header_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/radiogroup.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_adoption_view_all.xml" value="0.21333333333333335" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_available_doc.xml" value="0.221875" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_breed_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_dog_reminder.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_item_nearbyhospital.xml" value="0.21666666666666667" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_message_item.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_nearby_doc.xml" value="0.23854166666666668" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/single_pet_document.xml" value="0.25416666666666665" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/layout/training_video_item.xml" value="0.2388888888888889" />
+        <entry key="..\:/doggy_doo_24/doggydoo-android/app/src/main/res/menu/activity_main_drawer.xml" value="0.23854166666666668" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

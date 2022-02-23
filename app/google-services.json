@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "28527804904",
+    "firebase_url": "https://doggydooandroid-default-rtdb.firebaseio.com",
+    "project_id": "doggydooandroid",
+    "storage_bucket": "doggydooandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28527804904:android:fb5c5de8709672da07245d",
+        "android_client_info": {
+          "package_name": "com.aks.doggydoo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28527804904-052p4rojf1ledha4n7b42qmnj6lq4bnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "146967c8c62791f9670f30b2be18407e222096d7"
+          }
+        },
+        {
+          "client_id": "28527804904-j4j8ggu6oa8aabdhpg73ifsoha2u9b0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "87770ba1678a182461bed96f480c87d2ec07e1f3"
+          }
+        },
+        {
+          "client_id": "28527804904-ng1dqfrubl8ihlho130n278lsbvfv9cc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "9afe4d6e0ffd268e9b9922ceb83c7f2de63c5bb9"
+          }
+        },
+        {
+          "client_id": "28527804904-vj9rjtuv8h3d62polbpf5av4noqq0cc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "5baf6cbd5f9c7e3146f3e387a1c18720efd70dc7"
+          }
+        },
+        {
+          "client_id": "28527804904-4lkiiasnc9lhuid0no8f1sjsets88s7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGPe4ga_M8KYrj-o_VuCLXqbxSkWuRRA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28527804904-4lkiiasnc9lhuid0no8f1sjsets88s7m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28527804904-u5oq7ahaa79bf2iuju7ido7ef36gmm7p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aks.DOGGYDOO"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

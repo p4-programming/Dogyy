@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentLayout"
+    android:clickable="true"
+    android:foreground="?selectableItemBackgroundBorderless"
+    android:focusable="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10sp">
+
+    <View
+        android:id="@+id/backgroundImage"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/upcoming_order_background"
+        android:rotation="180" />
+
+    <ImageView
+        android:id="@+id/orderImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="order"
+        android:layout_marginStart="10sp"
+        android:src="@drawable/pedigree" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/orderImage"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/orderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="Pedigree"
+            android:textColor="#010101"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/orderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:text="Arriving in 2 hrs"
+            android:textColor="#010101"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCC11"
+    tools:context=".upcomingorderdescription.ui.UpcomingOderDescription">
+
+    <ImageView
+        android:id="@+id/orderImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButton"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/big_pedigree"
+        android:transitionName="order" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="30dp"
+        android:padding="10sp"
+        android:src="@drawable/back_icon" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_sheet_bg"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/orderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:layout_toStartOf="@id/orderPrize"
+            android:fontFamily="@font/bold"
+            android:text="Stormy Dog Treats"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/orderPrize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30sp"
+            android:fontFamily="@font/bold"
+            android:gravity="end"
+            android:text="\u20B9 350"
+            android:textColor="@color/on_boarding_blue"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/orderWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderTitle"
+            android:fontFamily="@font/medium"
+            android:text="1 Kg"
+            android:textColor="#AEAEAE"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderWeight"
+            android:layout_marginTop="10sp"
+            android:fontFamily="@font/bold"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/orderDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionText"
+            android:layout_marginTop="10sp"
+            android:fontFamily="@font/regular"
+            android:text="Loream ipsum dolor sit amet, consectatuer adipiscu ing elit. Aeneam commondo ligula eget dolor. Aeneasis massa"
+            android:textColor="#9e9e9e" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/trackOrderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderDescription"
+            app:rippleColor="@color/on_boarding_no"
+            android:layout_marginTop="20dp"
+            app:elevation="0dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="@font/bold"
+            app:strokeColor="#D2C6FF"
+            android:letterSpacing="0"
+            app:strokeWidth="1dp"
+            android:text="Track Order"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:backgroundTint="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trackOrderButton"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bold"
+            android:letterSpacing="0"
+            android:padding="5dp"
+            android:text="Cancel Order"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:backgroundTint="@color/on_boarding_no"
+            app:cornerRadius="12sp" />
+    </RelativeLayout>
+</RelativeLayout>

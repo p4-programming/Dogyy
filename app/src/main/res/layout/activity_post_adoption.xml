@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".postadoptiondetail.ui.PostAdoption">
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10sp"
+            android:src="@drawable/back_icon_a" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="@string/post_adoption"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Pet Details"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:inputType="textCapSentences"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Name of the pet"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp">
+
+                <EditText
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/post_adoption_edit_text_bg"
+                    android:fontFamily="@font/medium"
+                    android:hint="Age of Pet"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="10sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BBBBBB"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/ageMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:text="years"
+                    android:textColor="@color/on_boarding_blue" />
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/breedSp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:visibility="gone"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp">
+
+                <EditText
+                    android:id="@+id/weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/post_adoption_edit_text_bg"
+                    android:fontFamily="@font/medium"
+                    android:hint="Weight of Pet"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="10sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BBBBBB"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/weightType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:text="Kgs"
+                    android:textColor="@color/on_boarding_blue" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/genderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/dog_gender_male_bg"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/medium"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/male"
+                    android:textColor="#DD5F5F" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40sp"
+                    android:layout_marginTop="5dp"
+                    android:background="#E3E3E3" />
+
+                <TextView
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/dog_gender_female"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/medium"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/female"
+                    android:textColor="#DD5F5F" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/medicalCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp" android:inputType="textCapSentences"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Medical care if any"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp" android:inputType="textCapSentences"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Brief Description"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bold"
+                    android:text="Vaccinated"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/yesBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/on_boarding_blue"
+                        android:fontFamily="@font/regular"
+                        android:text="Yes"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20sp"
+                        android:buttonTint="@color/on_boarding_blue"
+                        android:fontFamily="@font/regular"
+                        android:text="No"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Upload Photos"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/petPic1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/petPic2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/petPic3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/petPicText1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/petPicText2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 2"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/petPicText3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Your Details"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/yourName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:inputType="textCapSentences"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Name"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/yourEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/yourPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/post_adoption_edit_text_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Phone Number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Upload Photo ID Proof"
+                android:textColor="#454545"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/userPic1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/userPic2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/userPic3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/upload_icon_adoption"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/userPicText1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/userPicText2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 2"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/userPicText3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="#e3e3e3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/postAdoption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Post Adoption"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:backgroundTint="@color/on_boarding_blue"
+                app:cornerRadius="12sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

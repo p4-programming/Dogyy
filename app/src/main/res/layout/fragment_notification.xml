@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/parent"
+    android:layout_height="match_parent"
+    tools:context=".homemodule.ui.NotificationFrag">
+
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:src="@drawable/back_icon"
+            android:visibility="gone"
+            app:tint="@color/on_boarding_blue" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="Notifications"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/titleLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/requestNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/requestCheck"
+                android:fontFamily="@font/medium"
+                android:text="Request Notifications"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/requestDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requestNotification"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@id/requestCheck"
+                android:fontFamily="@font/regular"
+                android:text="Allow to get request nofications"
+                android:textSize="12sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/requestCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#CBCBCB"
+                android:checked="true"
+                android:fontFamily="@font/medium"
+                android:layoutDirection="ltr"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:theme="@style/SwitchTheme"
+                app:switchPadding="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/requestDescription"
+                android:layout_marginTop="10sp"
+                android:background="#E3E3E3" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/callTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/callCheck"
+                android:fontFamily="@font/medium"
+                android:text="Message/Call Notification"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/callDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/callTitle"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@id/callCheck"
+                android:fontFamily="@font/regular"
+                android:text="Allow to get message/call nofications"
+                android:textSize="12sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/callCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#CBCBCB"
+                android:checked="true"
+                android:fontFamily="@font/medium"
+                android:layoutDirection="ltr"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:theme="@style/SwitchTheme"
+                app:switchPadding="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/callDescription"
+                android:layout_marginTop="10sp"
+                android:background="#E3E3E3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/newsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/newsCheck"
+                android:fontFamily="@font/medium"
+                android:text="Newsfeed Notification"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/newsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/newsTitle"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@id/newsCheck"
+                android:fontFamily="@font/regular"
+                android:text="Allow to get newsfeed nofications"
+                android:textSize="12sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/newsCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#CBCBCB"
+                android:checked="true"
+                android:fontFamily="@font/medium"
+                android:layoutDirection="ltr"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:theme="@style/SwitchTheme"
+                app:switchPadding="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/newsDescription"
+                android:layout_marginTop="10sp"
+                android:background="#E3E3E3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/trackTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/trackCheck"
+                android:fontFamily="@font/medium"
+                android:text="Tracking Notifications"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/trackDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/trackTitle"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@id/trackCheck"
+                android:fontFamily="@font/regular"
+                android:text="Allow to get tracking nofications"
+                android:textSize="12sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/trackCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#CBCBCB"
+                android:checked="true"
+                android:fontFamily="@font/medium"
+                android:layoutDirection="ltr"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:theme="@style/SwitchTheme"
+                app:switchPadding="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/trackDescription"
+                android:layout_marginTop="10sp"
+                android:background="#E3E3E3" />
+        </RelativeLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:id="@+id/progressBar"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

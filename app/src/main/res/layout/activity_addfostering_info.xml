@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fostering.ui.AddFosteringInfoActivity">
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10sp"
+            android:src="@drawable/back_icon_a" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="Post Fostering Info"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Pet Details"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Name of the pet"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Age of Pet"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Breed of the pet"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:inputType="textCapSentences"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Medical care if any"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:inputType="textCapSentences"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Brief Description"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bold"
+                    android:text="Vaccinated"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/on_boarding_blue"
+                        android:fontFamily="@font/regular"
+                        android:text="Yes"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20sp"
+                        android:buttonTint="@color/on_boarding_blue"
+                        android:fontFamily="@font/regular"
+                        android:text="No"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Upload Photos"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 2"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginEnd="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Your Details"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:inputType="textCapSentences"   android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Name"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/unselectedtime_bg"
+                android:fontFamily="@font/medium"
+                android:hint="Your Phone Number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="10sp"
+                android:textColor="@color/black"
+                android:textColorHint="#BBBBBB"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/bold"
+                android:text="Upload Photo ID Proof"
+                android:textColor="#454545"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 2"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginEnd="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/upload_photo_bg"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:padding="20sp"
+                    android:text="+ Upload Photo 3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="#e3e3e3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
+                android:fontFamily="@font/bold"
+                android:padding="10dp"
+                android:text="Post Fostering Information"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:backgroundTint="@color/on_boarding_blue"
+                app:cornerRadius="12sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10sp"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:id="@+id/ivImageIcon"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:src="@drawable/messages" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/ivImageIcon"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/black"
+            android:text="You have" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/cal"
+            android:fontFamily="@font/regular"
+            android:text="2 new messages" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/black"
+            android:text="from Shriya." />
+
+    </LinearLayout>
+</RelativeLayout>

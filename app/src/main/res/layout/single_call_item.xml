@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?selectableItemBackground">
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/requestProfilePic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pedigree"
+            android:transitionName="requestProfileImage" />
+
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:fontFamily="@font/bold"
+            android:text="Tanvir Singh"
+            android:layout_toEndOf="@+id/requestProfilePic"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:transitionName="requestedProfileName" />
+
+
+        <ImageView
+            android:id="@+id/ivMissed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profileName"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/requestProfilePic"
+            android:src="@drawable/ic_missed_call_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="5sp"
+            android:layout_below="@+id/profileName"
+            android:layout_toEndOf="@+id/ivMissed"
+            android:fontFamily="@font/regular"
+            android:text="Today, 7:44 pm"
+            android:textColor="@color/dark_transparent"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/rlMain"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/hint_color" />
+
+</RelativeLayout>

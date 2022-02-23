@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:id="@+id/mainLayout"
+    android:focusable="true">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/friendProfilePicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:transitionName="friendProfile"
+        android:src="@drawable/vaccinated"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="1dp" />
+
+    <LinearLayout
+        android:id="@+id/textLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_toStartOf="@id/ivAccept"
+        android:layout_toEndOf="@id/friendProfilePicture"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:text="Kevin Joshi"
+            android:id="@+id/name"
+            android:transitionName="friendName"
+            android:textColor="@color/on_boarding_blue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvReqDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="sent" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivAccept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/ivRemove"
+        android:layout_marginEnd="10dp"
+        android:foreground="?selectableItemBackground"
+        android:src="@drawable/accept_request" />
+
+    <ImageView
+        android:id="@+id/ivRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:foreground="?selectableItemBackground"
+        android:src="@drawable/red_outline_cross" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/friendProfilePicture"
+        android:layout_marginTop="20dp"
+        android:background="@color/on_boarding_view" />
+</RelativeLayout>

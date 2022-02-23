@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/message"
+        android:icon="@drawable/messages"
+        android:title="My Messages" />
+    <item
+        android:id="@+id/request"
+        android:icon="@drawable/request"
+        android:title="My Requests" />
+    <item
+        android:id="@+id/myCalendar"
+        android:icon="@drawable/calendar"
+        android:title="What`s upcoming" />
+    <item
+        android:id="@+id/friend"
+        android:icon="@drawable/my_friend"
+        android:title="My Friends" />
+
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/notification"
+        android:title="Notifications" />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/settings"
+        android:title="Settings" />
+    <item
+        android:icon="@drawable/faqs"
+        android:title="FAQs" />
+</menu>
