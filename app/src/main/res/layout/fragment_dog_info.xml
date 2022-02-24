@@ -19,7 +19,7 @@
         android:contentDescription="@string/app_name"
         android:layout_marginTop="60dp"
         android:layout_marginStart="20dp"
-        android:src="@drawable/back_icon_a"/>
+        android:src="@mipmap/back_icon"/>
 
     <TextView
         android:id="@+id/title"

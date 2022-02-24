@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:padding="10sp"
-            android:src="@drawable/back_icon_a" />
+            android:src="@mipmap/back_icon" />
 
         <TextView
             android:id="@+id/tvTitle"

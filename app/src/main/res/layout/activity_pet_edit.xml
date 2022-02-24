@@ -41,7 +41,7 @@
                     android:layout_marginStart="10dp"
                     android:contentDescription="@string/app_name"
                     android:padding="10sp"
-                    android:src="@drawable/back_icon_a" />
+                    android:src="@mipmap/back_icon" />
 
             </RelativeLayout>
 

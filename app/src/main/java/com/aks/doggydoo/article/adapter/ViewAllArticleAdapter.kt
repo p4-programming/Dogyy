@@ -17,13 +17,14 @@ import com.aks.doggydoo.utils.network.ApiConstant
 import java.time.LocalDate
 import java.time.Period
 
-class ViewAllArticleAdapter(var context: Context) :
+class ViewAllArticleAdapter(var context: Context, viewType: String) :
     RecyclerView.Adapter<ViewAllArticleAdapter.ViewAllViewHolder>(), Filterable {
     var articleList: ArrayList<Articledetail> = ArrayList()
     var articleListFiltered: ArrayList<Articledetail> = ArrayList()
     var yearS: Int = 0
     var monthS: Int = 0
     var dayS: Int = 0
+    var viewType = viewType
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllViewHolder {
         return ViewAllViewHolder(
@@ -77,9 +78,11 @@ class ViewAllArticleAdapter(var context: Context) :
             }
 
             binding.mainLayout.setOnClickListener {
+
                 context.startActivity(
                     Intent(context, ArticleDetail::class.java)
                         .putExtra("article_id", detail.id)
+                        .putExtra("type", viewType)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )
             }

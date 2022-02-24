@@ -1,8 +1,11 @@
 package com.aks.doggydoo.homemodule.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -47,10 +50,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     @SuppressLint("RtlHardcoded")
     override fun onCreate(savedInstanceState: Bundle?) {
+        makeStatusBarTransparent()
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -91,8 +96,27 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             logoutDialog()
         }
     }
+    fun View.setMarginTop(marginTop: Int) {
+        val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+        menuLayoutParams.setMargins(0, marginTop, 0, 0)
+        this.layoutParams = menuLayoutParams
+    }
 
-
+    fun Activity.makeStatusBarTransparent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.apply {
+                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    decorView.systemUiVisibility =
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                } else {
+                    decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                }
+                statusBarColor = Color.TRANSPARENT
+            }
+        }
+    }
 
     private fun setuserDetail() {
         name.text = MyApp.getSharedPref().userName

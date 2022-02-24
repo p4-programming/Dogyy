@@ -22,7 +22,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@drawable/back_icon_a" />
+            android:src="@mipmap/back_icon" />
 
         <TextView
             android:layout_width="wrap_content"

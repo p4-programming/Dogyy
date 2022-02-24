@@ -28,7 +28,7 @@
             android:layout_marginTop="20dp"
             android:contentDescription="@string/todo"
             android:padding="20sp"
-            android:src="@drawable/back_icon_a" />
+            android:src="@mipmap/back_icon" />
     </FrameLayout>
 
     <LinearLayout

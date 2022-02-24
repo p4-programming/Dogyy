@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -85,7 +86,13 @@ class FosteringHerosDetailActivity : AppCompatActivity() {
         )
 
         binding.tvConfirm.setOnClickListener {
-            callFosterReqAPI()
+            if (clickedItem =="1"){
+                callFosterReqAPI()
+            }else{
+                Toast.makeText(this, "Please select a pet.", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
 
         binding.friendNameAndAge.setOnClickListener {

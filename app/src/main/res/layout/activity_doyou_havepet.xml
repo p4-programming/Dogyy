@@ -38,7 +38,7 @@
                 android:layout_marginLeft="10dp"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:padding="10dp"
-                android:src="@drawable/back_icon_a" />
+                android:src="@mipmap/back_icon" />
 
             <TextView
                 android:id="@+id/title"

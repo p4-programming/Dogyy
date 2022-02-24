@@ -68,7 +68,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/regular"
                 android:padding="10dp"
-                android:text="Block"
+                android:text="Report"
                 android:textColor="@color/black" />
 
         </LinearLayout>

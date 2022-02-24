@@ -64,7 +64,7 @@
                 android:layout_marginTop="30dp"
                 android:contentDescription="@string/app_name"
                 android:padding="5sp"
-                android:src="@drawable/back_icon_a" />
+                android:src="@mipmap/back_icon" />
 
             <ImageView
                 android:id="@+id/ivEditProfile"
@@ -430,7 +430,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="#CBCBCB"
                         android:checked="true"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:fontFamily="@font/medium"
                         android:layoutDirection="ltr"
                         android:textColor="@color/black"

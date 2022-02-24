@@ -38,7 +38,7 @@ class ViewAllArticleActivity : AppCompatActivity() {
         articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
 
         viewType = intent.getStringExtra("viewType").toString()
-        adapter = ViewAllArticleAdapter(this)
+        adapter = ViewAllArticleAdapter(this,viewType)
         binding.rvAllItems.layoutManager = GridLayoutManager(this, 2)
         binding.rvAllItems.adapter = adapter
 

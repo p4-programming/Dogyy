@@ -34,7 +34,7 @@
                 android:layout_marginStart="5dp"
                 android:contentDescription="@string/app_name"
                 android:padding="10dp"
-                android:src="@drawable/back_icon_a" />
+                android:src="@mipmap/back_icon" />
 
             <ImageView
                 android:id="@+id/ivEditProfile"

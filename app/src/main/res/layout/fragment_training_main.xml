@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/back_icon_a" />
+                android:src="@mipmap/back_icon" />
 
 
             <TextView

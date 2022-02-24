@@ -8,6 +8,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
@@ -632,7 +633,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             )
                                 .title("Pinned" + "," + "distress pet")
                                 .snippet(parkDetailList[i].parkid)
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.sos_marker))
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.sos_pin))
                         )
                     } else {
                         mMap!!.addMarker(
@@ -792,13 +793,33 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         }
 
     }
+    private fun setMapStyle(map: GoogleMap) {
+        try {
+            // Customize the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            val success = map.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    requireActivity(),
+                    R.raw.map_style
+                )
+            )
 
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.")
+            }
+        } catch (e: Resources.NotFoundException) {
+            Log.e(TAG, "Can't find style. Error: ", e)
+        }
+    }
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap!!.uiSettings.isZoomControlsEnabled = false
         mMap!!.setOnMarkerClickListener(this)
         mMap!!.uiSettings.isMyLocationButtonEnabled = false
-       // mMap!!.getUiSettings().setMyLocationButtonEnabled(false);
+
+
+
+        // mMap!!.getUiSettings().setMyLocationButtonEnabled(false);
 
         mapStyle = MyApp.getSharedPref().userReqType
         if (mapStyle.isEmpty()) {

@@ -12,7 +12,7 @@ import com.aks.doggydoo.homemodule.adapter.NotificationAdapter
 
 class SettingFrag : Fragment(R.layout.fragment_setting) {
     private lateinit var binding: FragmentSettingBinding
-    private val titleList = listOf("Account Settings", "Map Settings", "Edit Profile")
+    private val titleList = listOf( "Map Settings", "Edit Profile")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
