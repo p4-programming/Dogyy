@@ -55,11 +55,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20sp"
-                android:visibility="gone"
                 android:background="@drawable/where_are_you_going_bg"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?selectableItemBackgroundBorderless">
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchview"
@@ -103,11 +103,13 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllDogs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/medium"
+                    android:padding="5dp"
                     android:text="View All"
                     android:textColor="@color/on_boarding_blue"
                     android:textSize="12sp" />
@@ -143,16 +145,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20dp">
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
                     android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@drawable/donate_one" />
 
                 <TextView
@@ -183,16 +185,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20dp">
 
                 <ImageView
                     android:id="@+id/image1"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
                     android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@drawable/donate" />
 
                 <TextView
@@ -223,16 +225,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="20dp">
 
                 <ImageView
                     android:id="@+id/image2"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
                     android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@drawable/medicle_aid" />
 
                 <TextView

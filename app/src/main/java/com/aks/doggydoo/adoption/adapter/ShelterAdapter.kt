@@ -39,7 +39,12 @@ class ShelterAdapter(var context: Context) :
 
 
             binding.mainLayout.setOnClickListener {
-                 context.startActivity(Intent(context, DogShelterActivity::class.java).putExtra("title",detail.name))
+                context.startActivity(
+                    Intent(
+                        context,
+                        DogShelterActivity::class.java
+                    ).putExtra("title", detail.name).putExtra("shelter_id", detail.shelter_id)
+                )
                 /*context.startActivity(
                     Intent(
                         context,

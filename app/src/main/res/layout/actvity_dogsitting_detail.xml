@@ -212,6 +212,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:visibility="gone"
                     android:layout_marginTop="10sp"
                     android:background="#E3E3E3" />
 

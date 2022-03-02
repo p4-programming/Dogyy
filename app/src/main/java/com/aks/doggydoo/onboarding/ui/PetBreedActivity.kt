@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aks.doggydoo.R
+import com.aks.doggydoo.adoption.adapter.ViewAllSheltersDogAdapter
+import com.aks.doggydoo.adoption.datasource.model.AdoptionListAllData
+import com.aks.doggydoo.adoption.datasource.model.Pet
 import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.commonutility.show
@@ -69,11 +72,13 @@ class PetBreedActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null) {
+               /* if (s != null) {
                     if (s.length > 3) {
                         val text: String = s.toString()
                     }
-                }
+                }*/
+                adapterBreed.filter.filter(s)
+                adapterBreed.notifyDataSetChanged()
             }
         })
 
@@ -106,8 +111,13 @@ class PetBreedActivity : AppCompatActivity() {
             binding.button.visibility = View.VISIBLE
         }
 
+     /*   adapterSheltersDogViewALl = ViewAllSheltersDogAdapter(this@AdoptionViewAll)
+        binding.rvAllItems.adapter = adapterSheltersDogViewALl
+*/
         adapterBreed = BreedAdapter(this)
         binding.rvBreed.adapter = adapterBreed
+
+
         binding.rvBreed.addOnItemTouchListener(
             RecyclerTouchListener(
                 applicationContext,
@@ -140,7 +150,8 @@ class PetBreedActivity : AppCompatActivity() {
                         breed.add(category.category)
                         breedIdList.add(category.id)
                     }
-                    adapterBreed.submitList(it.data.petbreeddetails)
+                    renderList(it.data.petbreeddetails)
+                   // adapterBreed.submitList(it.data.petbreeddetails)
 
                 }
                 Result.Status.ERROR -> {
@@ -154,4 +165,9 @@ class PetBreedActivity : AppCompatActivity() {
     override fun onBackPressed() {
         finish()
     }
+
+    private fun renderList(data: List<PetBreedDetail>) {
+        adapterBreed.addData(data)
+    }
+
 }

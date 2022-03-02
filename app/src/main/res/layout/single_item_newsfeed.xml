@@ -186,7 +186,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/newsfeedbg">
 
             <LinearLayout
@@ -230,7 +230,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/medium"
-                    android:text="Dog’s Tail Science"
+                    android:text="Dog’s Tail Science "
                     android:textColor="@color/black" />
 
                 <TextView
@@ -240,6 +240,7 @@
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/regular"
                     android:text="by Gaurab.de"
+                    android:layout_marginBottom="5dp"
                     android:textStyle="italic" />
 
             </LinearLayout>

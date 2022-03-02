@@ -143,10 +143,7 @@ class ArticleDetail : AppCompatActivity() {
     }
 
     private fun callArticleLikeAPI(isLike: String) {
-        articleViewModel.getSingleArticleLikeDataHome(
-            articleId,
-            MyApp.getSharedPref().userId,
-            isLike
+        articleViewModel.getSingleArticleLikeDataHome(type,articleId, MyApp.getSharedPref().userId, isLike
         )
             .observe(this, Observer {
                 when (it.status) {

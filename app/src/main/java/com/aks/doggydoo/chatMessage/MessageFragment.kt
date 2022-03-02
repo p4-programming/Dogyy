@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.aks.doggydoo.databinding.FragmentMessageBinding
+import com.aks.doggydoo.firebaseChat.Message
 import com.aks.doggydoo.firebaseChat.User
 import com.aks.doggydoo.firebaseChat.adapter.FirebaseUserAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -47,18 +49,42 @@ class MessageFragment : Fragment() {
         mAuth = Firebase.auth
         mDbRef = FirebaseDatabase.getInstance().reference
         userFirebaseList = ArrayList()
+
+
+
         adapter = FirebaseUserAdapter(requireContext(), userFirebaseList)
         binding.rvMessage.adapter = adapter
 
         mDbRef.child("user").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userFirebaseList.clear()
+
                 for (postSnapshot in snapshot.children) {
+
                     val currentUser = postSnapshot.getValue(User::class.java)
-                    if (mAuth.currentUser?.uid != currentUser?.uid) {
-                        userFirebaseList.add(currentUser!!)
-                    }
+                    Toast.makeText(requireActivity(), currentUser.toString(), Toast.LENGTH_SHORT).show()
+
+
+
+                     val senderRoom = currentUser?.uid + Firebase.auth.currentUser?.uid
+                    mDbRef.child("chats").child(senderRoom).child("messages")
+                        .addValueEventListener(object : ValueEventListener {
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+
+                                if (mAuth.currentUser?.uid != currentUser?.uid) {
+                                    userFirebaseList.add(currentUser!!)
+
+                                }
+
+                            }
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                        })
                 }
+
                 binding.progressBar.visibility = View.GONE
                 adapter.notifyDataSetChanged()
             }

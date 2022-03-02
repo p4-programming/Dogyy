@@ -30,4 +30,15 @@ class AdoptionRepo @Inject constructor(
         }
     )
 
+    fun getAllShelterDetailLiveData(shelter_id: String) = resultLiveData(
+        networkCall = {
+            remoteAdoptionDataSource.fetchShelterDetailResponse(shelter_id)
+        }
+    )
+        fun getAllShelterdetailViewAllLiveData(shelter_id: String) = resultLiveData(
+            networkCall = {
+                remoteAdoptionDataSource.fetchShelterDetailViewAllResponse(shelter_id)
+            }
+    )
+
 }

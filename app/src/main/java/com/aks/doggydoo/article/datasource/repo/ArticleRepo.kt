@@ -63,11 +63,11 @@ constructor(
 
 
     fun getSingleArticleLikeLiveData(
-        blog_id:String,user_id: String,like:String
+     type: String,blog_id:String,user_id: String,like:String
     ) = resultLiveData(
         networkCall = {
             remoteArticleDataSource.fetchSingleArticleLikeResponse(
-                blog_id, user_id,like
+                type, blog_id, user_id,like
             )
         }
     )

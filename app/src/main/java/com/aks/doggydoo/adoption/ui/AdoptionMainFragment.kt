@@ -87,6 +87,7 @@ class AdoptionMainFragment : Fragment() {
         binding.adoptionViewAll.setOnClickListener {
             startActivity(
                 Intent(requireActivity(), AdoptionViewAll::class.java)
+                    .putExtra("shelter_id", "")
                     .putExtra("from", "adoption").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
         }
@@ -118,7 +119,11 @@ class AdoptionMainFragment : Fragment() {
 
     private fun callGetAdoptionListApi() {
         System.out.println("user id>>" + MyApp.getSharedPref().userId)
-        adoptionModel.getAdoptionList(MyApp.getSharedPref().userId, MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
+        adoptionModel.getAdoptionList(
+            MyApp.getSharedPref().userId,
+            MyApp.getSharedPref().userLat,
+            MyApp.getSharedPref().userLong
+        )
             .observe(viewLifecycleOwner, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import com.aks.doggydoo.adoptdogdetails.ui.AdoptDogDetailActivity
 import com.aks.doggydoo.adoption.adapter.AdoptionAdapter
 import com.aks.doggydoo.adoption.adapter.AdoptionShelterAdapter
 import com.aks.doggydoo.adoption.adapter.ShelterAdapter
+import com.aks.doggydoo.adoption.ui.AdoptionViewAll
 import com.aks.doggydoo.adoption.viewmodel.AdoptionModel
 import com.aks.doggydoo.chatMessage.titelArray
 import com.aks.doggydoo.commonutility.hide
@@ -30,6 +32,7 @@ class DogShelterActivity : AppCompatActivity() {
 
     private lateinit var adapter: AdoptionShelterAdapter
     private val adoptionModel: AdoptionModel by viewModels()
+    private var shelterId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ class DogShelterActivity : AppCompatActivity() {
 
     private fun getInit() {
         val title: String = intent.getStringExtra("title").toString()
+        shelterId = intent.getStringExtra("shelter_id").toString()
         binding.tvTitle.text = title
         adapter = AdoptionShelterAdapter(this@DogShelterActivity) { it, id ->
             val option = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -57,7 +61,7 @@ class DogShelterActivity : AppCompatActivity() {
         }
         binding.homeRv.adapter = adapter
 
-     //   binding.helpingHandRv.adapter = HelpingHandAdapter()
+        //   binding.helpingHandRv.adapter = HelpingHandAdapter()
         binding.backButton.setOnClickListener { finish() }
 
         binding.searchview.setOnClickListener {
@@ -73,10 +77,18 @@ class DogShelterActivity : AppCompatActivity() {
             binding.searchText.show()
             true
         }
+
+        binding.tvViewAllDogs.setOnClickListener {
+            startActivity(
+                Intent(this, AdoptionViewAll::class.java)
+                    .putExtra("shelter_id", shelterId)
+                    .putExtra("from", "Shelter").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
+        }
     }
 
     private fun callGetShelterListApi() {
-        adoptionModel.getAllShelterList(MyApp.getSharedPref().userId).observe(this, Observer {
+        adoptionModel.getShelterDetail(shelterId).observe(this, Observer {
             when (it.status) {
                 Result.Status.LOADING -> {
                     binding.progressBar.show()
@@ -90,7 +102,7 @@ class DogShelterActivity : AppCompatActivity() {
                         )
                         return@Observer
                     }
-                    adapter.submitList(it.data.shelterlist)
+                    adapter.submitList(it.data.shelterlist[0].Pet_List)
                 }
                 Result.Status.ERROR -> {
                     binding.progressBar.hide()

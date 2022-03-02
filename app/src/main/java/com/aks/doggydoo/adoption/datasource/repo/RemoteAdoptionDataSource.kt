@@ -1,4 +1,5 @@
 package com.aks.doggydoo.adoption.datasource.repo
+
 import com.aks.doggydoo.utils.network.ApiFactory
 import com.aks.doggydoo.utils.network.ResponseHandler
 import javax.inject.Inject
@@ -9,9 +10,9 @@ class RemoteAdoptionDataSource @Inject constructor(private val apiFactory: ApiFa
      * fetch AllAdoption Response from network
      * */
     suspend fun fetchAdoptionResponse(
-        user_id:String,
-        latitude:String,
-        longitude:String
+        user_id: String,
+        latitude: String,
+        longitude: String
     ) =
         getResult {
             apiFactory.createService(AdoptionApiService::class.java)
@@ -22,7 +23,7 @@ class RemoteAdoptionDataSource @Inject constructor(private val apiFactory: ApiFa
 
 
     suspend fun fetchAllAdoptionResponse(
-        user_id:String
+        user_id: String
     ) =
         getResult {
             apiFactory.createService(AdoptionViewAllApiService::class.java)
@@ -32,12 +33,32 @@ class RemoteAdoptionDataSource @Inject constructor(private val apiFactory: ApiFa
         }
 
     suspend fun fetchAllShelterResponse(
-        user_id:String
+        user_id: String
     ) =
         getResult {
             apiFactory.createService(ShelterApiService::class.java)
                 .getShelterList(
                     user_id
+                )
+        }
+
+    suspend fun fetchShelterDetailResponse(
+        shelter_id: String
+    ) =
+        getResult {
+            apiFactory.createService(ShelterDetailApi::class.java)
+                .getShelterDetail(
+                    shelter_id
+                )
+        }
+
+    suspend fun fetchShelterDetailViewAllResponse(
+        shelter_id: String
+    ) =
+        getResult {
+            apiFactory.createService(ViewAllShelterDogAPI::class.java)
+                .getSheltersDog(
+                    shelter_id
                 )
         }
 

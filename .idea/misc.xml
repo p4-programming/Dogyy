@@ -51,31 +51,65 @@
         <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_item_heros.xml" value="0.23072916666666668" />
         <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_item_nearby.xml" value="0.23072916666666668" />
         <entry key="..\:/AKS Projects/doggydoo-android-master/app/src/main/res/layout/single_option.xml" value="0.19739583333333333" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/drawable/age_sheet_bg.xml" value="0.235" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/drawable/back_icon.xml" value="0.235" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.235" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/drawable/ic_market.xml" value="0.17" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/drawable/ic_playdate_home_icon.xml" value="0.235" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_add_document.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_adoption_intro.xml" value="0.3546875" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_adoption_view_all.xml" value="0.30364583333333334" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_article.xml" value="0.26623931623931624" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_article_desription.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_article_detail.xml" value="0.3151041666666667" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_article_intro.xml" value="0.26623931623931624" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_call_a_wet.xml" value="0.24273504273504273" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_chat.xml" value="0.30625" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_comment.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_dog_shelter.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_dogsitting_heros_details.xml" value="0.3390625" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_fostering_heros_details.xml" value="0.29375" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_home.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_message_request_call.xml" value="0.2" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_my_dog.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_my_friend_description.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_my_profile.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_newsfeed_deshboard.xml" value="0.2782051282051282" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_other_dog_profile.xml" value="0.1918803418803419" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_pet_edit.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_petbreed.xml" value="0.2264957264957265" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_playdate_detail.xml" value="0.3390625" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_upload_photo.xml" value="0.2782051282051282" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/activity_userprofile.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/actvity_dogsitting_detail.xml" value="0.22916666666666666" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/adopt_dog_detail.xml" value="0.2833333333333333" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/content_main.xml" value="0.33" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/dialog_usermenu.xml" value="0.3546875" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/frag_article_intro.xml" value="0.21495726495726497" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_adoption_main.xml" value="0.19202898550724637" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_article.xml" value="0.2782051282051282" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_call_a_vet_intro.xml" value="0.24273504273504273" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_calls.xml" value="0.29102564102564105" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_dog_info.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_dog_sitting_intro.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_dog_sitting_main.xml" value="0.192481884057971" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_home.xml" value="0.24166666666666667" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_image.xml" value="0.2782051282051282" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_play_date_intro.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_setting.xml" value="0.3546875" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/fragment_sos_intro.xml" value="0.3546875" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/home_bottom_sheet.xml" value="0.22" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/nav_header_main.xml" value="0.3546875" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_adoption.xml" value="0.2833333333333333" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_adoption_view_all.xml" value="0.30364583333333334" />
         <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_friend_pet.xml" value="0.3546875" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_home_feature.xml" value="0.24102564102564103" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_item_newsfeed.xml" value="0.2782051282051282" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_item_user.xml" value="0.2782051282051282" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_message_item.xml" value="0.30625" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/single_shelder.xml" value="0.2833333333333333" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/layout/test.xml" value="0.2094017094017094" />
+        <entry key="..\:/All Projects/Shiv Workspace/doggydoo-android-shiv/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/calendar.xml" value="0.3" />
         <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/dog_gender_female.xml" value="0.3375" />
         <entry key="..\:/Users/Yachika/AndroidStudioProjects/doggydoo-android/app/src/main/res/drawable/online_bg.xml" value="0.3375" />

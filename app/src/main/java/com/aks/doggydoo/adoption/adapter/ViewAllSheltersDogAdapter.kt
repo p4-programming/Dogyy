@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aks.doggydoo.R
 import com.aks.doggydoo.adoptdogdetails.ui.AdoptDogDetailActivity
 import com.aks.doggydoo.adoption.datasource.model.AdoptionListAllData
+import com.aks.doggydoo.adoption.datasource.model.Pet
 import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.loadImageFromString
 import com.aks.doggydoo.commonutility.show
@@ -23,10 +24,11 @@ import com.aks.doggydoo.utils.network.ApiConstant
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewAllAdapter(var context: Context) : RecyclerView.Adapter<ViewAllAdapter.ViewAllViewHolder>(), Filterable {
+class ViewAllSheltersDogAdapter(var context: Context) :
+    RecyclerView.Adapter<ViewAllSheltersDogAdapter.ViewAllViewHolder>(), Filterable {
 
-    var petList: ArrayList<AdoptionListAllData> = ArrayList()
-    var petListFiltered: ArrayList<AdoptionListAllData> = ArrayList()
+    var petList: ArrayList<Pet> = ArrayList()
+    var petListFiltered: ArrayList<Pet> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllViewHolder {
         Log.d("mhsdafdfa", "onCreateViewHolder: ")
@@ -52,51 +54,55 @@ class ViewAllAdapter(var context: Context) : RecyclerView.Adapter<ViewAllAdapter
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bindAdoptionData(data: AdoptionListAllData) {
+        fun bindAdoptionData(data: Pet) {
             binding.apply {
-                adoptName.text = "${data.name}, ${data.age} Years , ${data.pet_age_month} month"
+                adoptName.text =
+                    "${data.pet_name}, ${data.pet_age} Years , ${data.pet_age_month} month"
                 adoptBreed.text = data.breed
 
-                try {
-                    val addresses: List<Address>
-                    val geocoder: Geocoder = Geocoder(context, Locale.getDefault())
+                /* try {
+                     val addresses: List<Address>
+                     val geocoder: Geocoder = Geocoder(context, Locale.getDefault())
 
-                    addresses = geocoder.getFromLocation(
-                        data.lattitue.toDouble(),
-                        data.longitute.toDouble(),
-                        1
-                    )
+                     addresses = geocoder.getFromLocation(
+                         data.lattitue.toDouble(),
+                         data.longitute.toDouble(),
+                         1
+                     )
 
-                    val address = addresses[0].locality
-                    if (address.isNotEmpty()) {
-                        tvLocation.show()
-                        tvLocation.text = address
-                    } else {
-                        tvLocation.hide()
-                    }
+                     val address = addresses[0].locality
+                     if (address.isNotEmpty()) {
+                         tvLocation.show()
+                         tvLocation.text = address
+                     } else {
+                         tvLocation.hide()
+                     }
 
 
-                } catch (e: Exception) {
+                 } catch (e: Exception) {
 
-                }
+                 }*/
 
-                if (data.pic == "user.png") {
+                if (data.pet_image == "user.png") {
                     dogImage.setImageResource(R.drawable.dummy_pet)
                 } else
-                    dogImage.loadImageFromString(context, ApiConstant.PET_IMAGE_BASE_URL + data.pic)
+                    dogImage.loadImageFromString(
+                        context,
+                        ApiConstant.PET_IMAGE_BASE_URL + data.pet_image
+                    )
             }
 
             binding.mainLayout.setOnClickListener {
                 context.startActivity(
                     Intent(context, AdoptDogDetailActivity::class.java)
-                        .putExtra("adoptId", data.id),
+                        .putExtra("adoptId", data.pet_id),
                 )
             }
         }
     }
 
-    fun addData(list: List<AdoptionListAllData>) {
-        petList = list as ArrayList<AdoptionListAllData>
+    fun addData(list: List<Pet>) {
+        petList = list as ArrayList<Pet>
         petListFiltered = petList
         notifyDataSetChanged()
     }
@@ -108,9 +114,9 @@ class ViewAllAdapter(var context: Context) : RecyclerView.Adapter<ViewAllAdapter
                 petListFiltered = if (charSearch.isEmpty()) {
                     petList
                 } else {
-                    val resultList = ArrayList<AdoptionListAllData>()
+                    val resultList = ArrayList<Pet>()
                     for (row in petList) {
-                        if (row.name.lowercase().contains(constraint.toString().lowercase())) {
+                        if (row.pet_name.lowercase().contains(constraint.toString().lowercase())) {
                             resultList.add(row)
                         }
                     }
@@ -122,7 +128,7 @@ class ViewAllAdapter(var context: Context) : RecyclerView.Adapter<ViewAllAdapter
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                petListFiltered = results?.values as ArrayList<AdoptionListAllData>
+                petListFiltered = results?.values as ArrayList<Pet>
                 notifyDataSetChanged()
             }
         }

@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_sheet_bg">
 
@@ -175,8 +175,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:contentDescription="@string/app_name"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/login_white_rec" />
 
     <TextView

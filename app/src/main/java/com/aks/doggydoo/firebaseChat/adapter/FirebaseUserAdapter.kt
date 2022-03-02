@@ -59,7 +59,6 @@ class FirebaseUserAdapter(var context: Context, var userList: ArrayList<User>) :
                             messageList.add(message!!)
                         }
                     }
-
                     override fun onCancelled(error: DatabaseError) {
 
                     }

@@ -63,12 +63,12 @@ class RemoteArticleDataSource @Inject constructor(private val apiFactory: ApiFac
 
 
     suspend fun fetchSingleArticleLikeResponse(
-        blog_id:String,user_id: String, like:String
+       type: String,blog_id:String,user_id: String, like:String
     ) =
         getResult {
             apiFactory.createService(ArticleApiService::class.java)
                 .getAricleLikeDetail(
-                    blog_id, user_id,like
+                    type,blog_id, user_id,like
                 )
         }
 

@@ -29,7 +29,6 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:fontFamily="@font/bold"
             android:gravity="center"
             android:text="Upload"
@@ -49,32 +48,33 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/uploaded_image_bg" />
+            android:layout_centerInParent="true" />
 
 
         <EditText
-            android:layout_width="match_parent"
             android:id="@+id/caption"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/unselectedtime_bg"
-            android:fontFamily="@font/regular" android:inputType="textCapSentences"
+            android:fontFamily="@font/regular"
             android:gravity="start"
             android:hint="Caption this upload..."
+            android:inputType="textMultiLine"
+            android:maxLines="10"
             android:padding="15dp"
             android:textColor="@color/black" />
 
     </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/tvUploadArticle"
-        android:id="@+id/progressBar"
-        android:visibility="gone"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"

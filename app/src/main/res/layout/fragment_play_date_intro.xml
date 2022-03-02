@@ -2,17 +2,17 @@
 <com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#FFEEF3"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFEEF3">
 
     <TextView
         android:id="@+id/adoptionTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:layout_marginStart="20sp"
-        android:fontFamily="@font/bold"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/bold"
         android:text="Playdate"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         android:textColor="#5935D5"
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/adoptionTitleText"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/medium"
         android:text="Lorem ipsum amet, consectetuer\nsitzala adipiscing elit aen."
         android:textColor="#5935D5"
@@ -37,19 +37,19 @@
     <ImageView
         android:id="@+id/ivPlaydate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_playdate_home_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adoptionIntroText"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
+        android:id="@+id/goButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_slide"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="20dp"
-        android:src="@drawable/arrow"
-        app:tint="@color/on_boarding_blue" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout>

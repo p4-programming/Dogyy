@@ -439,7 +439,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             BottomSheetBehavior.BottomSheetCallback() {
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -456,13 +455,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         bottomSheetBehavior.isFitToContents = true
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
+
+                      binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
                         initializeBottomSheetAdapters()
                         println("STATE_EXPANDED")
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
+                        binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
                         println("STATE_DRAGGING")
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
                         println("STATE_HALF_EXPANDED")
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {

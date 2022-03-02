@@ -11,8 +11,11 @@ class AdoptionModel @Inject constructor(private var adoptionRepo: AdoptionRepo) 
         user_id: String,
         latitude: String,
         longitude: String
-    ) = adoptionRepo.getAdoptionListLiveData(user_id,latitude,longitude)
+    ) = adoptionRepo.getAdoptionListLiveData(user_id, latitude, longitude)
 
     fun getAllAdoptionList(user_id: String) = adoptionRepo.getAllAdoptionListLiveData(user_id)
     fun getAllShelterList(user_id: String) = adoptionRepo.getAllShelterListLiveData(user_id)
+    fun getShelterDetail(shelter_id: String) = adoptionRepo.getAllShelterDetailLiveData(shelter_id)
+    fun getShelterDetailViewAll(shelter_id: String) = adoptionRepo.getAllShelterdetailViewAllLiveData(shelter_id)
+
 }
