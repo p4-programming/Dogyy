@@ -23,7 +23,6 @@ import com.squareup.picasso.Picasso
 
 class FirebaseUserAdapter(var context: Context, var userList: ArrayList<User>) :
     RecyclerView.Adapter<FirebaseUserAdapter.UserViewHolder>() {
-    private var messageList: ArrayList<Message> = ArrayList()
     private var mDbRef: DatabaseReference = FirebaseDatabase.getInstance().reference
     private var senderRoom: String = ""
 
@@ -45,64 +44,42 @@ class FirebaseUserAdapter(var context: Context, var userList: ArrayList<User>) :
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
-        holder.userLayout.setOnClickListener {
-            holder.progressBar.visibility = View.VISIBLE
-            senderRoom = currentUser.uid + Firebase.auth.currentUser?.uid
+        senderRoom = currentUser.uid + Firebase.auth.currentUser?.uid
+        mDbRef.child("chats").child(senderRoom).child("messages")
+            .addValueEventListener(object : ValueEventListener {
 
-            mDbRef.child("chats").child(senderRoom).child("messages")
-                .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (postSnapShot in snapshot.children) {
+                        val message = postSnapShot.getValue(Message::class.java)
+                        if (message!!.senderId!! == Firebase.auth.currentUser?.uid || message.senderId!! == currentUser.uid) {
+                            if (currentUser.lastMsg.isNullOrEmpty()){
+                                holder.tvLastMsg.text = "No message"
+                            }else{
+                                holder.tvLastMsg.text = currentUser.lastMsg.toString()
+                            }
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        messageList.clear()
-                        for (postSnapShot in snapshot.children) {
-                            val message = postSnapShot.getValue(Message::class.java)
-                            messageList.add(message!!)
                         }
                     }
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-
-                })
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                if (messageList.size > 0) {
-                    for (i in 0..messageList.size - 1) {
-                        if (messageList.get(i).senderId!!.equals(Firebase.auth.currentUser?.uid) || messageList.get(
-                                i
-                            ).senderId!!.equals(
-                                currentUser.uid
-                            )
-                        ) {
-                            context.startActivity(
-                                Intent(context, ChatActivity::class.java)
-                                    .putExtra("name", currentUser.uname)
-                                    .putExtra("uid", currentUser.uid)
-                                    .putExtra("clicked_user_id", currentUser.userId)
-                                    .putExtra("userImage", currentUser.profilePic)
-                                    .putExtra("firebasetoken", currentUser.firebaseToken)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "Not allowed to chat with this user now.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                    holder.progressBar.visibility = View.GONE
-                } else {
-                    holder.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        context,
-                        "No conversation found.",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
-            }, 3000)
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
 
 
+        holder.userLayout.setOnClickListener {
+            senderRoom = currentUser.uid + Firebase.auth.currentUser?.uid
+            context.startActivity(
+                Intent(context, ChatActivity::class.java)
+                    .putExtra("name", currentUser.uname)
+                    .putExtra("uid", currentUser.uid)
+                    .putExtra("clicked_user_id", currentUser.userId)
+                    .putExtra("userImage", currentUser.profilePic)
+                    .putExtra("firebasetoken", currentUser.firebaseToken)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
         }
 
     }
@@ -117,6 +94,7 @@ class FirebaseUserAdapter(var context: Context, var userList: ArrayList<User>) :
         val mainLayout = itemView.findViewById<RelativeLayout>(R.id.mainLayout)
         val progressBar = itemView.findViewById<ProgressBar>(R.id.progress)
         val userLayout = itemView.findViewById<LinearLayout>(R.id.descLayout)
+        val tvLastMsg = itemView.findViewById<TextView>(R.id.tvLastMsg)
     }
 
 }

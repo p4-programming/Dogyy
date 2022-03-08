@@ -89,7 +89,7 @@
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/app_name"
                     android:padding="5dp"
-                    android:src="@drawable/google_map" />
+                    android:src="@drawable/google_maps_search_bar" />
 
                 <TextView
                     android:id="@+id/Place"

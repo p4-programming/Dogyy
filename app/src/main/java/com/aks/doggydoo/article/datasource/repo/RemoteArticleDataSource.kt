@@ -52,12 +52,12 @@ class RemoteArticleDataSource @Inject constructor(private val apiFactory: ApiFac
 
 
     suspend fun fetchSingleArticleResponse(
-        type: String,blog_id:String,user_id: String
+        type:String,blog_id:String,user_id: String
     ) =
         getResult {
             apiFactory.createService(ArticleApiService::class.java)
                 .getSingleAricleDetail(
-                  type, blog_id, user_id
+                  type,blog_id, user_id
                 )
         }
 
@@ -74,12 +74,12 @@ class RemoteArticleDataSource @Inject constructor(private val apiFactory: ApiFac
 
 
     suspend fun fetchSingleArticleCommentResponse(
-        blog_id:String,user_id: String, comment:String
+        type: String,blog_id:String,user_id: String, comment:String
     ) =
         getResult {
             apiFactory.createService(ArticleApiService::class.java)
                 .getAricleCommentDetail(
-                    blog_id, user_id,comment
+                    type,blog_id, user_id,comment
                 )
         }
 

@@ -19,14 +19,6 @@
             android:layout_centerVertical="true"
             android:transitionName="requestProfileImage" />
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone"
-            android:layout_height="30dp"/>
-
         <LinearLayout
             android:id="@+id/descLayout"
             android:layout_width="match_parent"
@@ -44,15 +36,16 @@
                 android:fontFamily="@font/bold"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:text="Gaurab Dey"
                 android:transitionName="requestedProfileName" />
 
             <TextView
+                android:id="@+id/tvLastMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:fontFamily="@font/regular"
-                android:visibility="gone"
-                android:text="Lorem ipsum dolor sit ao..."
+                android:maxLines="1"
                 android:textColor="@color/dark_transparent"
                 android:textSize="14sp" />
         </LinearLayout>

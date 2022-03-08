@@ -674,7 +674,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         )
                             .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
                             .snippet(parkDetailList[i].parkid)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.fostering_icon))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.shelter_icon_map))
                     )
                 }
 
@@ -709,8 +709,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 val zip: String? = addresses[0].getPostalCode()
                 val country: String? = addresses[0].getCountryName()
                 try {
-                    parkAddress.text = city + "," + " " + state
-                    parkadd.text = country + "," + " " + zip
+                    parkAddress.text = "$city, $state"
+                    parkadd.text = "$country, $zip"
                 } catch (e: Exception) {
                 }
 
@@ -775,6 +775,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             startActivity(
                                 Intent(requireContext(), DogShelterActivity::class.java)
                                     .putExtra("title", markerName)
+                                    .putExtra("shelter_id", markerId)
                                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             )
                         }

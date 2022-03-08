@@ -23,6 +23,7 @@ class ViewBlogCommentActivity : AppCompatActivity() {
     private lateinit var articleViewModel: ArticleViewModel
     private var articleId:String =""
     private lateinit var adapter: AllCommentAdapter
+    private var blogType: String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class ViewBlogCommentActivity : AppCompatActivity() {
         }
 
         articleId = intent.getStringExtra("blogId").toString()
+        blogType = intent.getStringExtra("blog_type").toString()
         adapter = AllCommentAdapter(this@ViewBlogCommentActivity)
         binding.rvComment.adapter = adapter
 
@@ -54,7 +56,7 @@ class ViewBlogCommentActivity : AppCompatActivity() {
     }
 
     private fun commentPost(comment: String) {
-        articleViewModel.getSingleArticleCommentDataHome(articleId, MyApp.getSharedPref().userId,comment)
+        articleViewModel.getSingleArticleCommentDataHome(blogType, articleId, MyApp.getSharedPref().userId,comment)
             .observe(this, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {

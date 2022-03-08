@@ -85,11 +85,6 @@ class ReceivedFrag : Fragment(R.layout.received_frag) {
         userUID: String,
         userImage: String,
     ) {
-        System.out.println("data is>>" + requestId)
-        System.out.println("data is>>" + reqType)
-        System.out.println("data is>>" + reqStatus)
-        System.out.println("data is>>" + petId)
-
         requestViewModel.acceptOrReject(requestId, reqType, reqStatus,userId,petId)
             .observe(viewLifecycleOwner,
                 Observer {

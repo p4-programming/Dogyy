@@ -326,11 +326,21 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun callOtpVerificationAPI() {
-        lati = finallati.toString()
-        longi = finallongi.toString()
+        lati = if (finallati.toString().isNotEmpty()){
+            finallati.toString()
+        }else{
+            "12.120000"
+        }
+
+        longi = if (finallongi.toString().isNotEmpty()){
+            finallongi.toString()
+        }else{
+            "76.680000"
+        }
+
 
         try {
-            val pInfo: PackageInfo = getPackageManager().getPackageInfo(getPackageName(), 0)
+            val pInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
             versionName = pInfo.versionName
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
@@ -412,7 +422,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun addUserToDatabase(mobile: String, profilePic: String, uname: String, userId: String, uid: String) {
         mDbRef = FirebaseDatabase.getInstance().reference
-        mDbRef.child("user").child(uid).setValue(User(mobile,profilePic,uname,userId,uid,"0",firebaseToke))
+        mDbRef.child("user").child(uid).setValue(User(mobile,profilePic,uname,userId,uid,"0",firebaseToke,"No message"))
     }
 
     override fun onDestroy() {

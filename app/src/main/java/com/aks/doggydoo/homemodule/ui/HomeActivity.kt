@@ -96,6 +96,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             logoutDialog()
         }
     }
+
     fun View.setMarginTop(marginTop: Int) {
         val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
         menuLayoutParams.setMargins(0, marginTop, 0, 0)
@@ -146,15 +147,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         yesButton.setOnClickListener {
             MyApp.getSharedPref().userId = ""
             MyApp.getSharedPref().userName = ""
-            MyApp.getSharedPref().userImage =""
+            MyApp.getSharedPref().userImage = ""
             MyApp.getSharedPref().userMobile = ""
             MyApp.getSharedPref().userRegistered = ""
             MyApp.getSharedPref().userEmail = ""
             MyApp.getSharedPref().userReqType = ""
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-            finish()
             dialog.dismiss()
+            startActivity(
+                Intent(
+                    this@HomeActivity,
+                    LoginActivity::class.java)
+            )
+            finish()
+
         }
 
         noButton.setOnClickListener {

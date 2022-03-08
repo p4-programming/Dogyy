@@ -12,6 +12,7 @@ import com.aks.doggydoo.commonutility.loadImageFromString
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.databinding.SingleItemUserBinding
 import com.aks.doggydoo.myprofile.ui.UserProfileActivity
+import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.network.ApiConstant
 
 class AllCommentAdapter (var context: Context) :
@@ -39,10 +40,12 @@ class AllCommentAdapter (var context: Context) :
                 tvAddress.text = data.createdate
 
                 ProfilePicture.setOnClickListener {
-                    context.startActivity(
-                        Intent(context, UserProfileActivity::class.java)
-                            .putExtra("viewuserid", data.userid)
-                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    if (data.userid != MyApp.getSharedPref().userId){
+                        context.startActivity(
+                            Intent(context, UserProfileActivity::class.java)
+                                .putExtra("viewuserid", data.userid)
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    }
                 }
             }
 

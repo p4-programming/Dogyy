@@ -52,6 +52,7 @@ interface ArticleApiService {
     @FormUrlEncoded
     @POST("NotificationApi/postcommentblog")
     suspend fun getAricleCommentDetail(
+        @Field("type") type: String,
         @Field("blog_id") blog_id: String,
         @Field("user_id") user_id: String,
         @Field("comment") comment: String

@@ -52,7 +52,7 @@ constructor(
     )
 
     fun getSingleArticleLiveData(
-        type: String,blog_id:String,user_id: String
+        type:String,blog_id:String,user_id: String
     ) = resultLiveData(
         networkCall = {
             remoteArticleDataSource.fetchSingleArticleResponse(
@@ -73,11 +73,11 @@ constructor(
     )
 
     fun getSingleArticleCommentLiveData(
-        blog_id:String,user_id: String,comment:String
+        type: String,blog_id:String,user_id: String,comment:String
     ) = resultLiveData(
         networkCall = {
             remoteArticleDataSource.fetchSingleArticleCommentResponse(
-                blog_id, user_id,comment
+                type,blog_id, user_id,comment
             )
         }
     )

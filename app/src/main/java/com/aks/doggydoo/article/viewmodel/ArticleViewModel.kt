@@ -30,9 +30,9 @@ class ArticleViewModel @Inject constructor(var articleRepo: ArticleRepo) :
         articleRepo.getAllArticleLiveData(user_id, type)
 
     fun getSingleArticleDataHome(
-        type: String, blog_id: String, user_id: String
+        type:String,blog_id: String, user_id: String
     ) =
-        articleRepo.getSingleArticleLiveData(type, blog_id, user_id)
+        articleRepo.getSingleArticleLiveData(type,blog_id, user_id)
 
 
     fun getSingleArticleLikeDataHome(
@@ -42,9 +42,9 @@ class ArticleViewModel @Inject constructor(var articleRepo: ArticleRepo) :
 
 
     fun getSingleArticleCommentDataHome(
-        blog_id: String, user_id: String, comment: String
+        type: String,blog_id: String, user_id: String, comment: String
     ) =
-        articleRepo.getSingleArticleCommentLiveData(blog_id, user_id, comment)
+        articleRepo.getSingleArticleCommentLiveData(type,blog_id, user_id, comment)
 
     fun getCommentDataHome(
         blog_id: String

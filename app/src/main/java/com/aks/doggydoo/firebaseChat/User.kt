@@ -9,10 +9,11 @@ class User {
     var userType: String? = null
     var chatStatus: String? = null
     var firebaseToken: String? = null
+    var lastMsg: String? = null
 
     constructor(){}
     constructor(mobile: String, profilePic: String, uname: String, userId: String, uid: String,chatStatus: String?,
-                firebaseToken: String?){
+                firebaseToken: String?,lastMsg: String?){
         this.mobile = mobile
         this.profilePic = profilePic
         this.uname = uname
@@ -21,5 +22,6 @@ class User {
         this.userType= userType
         this.chatStatus = chatStatus
         this.firebaseToken = firebaseToken
+        this.lastMsg = lastMsg
     }
 }

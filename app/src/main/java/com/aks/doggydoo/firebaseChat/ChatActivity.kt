@@ -183,6 +183,7 @@ class ChatActivity : AppCompatActivity() {
                 binding.etChat.setText("")
                 mDbRef.child("user").child(receiverUid).child("chatStatus").setValue("1")
                 mDbRef.child("user").child(senderUid!!).child("chatStatus").setValue("1")
+                mDbRef.child("user").child(senderUid!!).child("lastMsg").setValue(message)
                 SendNotification(
                     receiverUid,
                     MyApp.getSharedPref().userName,
@@ -205,9 +206,10 @@ class ChatActivity : AppCompatActivity() {
                         mDbRef.child("chats").child(receiverRoom!!).child("messages").push()
                             .setValue(messageObject)
                     }
-                binding.etChat.setText("")
                 mDbRef.child("user").child(receiverUid).child("chatStatus").setValue("1")
                 mDbRef.child("user").child(senderUid!!).child("chatStatus").setValue("1")
+                mDbRef.child("user").child(receiverUid).child("lastMsg").setValue(message)
+                binding.etChat.setText("")
                 SendNotification(
                     receiverUid,
                     MyApp.getSharedPref().userName,
@@ -369,6 +371,7 @@ class ChatActivity : AppCompatActivity() {
                         binding.etChat.setText("")
                         mDbRef.child("user").child(receiverUid).child("chatStatus").setValue("1")
                         mDbRef.child("user").child(senderUid!!).child("chatStatus").setValue("1")
+                        mDbRef.child("user").child(senderUid!!).child("lastMsg").setValue("image")
                         SendNotification(
                             receiverUid,
                             MyApp.getSharedPref().userName,

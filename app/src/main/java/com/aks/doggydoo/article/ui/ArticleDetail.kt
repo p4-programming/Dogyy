@@ -46,6 +46,7 @@ class ArticleDetail : AppCompatActivity() {
 
         articleId = intent.getStringExtra("article_id").toString()
         type= intent.getStringExtra("type").toString()
+
         binding.ivBack.setOnClickListener {
             finish()
         }
@@ -75,6 +76,7 @@ class ArticleDetail : AppCompatActivity() {
             startActivity(
                 Intent(this, ViewBlogCommentActivity::class.java)
                     .putExtra("blogId", articleId)
+                    .putExtra("blog_type",type)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
         }
@@ -87,8 +89,8 @@ class ArticleDetail : AppCompatActivity() {
     }
 
     private fun callArticleAPI() {
-        System.out.println("data is>>" + articleId + MyApp.getSharedPref().userId)
-        articleViewModel.getSingleArticleDataHome(type, articleId, MyApp.getSharedPref().userId)
+        println("data is>>" + articleId + MyApp.getSharedPref().userId)
+        articleViewModel.getSingleArticleDataHome(type,articleId, MyApp.getSharedPref().userId)
             .observe(this, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {
@@ -111,7 +113,7 @@ class ArticleDetail : AppCompatActivity() {
     }
 
     private fun renderDate(data: List<Articledetail>) {
-        if (data.size > 0) {
+        if (data.isNotEmpty()) {
             articleDetail = data[0].article
             articleTitle = data[0].caption
             isLiked = data[0].like

@@ -49,27 +49,8 @@ class FriendsBlogAdapter (var context: Context) :
                 ApiConstant.PROFILE_IMAGE_BASE_URL + detail.profile_pic
             )
             binding.name.text = detail.username
-            try {
-                val postdate = detail.post_date
-                val value = postdate.split(" ").toTypedArray()
-                val date: String = value[0]
-                val dateS = date.split("-").toTypedArray()
-                yearS = dateS[0].toInt()
-                monthS = dateS[1].toInt()
-                dayS = dateS[2].toInt()
+            binding.tvPostTime.text = detail.post_date
 
-                val today = LocalDate.now()
-                val birthday: LocalDate = LocalDate.of(yearS, monthS, dayS)
-                val postedDuration = Period.between(birthday, today)
-                val text = postedDuration.toString().replace("P", "")
-                if (text=="0D"){
-                    binding.tvPostTime.text = "Today"
-                }else{
-                    binding.tvPostTime.text = text
-                }
-
-            } catch (e: Exception) {
-            }
 
             binding.mainLayout.setOnClickListener {
                 context.startActivity(Intent(context, ArticleDetail::class.java)

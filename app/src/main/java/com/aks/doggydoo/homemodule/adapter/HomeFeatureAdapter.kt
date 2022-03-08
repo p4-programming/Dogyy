@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aks.doggydoo.R
 import com.aks.doggydoo.fostering.ui.FosteringActivity
@@ -42,40 +43,48 @@ class HomeFeatureAdapter(
         holder.binding.tvTitle.text = name.get(position)
         holder.binding.image.setImageResource(bgDrawableIds.get(position));
 
-     /*   when {
+        when {
             name[position] == "Fostering" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.fostering)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.fostering)
             }
             name[position] == "Adoption" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.adoption)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.adoption)
 
             }
             name[position] == "Playdate" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.playDate)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.playDate)
 
             }
             name[position] == "NewsFeed" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.dogSitting)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.white)
 
             }
-            name[position] == "SOS" -> {
-                //holder.binding.mainLayout.setBackgroundColor(R.color.fostering)
+            name[position] == "DogSitting" -> {
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.dogSitting)
 
             }
             name[position] == "Call a Vet" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.callAVet)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.callAVet)
 
             }
             name[position] == "Training" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.training)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.training)
 
             }
             name[position] == "Article" -> {
-                holder.binding.llImage.setBackgroundColor(R.color.articles)
+                holder.binding.mainLayout.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.articles)
 
             }
 
-        }*/
+        }
     }
 
     override fun getItemCount(): Int {

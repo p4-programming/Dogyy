@@ -229,9 +229,9 @@ class UserProfileActivity : AppCompatActivity() {
         userName = profileResponse.userdetails[0].uname
         binding.friendNameAndAge.text = profileResponse.userdetails[0].uname
         binding.detail.text = profileResponse.userdetails[0].description
-        binding.dogSittingCheck.isChecked = profileResponse.userdetails[0].dogsitter == "yes"
-        binding.fosterCheck.isChecked = profileResponse.userdetails[0].fostering == "yes"
-        binding.adoptCheck.isChecked = profileResponse.userdetails[0].adoption == "yes"
+        //binding.dogSittingCheck.isChecked = profileResponse.userdetails[0].dogsitter == "yes"
+        //binding.fosterCheck.isChecked = profileResponse.userdetails[0].fostering == "yes"
+        //binding.adoptCheck.isChecked = profileResponse.userdetails[0].adoption == "yes"
         binding.tvUserName.text = profileResponse.userdetails[0].uname + "'s Friends"
         binding.tvUserTotalFriends.text = profileResponse.friend_count + " Friends"
 
