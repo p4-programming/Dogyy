@@ -3,6 +3,9 @@ package com.aks.doggydoo.homemodule.datasource.model.home
 import com.google.gson.annotations.SerializedName
 
 data class ParkPlayDate(
+    @SerializedName("request_id")
+    var request_id: String,
+
     @SerializedName("id")
     var id: String,
     @SerializedName("play_date")
@@ -17,4 +20,4 @@ data class ParkPlayDate(
     var petid: String,
 
 
-)
+    )

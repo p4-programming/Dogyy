@@ -66,6 +66,7 @@ class NewsFeedDataAdapter(
             binding.ivUser.setOnClickListener {
                 context.startActivity(
                     Intent(context, UserProfileActivity::class.java)
+
                         .putExtra("viewuserid", detail.user_id)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )
@@ -303,6 +304,7 @@ class NewsFeedDataAdapter(
                             .putExtra("name", userName)
                             .putExtra("uid", userUid)
                             .putExtra("userImage", userPic)
+                            .putExtra("clicked_user_id",userId)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     )
 

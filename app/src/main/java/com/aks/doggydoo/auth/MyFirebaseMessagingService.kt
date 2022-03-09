@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,7 @@ import java.util.*
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     var intent: Intent? = null
     private var titlebody: String = ""
+    //val sound: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d(TAG, "${remoteMessage.from}")
@@ -41,7 +43,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val userId: String = remoteMessage.data.get("sender_id").toString()
             val refId: String = remoteMessage.data.get("refrence_id").toString()
             val roomId: String = remoteMessage.data.get("room_id").toString()
-            val userImage:String = remoteMessage.data.get("profile_pic").toString()
+            val userImage: String = remoteMessage.data.get("profile_pic").toString()
 
             if (notificationType == "chat") {
                 val firebaseUser = Firebase.auth.currentUser
@@ -57,9 +59,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 }
 
             } else if (notificationType == "Video Request") {
-                sendVideoPushNotification(msg, refId, roomId,notificationType,userImage)
-            }else if (notificationType == "Audio Request") {
-                sendAudioPushNotification(msg, refId, roomId,notificationType,userImage)
+                sendVideoPushNotification(msg, refId, roomId, notificationType, userImage)
+            } else if (notificationType == "Audio Request") {
+                sendAudioPushNotification(msg, refId, roomId, notificationType, userImage)
             } else {
                 sendPushNotification(msg, notificationType, userId)
             }
@@ -89,7 +91,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .putExtra("from", "push")
             .putExtra("refId", refId)
             .putExtra("userImage", userImage)
-            .putExtra("type","2")
+            .putExtra("type", "2")
         intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val dummyuniqueInt: Int = Random().nextInt(543254)
@@ -99,8 +101,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
 
         val channelId = getString(R.string.default_notification_channel_id)
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
-
+       // val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val defaultSoundUri: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
         val contentView = RemoteViews(packageName, R.layout.custom_push)
         //contentView.setImageViewResource(R.id.image, R.drawable.btn_video)
         contentView.setTextViewText(R.id.title, notificationType)
@@ -141,7 +143,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .putExtra("from", "push")
             .putExtra("refId", refId)
             .putExtra("userImage", userImage)
-            .putExtra("type","1")
+            .putExtra("type", "1")
         intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val dummyuniqueInt: Int = Random().nextInt(543254)
@@ -151,7 +153,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
 
         val channelId = getString(R.string.default_notification_channel_id)
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+        val defaultSoundUri: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
+      //  val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
 
         val contentView = RemoteViews(packageName, R.layout.custom_push)
         //contentView.setImageViewResource(R.id.image, R.drawable.btn_video)
@@ -198,7 +201,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
 
         val channelId = getString(R.string.default_notification_channel_id)
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val defaultSoundUri: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
+       // val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification_icon)
             .setContentTitle(getString(R.string.app_name))
@@ -245,8 +249,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val predsefits = sharedPreferences.edit()
         predsefits.putString("friendid", user)
         predsefits.apply()
-        val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+      //  val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         //  val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+        val defaultSound: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
         val oreoNotification = OreaNotification(this)
 
         if (code == "1") {
@@ -306,7 +311,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val predsefits = sharedPreferences.edit()
         predsefits.putString("friendid", user)
         predsefits.apply()
-        val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val defaultSound: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.ringtone)
+      //  val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 //  val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         if (code == "1") {
             intent = Intent(this, ChatActivity::class.java)
@@ -325,6 +331,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
         val channelId = getString(R.string.default_notification_channel_id)
+
+
         val builder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification_icon)
             .setContentTitle(title)

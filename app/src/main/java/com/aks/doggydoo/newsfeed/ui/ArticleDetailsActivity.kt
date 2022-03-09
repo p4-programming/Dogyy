@@ -59,6 +59,8 @@ class ArticleDetailsActivity : AppCompatActivity() {
 
         binding.tvlike1.text = likeCount.toString()
         binding.tvComment1.text = commentCount.toString()
+        binding.tvLike.text= isLiked
+        binding.tvComment.text= commentCount.toString()
 
         // Toast.makeText(this, isLiked, Toast.LENGTH_SHORT).show()
         if (isLiked == "1") {

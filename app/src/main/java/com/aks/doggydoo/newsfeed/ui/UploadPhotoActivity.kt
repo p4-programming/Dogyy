@@ -2,8 +2,10 @@ package com.aks.doggydoo.newsfeed.ui
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -19,6 +21,7 @@ import com.aks.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
 import com.aks.doggydoo.utils.MultipartFile
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
+import com.aks.doggydoo.videocall.ApplicationController.context
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,6 +44,20 @@ class UploadPhotoActivity : AppCompatActivity() {
 
     }
 
+    private fun getThumbnail(uri: Uri) {
+        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = context.contentResolver.query(uri, filePathColumn, null, null, null)
+        cursor!!.moveToFirst()
+
+        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+        val picturePath = cursor.getString(columnIndex)
+        cursor.close()
+
+        val bitmap =
+            ThumbnailUtils.createVideoThumbnail(picturePath, MediaStore.Video.Thumbnails.MICRO_KIND)
+        binding.image.setImageBitmap(bitmap)
+    }
+
     private fun getInit() {
         myDogViewModel = ViewModelProvider(this).get(MyDogViewModel::class.java)
         newsFeedViewModel = ViewModelProvider(this).get(NewsFeedViewModel::class.java)
@@ -49,6 +66,9 @@ class UploadPhotoActivity : AppCompatActivity() {
             petId = intent.getStringExtra("petId")!!
 
         uri = Uri.parse(intent.getStringExtra("uri"))
+
+    //    getThumbnail(Uri.parse(intent.getStringExtra("uri")))
+
         type = intent.getStringExtra("type").toString()
         if (uri != null) {
             if (type == "image") {

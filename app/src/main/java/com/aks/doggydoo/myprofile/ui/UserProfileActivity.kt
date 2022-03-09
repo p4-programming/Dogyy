@@ -42,8 +42,8 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserprofileBinding
     private lateinit var adapter: FriendPetAdapter
     private lateinit var newUploadAdapter: NewUploadAdapter
-  //  private val myProfileViewModel: MyProfileViewModel by viewModels()
-   // private val homeViewModel: HomeViewModel by viewModels()
+    //  private val myProfileViewModel: MyProfileViewModel by viewModels()
+    // private val homeViewModel: HomeViewModel by viewModels()
 
     var userId: String = ""
     var profileId: String = ""
@@ -51,7 +51,7 @@ class UserProfileActivity : AppCompatActivity() {
     private var userName: String = ""
     private var userImage: String = ""
     private var requestedId: String = ""
-    private var from:String =""
+    private var from: String = ""
     private lateinit var myProfileViewModel: MyProfileViewModel
     private lateinit var homeViewModel: HomeViewModel
 
@@ -70,15 +70,15 @@ class UserProfileActivity : AppCompatActivity() {
 
         userId = intent.getStringExtra("viewuserid").toString()
 
-        from = if (intent.hasExtra("from")){
+        from = if (intent.hasExtra("from")) {
             intent.getStringExtra("from").toString()
-        }else{
+        } else {
             ""
         }
 
-        if (from == "map"){
+        if (from == "map") {
             binding.tvUserAllFriends.hide()
-        }else{
+        } else {
             binding.tvUserAllFriends.show()
         }
 
@@ -158,6 +158,7 @@ class UserProfileActivity : AppCompatActivity() {
             if (binding.tvSendFriendReq.text == "Friend") {
                 blockDialog()
             } else {
+
                 Toast.makeText(this, "Can not block the user.", Toast.LENGTH_SHORT).show()
             }
 
@@ -237,22 +238,32 @@ class UserProfileActivity : AppCompatActivity() {
 
         if (profileResponse.check_friend == "2") {
             binding.tvSendFriendReq.text = "Request Sent"
+            binding.userMenu.visibility = View.GONE
 
         } else if (profileResponse.check_friend == "1") {
             binding.tvSendFriendReq.text = "Friend"
+            binding.userMenu.visibility = View.VISIBLE
 
         } else if (profileResponse.check_friend == "3") {
             binding.tvSendFriendReq.text = "Accept Request"
+            binding.userMenu.visibility = View.GONE
 
         } else {
-            binding.tvSendFriendReq.text = "Send Request"
+            if (MyApp.getSharedPref().userId == profileResponse.userdetails[0].id) {
+                binding.tvSendFriendReq.text = "My Account"
+                binding.tvSendFriendReq.isEnabled = false
+            } else {
+                binding.tvSendFriendReq.text = "Send Request"
+                binding.userMenu.visibility = View.GONE
+            }
+
         }
 
-      /*  binding.tvSendFriendReq.setOnClickListener {
-            if (binding.tvSendFriendReq.text == "Accept Request") {
-                callAcceptOrRejectAPI()
-            }
-        }*/
+        /*  binding.tvSendFriendReq.setOnClickListener {
+              if (binding.tvSendFriendReq.text == "Accept Request") {
+                  callAcceptOrRejectAPI()
+              }
+          }*/
 
 
         if (profileResponse.userdetails[0].profile_pic == "user.png") {

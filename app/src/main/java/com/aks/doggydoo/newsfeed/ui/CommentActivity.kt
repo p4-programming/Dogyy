@@ -1,7 +1,11 @@
 package com.aks.doggydoo.newsfeed.ui
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -37,6 +41,8 @@ class CommentActivity : AppCompatActivity() {
         newsFeedId = intent.getStringExtra("newsFeedId").toString()
         adapter = UserAdapter(this@CommentActivity)
         binding.rvComment.adapter = adapter
+        //binding.rvComment.scrollToPosition(adapter.itemCount - 1)
+
 
         binding.backButton.setOnClickListener {
             finish()
@@ -63,9 +69,17 @@ class CommentActivity : AppCompatActivity() {
                         binding.progressBar.show()
                     }
                     Result.Status.SUCCESS -> {
-                        binding.progressBar.hide()
-                        "Commented".snack(Color.RED, binding.parent)
                         binding.etComment.setText("")
+
+                        hideKeyboard()
+
+                        binding.rvComment.postDelayed({
+                            binding.rvComment.scrollToPosition(adapter.itemCount - 1)
+                        }, 1000)
+
+                        /*binding.progressBar.hide()
+                        "Commented".snack(Color.RED, binding.parent)
+                        binding.etComment.setText("")*/
 
                         if (it.data!!.responseCode == ("0")) {
                             return@Observer
@@ -79,6 +93,16 @@ class CommentActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun getComment() {

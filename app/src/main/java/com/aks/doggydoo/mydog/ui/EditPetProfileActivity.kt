@@ -49,6 +49,8 @@ class EditPetProfileActivity : AppCompatActivity() {
     private var ageMonth: String = ""
     private var weightkg: String = ""
     private var weightGm: String = ""
+    var selectedGender: String = ""
+    var selectedGenderId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +135,34 @@ class EditPetProfileActivity : AppCompatActivity() {
                 petVaccinate = "no"
             }
         }
+
+        binding.tvgender.setOnClickListener {
+            binding.llGender.visibility = View.VISIBLE
+        }
+
+        binding.rlFemale.setOnClickListener {
+            binding.ivTickFemale.visibility = View.VISIBLE
+            binding.ivTickMale.visibility = View.GONE
+          //  binding.ivTickOther.visibility = View.GONE
+            selectedGender = "Female"
+            selectedGenderId = "2"
+        }
+
+        binding.rlMale.setOnClickListener {
+            binding.ivTickMale.visibility = View.VISIBLE
+            binding.ivTickFemale.visibility = View.GONE
+          //  binding.ivTickOther.visibility = View.GONE
+            selectedGender = "Male"
+            selectedGenderId = "1"
+        }
+
+
+
+        binding.tvConfirm.setOnClickListener {
+            binding.tvgender.text = selectedGender
+            binding.llGender.visibility = View.GONE
+        }
+
 
         binding.tvSubmit.setOnClickListener {
             try {

@@ -2,33 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parent"
     tools:context=".newsfeed.ui.CommentActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:layout_height="wrap_content"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/noData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/medium"
         android:layout_centerInParent="true"
-        android:visibility="gone"
+        android:fontFamily="@font/medium"
+        android:text="No comment found"
         android:textAppearance="?android:textAppearanceMedium"
-        android:text="No comment found"/>
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/rlHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -59,6 +58,7 @@
 
     </RelativeLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComment"
         android:layout_width="match_parent"
@@ -72,21 +72,21 @@
     <RelativeLayout
         android:id="@+id/rlComment"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#F6F6F6"
-        android:elevation="10dp"
-        android:layout_height="wrap_content">
+        android:elevation="10dp">
 
         <EditText
             android:id="@+id/etComment"
             android:layout_width="match_parent"
-            android:hint="Type your comment"
-            android:background="@drawable/edittext_bg"
-            android:padding="15dp"
-            android:inputType="textMultiLine"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toStartOf="@+id/ivSend"
-            android:layout_height="wrap_content"/>
+            android:background="@drawable/edittext_bg"
+            android:hint="Type your comment"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
 
         <ImageView
             android:id="@+id/ivSend"
@@ -95,7 +95,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@mipmap/send_arrow_icon"/>
+            android:src="@mipmap/send_arrow_icon" />
 
     </RelativeLayout>
 

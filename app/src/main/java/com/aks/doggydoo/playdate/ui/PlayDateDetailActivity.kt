@@ -42,6 +42,7 @@ class PlayDateDetailActivity : AppCompatActivity() {
     private var playdateReqId: String = ""
     private var playReqdate: String = ""
     private var playDateType: String = ""
+    private var requestId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class PlayDateDetailActivity : AppCompatActivity() {
     private fun getInit() {
         petId = intent.getStringExtra("pet_id").toString()
         from = intent.getStringExtra("from").toString()
+        requestId = intent.getStringExtra("request_id").toString()
 
         //Toast.makeText(this, from, Toast.LENGTH_SHORT).show()
 
@@ -133,10 +135,7 @@ class PlayDateDetailActivity : AppCompatActivity() {
         System.out.println("data is>>" + petId)
         System.out.println("data is>>" + MyApp.getSharedPref().userId)
 
-        playDateViewModel.getPetDescriptionData(
-            MyApp.getSharedPref().userId,
-            petId
-        )
+        playDateViewModel.getPetDescriptionData(MyApp.getSharedPref().userId, petId)
             .observe(this, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {
@@ -198,7 +197,7 @@ class PlayDateDetailActivity : AppCompatActivity() {
         petId = petDetail[0].id
         binding.name.text = petDetail[0].pet_name + ", " + petDetail[0].pet_gender
         binding.breedAge.text =
-            "${petDetail[0].breed}, ${petDetail[0].pet_age} ${petDetail[0].pet_age_type} Old"
+            "${petDetail[0].breed}, ${petDetail[0].pet_age} ${petDetail[0].pet_age_type} years Old"
         binding.descriptionText.text = petDetail[0].pet_description
         binding.address.text = petDetail[0].address
         binding.userName.text = petDetail[0].uname

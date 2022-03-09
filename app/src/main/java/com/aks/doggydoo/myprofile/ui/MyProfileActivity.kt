@@ -178,7 +178,8 @@ class MyProfileActivity : AppCompatActivity() {
         binding.tvViewFeed.setOnClickListener {
             startActivity(
                 Intent(
-                    this, NewsFeedDashboardActivity::class.java)
+                    this, NewsFeedDashboardActivity::class.java
+                )
                     .putExtra("from", "myprofile")
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
@@ -225,13 +226,17 @@ class MyProfileActivity : AppCompatActivity() {
         binding.tvCancel.setOnClickListener {
             binding.llGuide.visibility = View.GONE
             checkedStatus = "0"
+            binding.rbTerm.isChecked = false
             getMyProfileInfoAPI()
         }
 
     }
 
     private fun getMyProfileInfoAPI() {
-        myProfileViewModel.getMyProfileInfoData(MyApp.getSharedPref().userId, "")
+        myProfileViewModel.getMyProfileInfoData(
+            MyApp.getSharedPref().userId,
+            MyApp.getSharedPref().userId
+        )
             .observe(this, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {
@@ -402,6 +407,7 @@ class MyProfileActivity : AppCompatActivity() {
                         binding.progressBar.show()
                     }
                     Result.Status.SUCCESS -> {
+
                         binding.progressBar.hide()
                         if (it.data?.responseCode?.equals("0")!!) {
                             it.data.responseMessage.snack(Color.RED, binding.parent)
@@ -419,6 +425,7 @@ class MyProfileActivity : AppCompatActivity() {
 
     private fun showMesage() {
         if (flagStatus != 0) {
+            binding.rbTerm.isChecked = false
             CommonMethod.showSnack(binding.root, "Status changed successfully!!")
         }
 

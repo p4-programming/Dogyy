@@ -389,7 +389,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun getMyProfileInfoAPI() {
         System.out.println("user id>>" + MyApp.getSharedPref().userId)
-        myProfileViewModel.getMyProfileInfoData(MyApp.getSharedPref().userId,"")
+        myProfileViewModel.getMyProfileInfoData(MyApp.getSharedPref().userId,MyApp.getSharedPref().userId)
             .observe(this, androidx.lifecycle.Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {

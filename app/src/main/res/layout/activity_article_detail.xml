@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parent"
     android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:layout_height="wrap_content"/>
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/rlHeader"
@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/medium"
-            android:textColor="@color/black"
+            android:text="Article Detail"
             android:textAppearance="?android:textAppearanceMedium"
-            android:text="Article Detail" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/navIcon"
@@ -45,15 +45,15 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
-            android:src="@drawable/share"/>
+            android:src="@drawable/share" />
 
     </RelativeLayout>
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_below="@+id/rlHeader"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlHeader">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,6 +96,7 @@
 
 
     <LinearLayout
+        android:id="@+id/llBottomPart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

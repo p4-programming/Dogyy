@@ -46,6 +46,7 @@ class UpcomingPlaydateAdapter(var context: Context) :
                     Intent(context, PlayDateDetailActivity::class.java)
                         .putExtra("pet_id", detail.id)
                         .putExtra("from", "upcoming")
+                        //.putExtra("request_id", detail.request_id)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )
             }

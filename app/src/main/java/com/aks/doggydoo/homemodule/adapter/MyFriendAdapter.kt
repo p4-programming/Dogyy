@@ -104,7 +104,7 @@ class MyFriendAdapter(
                     "recieve_accept_list" -> {
                         ivAccept.visibility = View.GONE
                         ivRemove.visibility = View.VISIBLE
-                        tvReqDetail.text = "Friends"
+                        tvReqDetail.text = "Friend"
 
                         name.text = data.Sender_Name
                         friendProfilePicture.loadImageFromString(
@@ -127,7 +127,7 @@ class MyFriendAdapter(
             }
 
             binding.ivRemove.setOnClickListener {
-                if (binding.tvReqDetail.text == "Friends"){
+                if (binding.tvReqDetail.text == "Friend"){
                     callRequestedUserInfo(data.Request_id, "5")
                 }else{
                     callRequestedUserInfo(data.Request_id, "2")
@@ -146,7 +146,7 @@ class MyFriendAdapter(
                 } else {
                     val resultList = ArrayList<FriendReqList>()
                     for (row in friendList) {
-                        if (row.Sender_Name.lowercase().contains(constraint.toString().lowercase())) {
+                        if (row.Sender_Name.lowercase().contains(constraint.toString().lowercase()) || row.reciever_name.lowercase().contains(constraint.toString().lowercase())) {
                             resultList.add(row)
                         }
                     }
