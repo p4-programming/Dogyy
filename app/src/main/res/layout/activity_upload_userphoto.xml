@@ -49,11 +49,11 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/getImageFromGallery"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/upload_icon"
-        android:id="@+id/getImageFromGallery"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_group_9807" />
 
 
     <com.google.android.material.button.MaterialButton

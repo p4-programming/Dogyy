@@ -4,6 +4,7 @@ data class MyPetDetail(
     @SerializedName("id") val id: String,
     @SerializedName("pet_name") val pet_name: String,
     @SerializedName("pet_age") val pet_age: String,
+    @SerializedName("pet_age_month") val pet_age_month: String,
     @SerializedName("pet_age_type") val pet_age_type: String,
     @SerializedName("pet_gender") val pet_gender: String,
     @SerializedName("pet_weight") val pet_weight: String,

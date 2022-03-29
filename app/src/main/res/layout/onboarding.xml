@@ -52,6 +52,7 @@
             android:textAppearance="?android:textAppearanceSmall"
             android:fontFamily="@font/regular"
             android:padding="10dp"
+            android:imeOptions="actionDone"
             android:paddingStart="20dp" />
 
     </androidx.cardview.widget.CardView>

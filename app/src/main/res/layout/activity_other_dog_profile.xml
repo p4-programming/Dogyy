@@ -146,6 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/medium"
+                        android:text="2Kg 5 Gm"
                         android:textColor="#ADAEAE"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -212,8 +213,8 @@
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/bold"
                     android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/bold"
                     android:src="@drawable/ic_video_icon" />
 
                 <TextView
@@ -233,8 +234,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/ivRM"

@@ -143,7 +143,7 @@ class EditPetProfileActivity : AppCompatActivity() {
         binding.rlFemale.setOnClickListener {
             binding.ivTickFemale.visibility = View.VISIBLE
             binding.ivTickMale.visibility = View.GONE
-          //  binding.ivTickOther.visibility = View.GONE
+            //  binding.ivTickOther.visibility = View.GONE
             selectedGender = "Female"
             selectedGenderId = "2"
         }
@@ -151,7 +151,7 @@ class EditPetProfileActivity : AppCompatActivity() {
         binding.rlMale.setOnClickListener {
             binding.ivTickMale.visibility = View.VISIBLE
             binding.ivTickFemale.visibility = View.GONE
-          //  binding.ivTickOther.visibility = View.GONE
+            //  binding.ivTickOther.visibility = View.GONE
             selectedGender = "Male"
             selectedGenderId = "1"
         }
@@ -176,7 +176,7 @@ class EditPetProfileActivity : AppCompatActivity() {
                 weightkg = weight[0]
                 weightGm = weight[2]
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
 
             }
 
@@ -229,7 +229,7 @@ class EditPetProfileActivity : AppCompatActivity() {
         binding.tvBreed.text = data.petdetail.breed
         binding.tvgender.text = data.petdetail.pet_gender
         binding.tvweight.text =
-            "${data.petdetail.pet_weight} kg ${data.petdetail.pet_weight_gm} Month"
+            "${data.petdetail.pet_weight} kg ${data.petdetail.pet_weight_gm} gm"
         binding.etdescription.setText(data.petdetail.pet_description)
         if (data.petdetail.is_pet_vaccinated == "yes") {
             binding.rbYes.isChecked = true

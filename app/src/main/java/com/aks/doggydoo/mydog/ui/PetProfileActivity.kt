@@ -70,7 +70,7 @@ class PetProfileActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this@PetProfileActivity, SelectTimeDateActivity::class.java)
                         .putExtra("receiveId", userId)
-                        .putExtra("from","other")
+                        .putExtra("from", "other")
                         .putExtra("petId", petId)
                 )
                 finish()
@@ -133,7 +133,9 @@ class PetProfileActivity : AppCompatActivity() {
 
         //binding.height.text = data.petdetail.is_pet_vaccinated
         binding.gender.text = data.petdetail.pet_gender
-        binding.weight.text = data.petdetail.pet_weight + "Kg"
+
+        binding.weight.text = data.petdetail.pet_weight + "Kg " + data.petdetail.pet_weight_gm + "gm"
+
         binding.descriptionText.text = data.petdetail.pet_description
         flagStatus = 0
         if (data.petImage.size > 0) {

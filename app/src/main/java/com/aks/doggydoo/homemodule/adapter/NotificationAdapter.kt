@@ -27,7 +27,7 @@ class NotificationAdapter(
 ) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
     var mapType:String ="Standard"
-    private val descriptionList = listOf("Change your account setting.", "Change map styles.", "Edit/Update your profile information.")
+    private val descriptionList = listOf( "Change map styles.", "Edit/Update your profile information.")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val binding =

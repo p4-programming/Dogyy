@@ -124,8 +124,12 @@ class PetBreedActivity : AppCompatActivity() {
                 binding.rvBreed,
                 object : ClickListener {
                     override fun onClick(view: View?, position: Int) {
+
+
                         valueBreed = breed.get(position)
                         valueBreedId = breedIdList.get(position)
+
+
                         binding.tvPetBreed.text = valueBreed
                     }
 
@@ -150,6 +154,7 @@ class PetBreedActivity : AppCompatActivity() {
                         breed.add(category.category)
                         breedIdList.add(category.id)
                     }
+
                     renderList(it.data.petbreeddetails)
                    // adapterBreed.submitList(it.data.petbreeddetails)
 

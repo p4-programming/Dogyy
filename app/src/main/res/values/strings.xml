@@ -25,7 +25,6 @@
     <string name="yes_i_am">Yes I am!</string>
     <string name="not_now">Not now</string>
     <string name="your_review">Your Review</string>
-    <string name="choose_time_date"><![CDATA[Choose Time & Date]]></string>
     <string name="type_a_message">Type a message</string>
     <string name="todo">TODO</string>
     <string name="my_friends">My Friends</string>
@@ -164,8 +163,6 @@
     <string name="adoption_guide2"><font color="#F9BBC4">Reference image</font></string>
     <string name="lost_found_section"><![CDATA[Lost & found section]]></string>
     <string name="type_message">Type message</string>
-    <string name="agora_app_id">e706af12dd814d2486956e564ff28e02</string>
-    <string name="agora_access_token">006e706af12dd814d2486956e564ff28e02IAC4aqR3zze4RyGhHEeivhN5/7e2L/fII66NyXU4aSAePTAYUiwAAAAAEAACwxdSrj+OYQEAAQCuP45h</string>
     <string name="this_feature_will">This feature will enable you to help a doggo spotted in distress by sending the location to nearby rescue medical teams &amp; shelter volunteers. <br><br>Choose either of the options to flag a dog in distress.</br></br></string>
     <string name="sends_your">Sends your current location, so you may leave the area while marking it for heroes able to help.</string>
     <string name="manually_drop">Manually drop a pin not restricted to location, stay anywhere and help mark the dogs in need of rescue or medical help.</string>

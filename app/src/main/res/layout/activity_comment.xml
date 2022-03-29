@@ -85,6 +85,7 @@
             android:layout_toStartOf="@+id/ivSend"
             android:background="@drawable/edittext_bg"
             android:hint="Type your comment"
+            android:imeOptions="actionDone"
             android:inputType="textMultiLine"
             android:padding="15dp" />
 

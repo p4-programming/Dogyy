@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -12,18 +13,25 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.aks.chat.FirebaseService
 import com.aks.doggydoo.R
+import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.loadImageFromString
+import com.aks.doggydoo.commonutility.show
+import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityChatBinding
 import com.aks.doggydoo.firebaseChat.Notification.*
 import com.aks.doggydoo.firebaseChat.adapter.MessageAdapter
+import com.aks.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.aks.doggydoo.myprofile.ui.UserProfileActivity
 import com.aks.doggydoo.utils.MyApp
+import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant
 import com.aks.doggydoo.videocall.CreateRoomActivity
+import com.aks.doggydoo.videocall.VideoConferenceActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -60,6 +68,14 @@ class ChatActivity : AppCompatActivity() {
     var clickedUserId: String = ""
     private var fromValue:String =""
     private  var  reqType:String =""
+
+    private val homeViewModel: HomeViewModel by viewModels()
+    private var roomId: String = ""
+    private var refNo: String = ""
+    private var tokenIs: String = ""
+    private var type: String = ""
+
+
 
     private val requestArray = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -225,14 +241,15 @@ class ChatActivity : AppCompatActivity() {
             if (!isPermissionGranted()) {
                 askPermissions()
             } else {
-                startActivity(
+                generateRoom()
+             /*   startActivity(
                     Intent(this, CreateRoomActivity::class.java)
                         .putExtra("from", "1")
                         .putExtra("clickedUserID", clickedUserId)
                         .putExtra("playdateId", "0")
                         .putExtra("userImage",userImage)
                         .putExtra("name", userName)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))*/
             }
         }
 
@@ -240,14 +257,15 @@ class ChatActivity : AppCompatActivity() {
             if (!isPermissionGranted()) {
                 askPermissions()
             } else {
-                startActivity(
+                generateRoom()
+               /* startActivity(
                     Intent(this, CreateRoomActivity::class.java)
                         .putExtra("from", "2")
                         .putExtra("clickedUserID", clickedUserId)
                         .putExtra("playdateId", "0")
                         .putExtra("userImage",userImage)
                         .putExtra("name", userName)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))*/
             }
         }
 
@@ -387,6 +405,87 @@ class ChatActivity : AppCompatActivity() {
                 })
         }
     }
+    ///////////////////Calling
 
+    private fun generateRoom() {
+        homeViewModel.getToken("0", "2")
+            .observe(this, androidx.lifecycle.Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                        binding.progressBar.hide()
+                        if (it.data!!.responseCode == "0") {
+                            it.data.responseMessage.snack(Color.RED, binding.root)
+                            return@Observer
+                        }
+                        refNo = it.data.refrence_id
+                        roomId = it.data.room_id
+                        type = it.data.type
+                        generateToken(roomId, refNo, "0", type)
+
+                    }
+                    Result.Status.ERROR -> {
+                        binding.progressBar.hide()
+                        it.message!!.snack(Color.RED, binding.root)
+                    }
+                }
+            })
+    }
+
+
+    private fun generateToken(roomId: String, refNo: String, clickedUserId: String, type: String) {
+        System.out.println("data is>>" + MyApp.getSharedPref().userName)
+        System.out.println("data is>>" + refNo)
+        System.out.println("data is>>" + roomId)
+        System.out.println("data is>>" + clickedUserId)
+        System.out.println("data is>>" + type)
+        homeViewModel.getGenToken(
+            MyApp.getSharedPref().userName,
+            refNo,
+            roomId,
+            clickedUserId,
+            type,
+            MyApp.getSharedPref().userId
+        )
+            .observe(this, androidx.lifecycle.Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                        binding.progressBar.hide()
+
+                        if (it.data!!.responseCode == "0") {
+                            it.data.responseMessage.snack(Color.RED, binding.root)
+                            return@Observer
+                        } else {
+                            tokenIs = it.data.token
+                            successNavigation(tokenIs, type)
+                        }
+
+
+                    }
+                    Result.Status.ERROR -> {
+                        binding.progressBar.hide()
+                        it.message!!.snack(Color.RED, binding.root)
+                    }
+                }
+            })
+    }
+
+    private fun successNavigation(tokenIs: String, type: String) {
+        startActivity(
+            Intent(
+                this, VideoConferenceActivity::class.java
+            )
+                .putExtra("token", tokenIs)
+                .putExtra("name", "user")
+                .putExtra("request_type", type)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        )
+        finish()
+    }
 
 }

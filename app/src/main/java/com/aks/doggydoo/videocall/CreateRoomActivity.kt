@@ -38,6 +38,7 @@ class CreateRoomActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.calling.hide()
+
         binding.call.setOnClickListener {
             binding.calling.show()
             generateRoom()

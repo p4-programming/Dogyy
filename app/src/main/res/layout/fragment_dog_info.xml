@@ -60,6 +60,8 @@
             android:textAppearance="?android:textAppearanceSmall"
             android:background="@android:color/transparent"
             android:hint="Pet’s name"
+            android:inputType="text"
+            android:imeOptions="actionGo"
             android:padding="10dp"
             android:paddingStart="20dp" />
 

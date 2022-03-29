@@ -325,7 +325,7 @@ class MyDog : AppCompatActivity() {
 
         //binding.height.text = data.petdetail.is_pet_vaccinated
         binding.gender.text = data.petdetail.pet_gender
-        binding.weight.text = data.petdetail.pet_weight + "Kg"
+        binding.weight.text = data.petdetail.pet_weight + "Kg " + data.petdetail.pet_weight_gm + "gm"
         binding.descriptionText.text = data.petdetail.pet_description
         binding.fosterCheck.isChecked = data.petdetail.fostering == "1"
         binding.adoptCheck.isChecked = data.petdetail.adoption == "1"

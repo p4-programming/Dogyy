@@ -31,7 +31,6 @@ import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.network.ApiConstant
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "homeActTag"
@@ -48,6 +47,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var userMobile: TextView
     lateinit var email: TextView
 
+    companion object {
+        lateinit var menuIcon: ImageView
+    }
+
     @SuppressLint("RtlHardcoded")
     override fun onCreate(savedInstanceState: Bundle?) {
         makeStatusBarTransparent()
@@ -62,6 +65,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navController = findNavController(R.id.nav_fragment)
         navView.setupWithNavController(navController)
 
+        menuIcon = binding.mainContent.hamburger
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
@@ -75,7 +81,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //open drawer from hamburger icon
-        binding.mainContent.hamburger.setOnClickListener {
+        menuIcon.setOnClickListener {
             CommonMethod.hideKeyboard(this)
             setuserDetail()
             drawerLayout.openDrawer(Gravity.LEFT)
@@ -157,7 +163,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(
                 Intent(
                     this@HomeActivity,
-                    LoginActivity::class.java)
+                    LoginActivity::class.java
+                )
             )
             finish()
 
@@ -227,13 +234,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
+            //super.onBackPressed()
+
+            val a = Intent(Intent.ACTION_MAIN)
+            a.addCategory(Intent.CATEGORY_HOME)
+            a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(a)
+
             return
         }
 
         this.doubleBackToExitPressedOnce = true
         CommonMethod.showSnack(binding.drawerLayout, "Please click BACK again to exit")
-        // Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
 
         Handler(Looper.getMainLooper()).postDelayed({
             doubleBackToExitPressedOnce = false

@@ -149,7 +149,7 @@ class UserProfileActivity : AppCompatActivity() {
 
                 }
             } else {
-                Toast.makeText(this, "Can not send message.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You are not friends yet.", Toast.LENGTH_SHORT).show()
             }
 
         }

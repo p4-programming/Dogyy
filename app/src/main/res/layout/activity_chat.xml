@@ -157,18 +157,17 @@
             android:layout_toStartOf="@+id/ivSend"
             android:layout_toLeftOf="@+id/ivSend"
             android:contentDescription="@string/app_name"
-            android:src="@mipmap/attach_image" />
+            android:src="@drawable/ic_send" />
 
         <ImageView
             android:id="@+id/ivSend"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:contentDescription="@string/app_name"
-            android:src="@mipmap/send_arrow_icon" />
+            android:src="@mipmap/outline_send_black_24" />
 
     </RelativeLayout>
 

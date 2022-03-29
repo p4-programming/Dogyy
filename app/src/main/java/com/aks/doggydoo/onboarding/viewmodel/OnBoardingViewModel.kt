@@ -30,7 +30,7 @@ class OnBoardingViewModel @Inject constructor(var onBoardingRepo: OnBoardingRepo
         description: String?,
         profile: MultipartBody.Part
     ) =
-        onBoardingRepo.userLiveData(userId, name!!, age!!, username,description, profile)
+        onBoardingRepo.userLiveData(userId, name!!,username, age!!, description, profile)
 
     fun getDogData(
         userId: String,

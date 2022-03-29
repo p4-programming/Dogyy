@@ -18,6 +18,7 @@ import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityPlaydateDetailBinding
 import com.aks.doggydoo.firebaseChat.ChatActivity
+import com.aks.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.aks.doggydoo.mydog.datasource.model.petdescriptionmodel.Petdetail
 import com.aks.doggydoo.myprofile.ui.UserProfileActivity
 import com.aks.doggydoo.playdate.viewmodel.PlayDateViewModel
@@ -25,12 +26,14 @@ import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant
 import com.aks.doggydoo.videocall.CreateRoomActivity
+import com.aks.doggydoo.videocall.VideoConferenceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlayDateDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlaydateDetailBinding
     private val playDateViewModel: PlayDateViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
     private var receiveId: String = ""
     private var petId: String = ""
     private var firebaseUid: String = ""
@@ -43,6 +46,13 @@ class PlayDateDetailActivity : AppCompatActivity() {
     private var playReqdate: String = ""
     private var playDateType: String = ""
     private var requestId: String = ""
+
+
+    private var roomId: String = ""
+    private var refNo: String = ""
+    private var tokenIs: String = ""
+    private var type: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,15 +113,16 @@ class PlayDateDetailActivity : AppCompatActivity() {
                 if (!isPermissionGranted()) {
                     askPermissions()
                 } else {
-                    startActivity(
-                        Intent(this, CreateRoomActivity::class.java)
-                            .putExtra("from", "1")
-                            .putExtra("clickedUserID", receiveId)
-                            .putExtra("playdateId", playdateReqId)
-                            .putExtra("userImage", userImage)
-                            .putExtra("name", userName)
-                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    )
+                    generateRoom()
+                    /* startActivity(
+                         Intent(this, CreateRoomActivity::class.java)
+                             .putExtra("from", "1")
+                             .putExtra("clickedUserID", receiveId)
+                             .putExtra("playdateId", playdateReqId)
+                             .putExtra("userImage", userImage)
+                             .putExtra("name", userName)
+                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                     )*/
                 }
 
             }
@@ -216,5 +227,89 @@ class PlayDateDetailActivity : AppCompatActivity() {
         Toast.makeText(this, MyApp.getSharedPref().userId, Toast.LENGTH_SHORT).show()*/
 
 
+    }
+
+
+    /////////////////////////////////////////for calling ////////////////////////////
+
+    private fun generateRoom() {
+        homeViewModel.getToken(playdateReqId, from)
+            .observe(this, androidx.lifecycle.Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                        binding.progressBar.hide()
+                        if (it.data!!.responseCode == "0") {
+                            it.data.responseMessage.snack(Color.RED, binding.root)
+                            return@Observer
+                        }
+                        refNo = it.data.refrence_id
+                        roomId = it.data.room_id
+                        type = it.data.type
+                        generateToken(roomId, refNo, playdateReqId, type)
+
+                    }
+                    Result.Status.ERROR -> {
+                        binding.progressBar.hide()
+                        it.message!!.snack(Color.RED, binding.root)
+                    }
+                }
+            })
+    }
+
+
+    private fun generateToken(roomId: String, refNo: String, clickedUserId: String, type: String) {
+        System.out.println("data is>>" + MyApp.getSharedPref().userName)
+        System.out.println("data is>>" + refNo)
+        System.out.println("data is>>" + roomId)
+        System.out.println("data is>>" + clickedUserId)
+        System.out.println("data is>>" + type)
+        homeViewModel.getGenToken(
+            MyApp.getSharedPref().userName,
+            refNo,
+            roomId,
+            clickedUserId,
+            type,
+            MyApp.getSharedPref().userId
+        )
+            .observe(this, androidx.lifecycle.Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                        binding.progressBar.hide()
+
+                        if (it.data!!.responseCode == "0") {
+                            it.data.responseMessage.snack(Color.RED, binding.root)
+                            return@Observer
+                        } else {
+                            tokenIs = it.data.token
+                            successNavigation(tokenIs, type)
+                        }
+
+
+                    }
+                    Result.Status.ERROR -> {
+                        binding.progressBar.hide()
+                        it.message!!.snack(Color.RED, binding.root)
+                    }
+                }
+            })
+    }
+
+    private fun successNavigation(tokenIs: String, type: String) {
+        startActivity(
+            Intent(
+                this, VideoConferenceActivity::class.java
+            )
+                .putExtra("token", tokenIs)
+                .putExtra("name", "user")
+                .putExtra("request_type", type)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        )
+        finish()
     }
 }

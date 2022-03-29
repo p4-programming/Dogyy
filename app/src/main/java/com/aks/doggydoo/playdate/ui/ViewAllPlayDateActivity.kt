@@ -29,6 +29,7 @@ class ViewAllPlayDateActivity : AppCompatActivity() {
     private var _binding: ActivityViewallBinding? = null
     private val binding get() = _binding!!
     private val playDateViewModel: PlayDateViewModel by viewModels()
+
     private lateinit var viewAllAdapter: ViewAllPlaydateAdapter
     private var viewType: String =""
 

@@ -51,7 +51,7 @@ class FriendPetAdapter(
         fun bind(detail: MyPetDetail) {
             binding.apply {
                 binding.petName.text = detail.pet_name
-                binding.petBreed.text = "${detail.breed}, ${detail.pet_age} ${detail.pet_age_type}"
+                binding.petBreed.text = "${detail.breed}, ${detail.pet_age}years ${detail.pet_age_month}months"
                 binding.petImage.loadImageFromString(context, PET_IMAGE_BASE_URL + detail.pet_image)
             }
         }

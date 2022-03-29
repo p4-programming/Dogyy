@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:elevation="5dp"
+            android:textColor="@color/black"
             android:hint="Your Name"
             android:padding="10dp"
             android:paddingStart="20dp"
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="5dp"
                 android:padding="10dp"
+                android:textColor="@color/black"
                 android:paddingStart="20dp"
                 android:textAppearance="?android:textAppearanceSmall" />
 
@@ -76,21 +78,21 @@
                 android:id="@+id/tvAvailable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:textSize="12sp"
-                android:fontFamily="@font/medium"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/docbuton"
+                android:fontFamily="@font/medium"
                 android:text="Available!"
-                android:layout_alignParentRight="true"/>
+                android:textColor="@color/docbuton"
+                android:textSize="12sp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="30dp"
-                android:layout_centerVertical="true"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="20dp"
-                android:layout_height="30dp"/>
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp" />
 
         </RelativeLayout>
 
@@ -104,6 +106,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

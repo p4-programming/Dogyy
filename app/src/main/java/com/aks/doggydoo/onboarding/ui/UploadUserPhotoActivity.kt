@@ -54,6 +54,7 @@ class UploadUserPhotoActivity : AppCompatActivity() {
 
     private fun getInit() {
         onBoardingViewModel = ViewModelProvider(this).get(OnBoardingViewModel::class.java)
+
         name = intent.getStringExtra("name").toString()
         username = intent.getStringExtra("username").toString()
 
@@ -159,9 +160,7 @@ class UploadUserPhotoActivity : AppCompatActivity() {
 
     private fun registerUserAPI() {
         onBoardingViewModel.getUserData(
-            MyApp.getSharedPref().userId,
-            name,
-            username,
+            MyApp.getSharedPref().userId,name, username,
             "0",
             "0",
             MultipartFile.prepareFilePart(this@UploadUserPhotoActivity, "user_profile", uri)

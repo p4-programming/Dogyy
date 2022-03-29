@@ -445,8 +445,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
                 if (newState == BottomSheetBehavior.STATE_EXPANDED) {
                     binding.llLocation.visibility = View.GONE
+                    HomeActivity.menuIcon.visibility=View.GONE
                 } else {
                     binding.llLocation.visibility = View.VISIBLE
+                    HomeActivity.menuIcon.visibility=View.VISIBLE
                 }
 
                 when (newState) {

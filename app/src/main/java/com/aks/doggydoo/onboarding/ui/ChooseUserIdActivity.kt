@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,13 +19,14 @@ import com.aks.doggydoo.onboarding.adapter.UserIdSuggestionAdapter
 import com.aks.doggydoo.onboarding.viewmodel.OnBoardingViewModel
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
+import com.aks.doggydoo.utils.helper.Result.Status.LOADING
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChooseUserIdActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChooseUseridBinding
-    var name:String =""
-    var finalUserName: String =""
+    var name: String = ""
+    var finalUserName: String = ""
     private lateinit var onBoardingViewModel: OnBoardingViewModel
     private lateinit var adapter: UserIdSuggestionAdapter
     private var userName = ArrayList<String>()
@@ -35,11 +37,23 @@ class ChooseUserIdActivity : AppCompatActivity() {
         setContentView(binding.root)
         getInit()
 
-        binding.button.setOnClickListener{
-            startActivity(Intent(this, UploadUserPhotoActivity::class.java)
-                .putExtra("name",name)
-                .putExtra("username", finalUserName).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-            finish()
+        binding.button.setOnClickListener {
+
+
+            if (binding.tvAvailable.text == "Unavailable") {
+                Toast.makeText(this, "Please select a valid user name", Toast.LENGTH_SHORT).show()
+            } else {
+                startActivity(
+                    Intent(this, UploadUserPhotoActivity::class.java)
+                        .putExtra("name", binding.tvUserName.text.toString())
+                        .putExtra("username", finalUserName)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                )
+                finish()
+
+
+            }
+
         }
 
     }
@@ -49,8 +63,8 @@ class ChooseUserIdActivity : AppCompatActivity() {
         name = intent.getStringExtra("name")!!
         binding.gifImageView.loadImageAsGif(this, R.raw.onboard_look_up_down)
         binding.tvUserName.text = name
-        finalUserName = name.replace(" ","")
-        binding.tvUserId.text = "@"+ finalUserName
+        finalUserName = name.replace(" ", "")
+        binding.tvUserId.text = "@" + finalUserName
 
         adapter = UserIdSuggestionAdapter(this)
         binding.rvUserId.adapter = adapter
@@ -61,7 +75,10 @@ class ChooseUserIdActivity : AppCompatActivity() {
                 object : RecyclerTouchListener.ClickListener {
                     override fun onClick(view: View?, position: Int) {
                         finalUserName = userName.get(position)
-                        binding.tvUserId.text = "@"+finalUserName
+                        binding.rvUserId.visibility = View.GONE
+                        binding.tvUserId.text = "@" + finalUserName
+                        binding.tvAvailable.text = "Available"
+                        binding.tvAvailable.setTextColor(Color.GREEN)
                     }
 
                     override fun onLongClick(view: View?, position: Int) {}
@@ -73,37 +90,40 @@ class ChooseUserIdActivity : AppCompatActivity() {
 
 
     private fun getUserNameData() {
-        onBoardingViewModel.getUserName(binding.tvUserId.text.toString(),MyApp.getSharedPref().userId).
-        observe(this@ChooseUserIdActivity, Observer {
-            when (it.status) {
-                Result.Status.LOADING -> {
-                    binding.progressBar.show()
-                }
-                Result.Status.SUCCESS -> {
-                    if (it.data!!.responseCode == "0") {
-                        it.data.responseMessage.snack(Color.RED, binding.root)
-                        return@Observer
+        onBoardingViewModel.getUserName(finalUserName, MyApp.getSharedPref().userId)
+            .observe(this@ChooseUserIdActivity, Observer {
+                when (it.status) {
+                    LOADING -> {
+                        binding.progressBar.show()
                     }
-                    //set adapter
-                    if (it.data.userNameList.size > 0){
-                        binding.tvAvailable.visibility = View.GONE
-                        binding.progressBar.hide()
-                        for (category in it.data.userNameList) {
-                            userName.add(category.user_name)
+                    Result.Status.SUCCESS -> {
+                        if (it.data!!.responseCode == "0") {
+                            it.data.responseMessage.snack(Color.RED, binding.root)
+                            return@Observer
                         }
-                        adapter.submitList(it.data.userNameList)
-                    }else{
-                        binding.tvAvailable.visibility = View.VISIBLE
-                        binding.progressBar.hide()
-                    }
+                        //set adapter
+                        if (it.data.userNameList.size > 0) {
+                            // binding.tvAvailable.visibility = View.GONE
+                            binding.tvAvailable.text = "Unavailable"
+                            binding.tvAvailable.setTextColor(Color.RED)
 
+                            binding.progressBar.hide()
+                            for (category in it.data.userNameList) {
+                                userName.add(category.user_name)
+                            }
+                            adapter.submitList(it.data.userNameList)
+                        } else {
+                            binding.tvAvailable.visibility = View.VISIBLE
+                            binding.progressBar.hide()
+                        }
+
+                    }
+                    Result.Status.ERROR -> {
+                        binding.progressBar.hide()
+                        it.message?.snack(Color.RED, binding.root)
+                    }
                 }
-                Result.Status.ERROR -> {
-                    binding.progressBar.hide()
-                    it.message?.snack(Color.RED, binding.root)
-                }
-            }
-        })
+            })
     }
 
     override fun onBackPressed() {
