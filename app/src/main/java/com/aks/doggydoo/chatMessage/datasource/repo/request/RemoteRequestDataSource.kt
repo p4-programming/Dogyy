@@ -32,6 +32,21 @@ class RemoteRequestDataSource @Inject constructor(private val apiFactory: ApiFac
                 )
         }
 
+
+    /**
+     * fetch receiveRequest Response from network
+     * */
+    suspend fun fetchCallListResponse(
+        userId: String
+    ) =
+        getResult {
+            apiFactory.createService(RequestApiService::class.java)
+                .callList(
+                    userId
+                )
+        }
+
+
     /**
      * fetch AcceptReject Response from network
      * */

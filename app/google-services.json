@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "28527804904-052p4rojf1ledha4n7b42qmnj6lq4bnb.apps.googleusercontent.com",
+          "client_id": "28527804904-9rlf6vd8hanmibgt3b1b7ei0tkiplivo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.aks.doggydoo",
-            "certificate_hash": "146967c8c62791f9670f30b2be18407e222096d7"
-          }
-        },
-        {
-          "client_id": "28527804904-j4j8ggu6oa8aabdhpg73ifsoha2u9b0k.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.aks.doggydoo",
-            "certificate_hash": "87770ba1678a182461bed96f480c87d2ec07e1f3"
+            "certificate_hash": "6dab63b25520266a8bdaf3908bcf2dbea55e06c3"
           }
         },
         {
@@ -39,11 +31,19 @@
           }
         },
         {
-          "client_id": "28527804904-vj9rjtuv8h3d62polbpf5av4noqq0cc3.apps.googleusercontent.com",
+          "client_id": "28527804904-po47e0q85f8d0g5uesgf4qscm17fcrb2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.aks.doggydoo",
-            "certificate_hash": "5baf6cbd5f9c7e3146f3e387a1c18720efd70dc7"
+            "certificate_hash": "146967c8c62791f9670f30b2be18407e222096d7"
+          }
+        },
+        {
+          "client_id": "28527804904-vkgpmbvta55ct6hqd7rm4q2kkeej8ft6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "07b351f66a09bde93e2c5d2c9a9a693779ac8ab9"
           }
         },
         {
@@ -64,10 +64,10 @@
               "client_type": 3
             },
             {
-              "client_id": "28527804904-u5oq7ahaa79bf2iuju7ido7ef36gmm7p.apps.googleusercontent.com",
+              "client_id": "28527804904-62arpb72ot2p7804vaqkqjg1oji42i7t.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.aks.DOGGYDOO"
+                "bundle_id": "com.shuttercast.DOGGYDOO"
               }
             }
           ]

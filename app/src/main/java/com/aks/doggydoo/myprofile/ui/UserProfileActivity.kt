@@ -79,7 +79,8 @@ class UserProfileActivity : AppCompatActivity() {
         if (from == "map") {
             binding.tvUserAllFriends.hide()
         } else {
-            binding.tvUserAllFriends.show()
+            // binding.tvUserAllFriends.show() // changed on 22/6/2022
+            binding.tvUserAllFriends.hide()
         }
 
         //Toast.makeText(this,"userid=="+userId, Toast.LENGTH_SHORT).show()

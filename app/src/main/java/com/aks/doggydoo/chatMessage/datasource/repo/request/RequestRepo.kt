@@ -5,7 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RequestRepo  @Inject
+class RequestRepo @Inject
 constructor(
     private var remoteRequestDataSource: RemoteRequestDataSource
 ) {
@@ -14,17 +14,35 @@ constructor(
     ) = resultLiveData(
         networkCall = { remoteRequestDataSource.fetchSentRequestResponse(userId) }
     )
+
     fun receiveRequestLiveData(
         userId: String
     ) = resultLiveData(
         networkCall = { remoteRequestDataSource.fetchReceiveRequestResponse(userId) }
     )
 
-    fun acceptOrRejectLiveData(request_id: String,
-                               requestType:String,
-                               request_status: String,
-                               user_id: String,
-                               pet_id: String) = resultLiveData(
-        networkCall = { remoteRequestDataSource.fetchAcceptRejectResponse(request_id,requestType,request_status,user_id, pet_id) }
+    fun acceptOrRejectLiveData(
+        request_id: String,
+        requestType: String,
+        request_status: String,
+        user_id: String,
+        pet_id: String
+    ) = resultLiveData(
+        networkCall = {
+            remoteRequestDataSource.fetchAcceptRejectResponse(
+                request_id,
+                requestType,
+                request_status,
+                user_id,
+                pet_id
+            )
+        }
     )
+
+    fun callListLiveData(
+        userId: String
+    ) = resultLiveData(
+        networkCall = { remoteRequestDataSource.fetchCallListResponse(userId) }
+    )
+
 }

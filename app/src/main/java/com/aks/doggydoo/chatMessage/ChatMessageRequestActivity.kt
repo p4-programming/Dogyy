@@ -11,8 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 val titelArray = arrayOf(
     "Message",
     "Request",
-    "Chat"
+    "Calls"
 )
+
 @AndroidEntryPoint
 class ChatMessageRequestActivity : AppCompatActivity() {
     private var _binding: ActivityMessageRequestCallBinding? = null
