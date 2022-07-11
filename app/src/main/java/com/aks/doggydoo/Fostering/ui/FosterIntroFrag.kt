@@ -18,9 +18,9 @@ class FosterIntroFrag : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFosterBinding.inflate(layoutInflater)
         binding.apply {
-            Glide.with(requireActivity()).asGif().load(R.raw.fostering).centerCrop().into(
-                ivTraining
-            )
+//            Glide.with(requireActivity()).asGif().load(R.raw.fostering).centerCrop().into(
+//                ivTraining
+//            )
         }
         return binding.root
     }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.ActivityPetageBinding
+import com.aks.doggydoo.utils.CommonMethod
 
 class PetAgeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPetageBinding
@@ -19,6 +20,7 @@ class PetAgeActivity : AppCompatActivity() {
         binding = ActivityPetageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getInit()
+        CommonMethod.makeTransparentStatusBar(window)
 
     }
 
@@ -26,7 +28,7 @@ class PetAgeActivity : AppCompatActivity() {
         petName = intent.getStringExtra("petname").toString()
         System.out.println("pet_name>>" + petName)
 
-        binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+       // binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
 
         binding.ivBack.setOnClickListener {
             finish()

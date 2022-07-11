@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -205,7 +206,7 @@ class LoginActivity : AppCompatActivity() {
         binding.underlyingText.paintFlags =
             binding.underlyingText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         binding.apply {
-            Glide.with(this@LoginActivity).asGif().load(R.raw.login).centerCrop().into(imageview)
+           // Glide.with(this@LoginActivity).asGif().load(R.raw.login).centerCrop().into(imageview)
             button.setOnClickListener {
                 if (button.text == getString(R.string.sendCode)) {
                     if (binding.phoneNumberEt.text.toString().length < 10) {
@@ -301,12 +302,13 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                Log.d("TAG", "onVerificationFailed: "+e.localizedMessage)
                 Toast.makeText(this@LoginActivity, "Unable to verify the number.", Toast.LENGTH_LONG).show()
                 binding.progressBar.hide()
                 binding.underlyingText.show()
                 binding.underlyingText.text = getString(R.string.resendOtp)
                 binding.button.text = getString(R.string.sendCode)
-                auth.signOut()
+               // auth.signOut()
             }
 
             override fun onCodeSent(

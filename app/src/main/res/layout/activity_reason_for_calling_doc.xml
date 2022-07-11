@@ -22,11 +22,14 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
-            android:id="@+id/backButton"
             android:src="@mipmap/back_icon" />
 
         <TextView
@@ -45,18 +48,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tool"
-        android:layout_margin="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginBottom="20sp"
         android:fontFamily="@font/bold"
         android:text="State Reason For Call"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stateReasonRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singeText"
-        android:id="@+id/stateReasonRv"
         android:layout_above="@+id/view1"
+        android:layout_below="@id/singeText"
         android:layout_marginStart="20sp"
         android:layout_marginEnd="20sp"
         android:orientation="vertical"

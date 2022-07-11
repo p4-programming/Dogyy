@@ -50,6 +50,7 @@ class UploadUserPhotoActivity : AppCompatActivity() {
         binding = ActivityUploadUserphotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getInit()
+        CommonMethod.makeTransparentStatusBar(window)
     }
 
     private fun getInit() {

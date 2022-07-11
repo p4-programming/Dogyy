@@ -24,7 +24,7 @@
         android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/app_name"
         android:layout_marginStart="20dp"
         android:src="@mipmap/back_icon"/>
@@ -33,12 +33,12 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/bold"
         android:gravity="center"
         android:text="Upload your picture!"
         android:textColor="@color/on_boarding_tite_text"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/gifImageView"
@@ -62,7 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@color/cal"
         android:fontFamily="@font/bold"
         android:paddingLeft="35dp"
         android:paddingTop="10dp"
@@ -70,6 +71,7 @@
         android:paddingBottom="10dp"
         android:text="@string/next"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="10dp" />
 
@@ -86,15 +88,15 @@
         android:id="@+id/underlyingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
         android:background="?selectableItemBackground"
         android:fontFamily="@font/regular"
         android:padding="10dp"
         android:text="@string/skip"
-        android:textColor="#5935D5"
-        android:textSize="12sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:textColor="@color/cal"
+        android:textSize="12sp" />
 
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.ActivityPetgenderBinding
+import com.aks.doggydoo.utils.CommonMethod
 
 class PetGenderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPetgenderBinding
@@ -21,6 +22,8 @@ class PetGenderActivity : AppCompatActivity() {
         binding = ActivityPetgenderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getInit()
+
+        CommonMethod.makeTransparentStatusBar(window)
     }
 
     private fun getInit() {
@@ -29,7 +32,7 @@ class PetGenderActivity : AppCompatActivity() {
         petAgeMonth = intent.getStringExtra("petagemonth").toString()
         petBreedId = intent.getStringExtra("petbreedid").toString()
 
-        binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+        //binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
 
         binding.button.setOnClickListener{
             if(petGender==""){

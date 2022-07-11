@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentLayout"
@@ -12,220 +12,245 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <ImageView
-        android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="20dp"
-        android:src="@mipmap/back_icon"/>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/bold"
-        android:gravity="center"
-        android:text="@string/tell_us_about_your_pooch"
-        android:textColor="@color/on_boarding_tite_text"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:id="@+id/gifImageView"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/dog_wiggle_lottie" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ageLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_above="@+id/button"
-        android:layout_marginBottom="10sp"
-        android:maxHeight="200dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp">
-
-        <TextView
-            android:id="@+id/tvPetAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/regular"
-            android:drawableEnd="@drawable/blue_dropdown_arrow"
-            android:background="@android:color/transparent"
-            android:hint="Pet’s age"
-            android:padding="12dp"
-            android:paddingStart="20dp" />
-
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/llAge"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_sheet_bg">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/medium"
-            android:text="Select Age"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/black" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/time_slot_background">
-
-                <NumberPicker
-                    android:id="@+id/fromNumber"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:theme="@style/Cal.Picker" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/fromType"
+            <ImageView
+                android:id="@+id/ivBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/time_slot_background"
-                android:fontFamily="@font/bold"
-                android:foreground="?selectableItemBackground"
-                android:padding="10dp"
-                android:text="Year"
-                android:textColor="@color/on_boarding_blue"
-                android:textSize="14sp" />
+                android:layout_marginStart="40dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/back_icon" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="15sp"
-                android:layout_marginEnd="15sp"
+                android:layout_marginEnd="40dp"
                 android:fontFamily="@font/bold"
-                android:text="To"
-                android:visibility="invisible"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:gravity="center"
+                android:text="@string/tell_us_about_your_pooch"
+                android:textColor="@color/on_boarding_tite_text"
+                android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/time_slot_background">
-
-                <NumberPicker
-                    android:id="@+id/toNumber"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:theme="@style/Cal.Picker" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/toType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/time_slot_background"
-                android:fontFamily="@font/bold"
-                android:foreground="?selectableItemBackground"
-                android:padding="10dp"
-                android:text="Months"
-                android:textColor="@color/on_boarding_blue"
-                android:textSize="14sp" />
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/on_boarding_view"/>
-
-        <TextView
-            android:id="@+id/tvConfirm"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/button"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10sp"
+            android:backgroundTint="@color/white"
+            android:maxHeight="200dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:id="@+id/tvPetAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/blue_dropdown_arrow"
+                android:fontFamily="@font/regular"
+                android:hint="Pet’s age"
+                android:padding="12dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_color" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/llAge"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_sheet_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/medium"
+                android:text="Select Age"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/time_slot_background">
+
+                    <NumberPicker
+                        android:id="@+id/fromNumber"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:theme="@style/Cal.Picker" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/fromType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/time_slot_background"
+                    android:fontFamily="@font/bold"
+                    android:foreground="?selectableItemBackground"
+                    android:padding="10dp"
+                    android:text="Year"
+                    android:textColor="@color/on_boarding_blue"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginEnd="15sp"
+                    android:fontFamily="@font/bold"
+                    android:text="To"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/time_slot_background">
+
+                    <NumberPicker
+                        android:id="@+id/toNumber"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:theme="@style/Cal.Picker" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/toType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/time_slot_background"
+                    android:fontFamily="@font/bold"
+                    android:foreground="?selectableItemBackground"
+                    android:padding="10dp"
+                    android:text="Months"
+                    android:textColor="@color/on_boarding_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/on_boarding_view" />
+
+            <TextView
+                android:id="@+id/tvConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/confirm_bg"
+                android:fontFamily="@font/medium"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Confirm"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/cal" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:backgroundTint="@color/cal"
+            android:fontFamily="@font/bold"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp"
+            android:paddingRight="35dp"
+            android:paddingBottom="10dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="10dp" />
+
+        <ImageView
+            android:id="@+id/i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/login_white_rec" />
+
+        <TextView
+            android:id="@+id/underlyingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:background="?selectableItemBackground"
+            android:fontFamily="@font/regular"
             android:gravity="center"
             android:padding="10dp"
-            android:fontFamily="@font/medium"
-            android:textColor="@color/cal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:background="@drawable/confirm_bg"
-            android:text="Confirm"/>
-
-    </LinearLayout>
+            android:text="Enter pet age!"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp"
-        android:fontFamily="@font/bold"
-        android:paddingLeft="35dp"
-        android:paddingTop="10dp"
-        android:paddingRight="35dp"
-        android:paddingBottom="10dp"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:cornerRadius="10dp" />
-
-    <ImageView
-        android:id="@+id/i"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="@string/app_name"
-        android:adjustViewBounds="true"
-        android:src="@drawable/login_white_rec" />
-
-    <TextView
-        android:id="@+id/underlyingText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
-        android:background="?selectableItemBackground"
-        android:fontFamily="@font/regular"
-        android:padding="10dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="Enter pet age!"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="12sp"
-        android:layout_alignParentBottom="true"/>
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

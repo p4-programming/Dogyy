@@ -24,9 +24,9 @@ class DogSittingIntroFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            Glide.with(requireActivity()).asGif().load(R.raw.dog_sitting).centerCrop().into(
-                ivTraining
-            )
+//            Glide.with(requireActivity()).asGif().load(R.raw.dog_sitting).centerCrop().into(
+//                ivTraining
+//            )
         }
     }
 }

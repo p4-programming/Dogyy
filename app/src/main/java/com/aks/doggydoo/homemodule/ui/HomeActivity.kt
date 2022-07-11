@@ -26,6 +26,8 @@ import com.aks.doggydoo.commonutility.loadImageFromString
 import com.aks.doggydoo.databinding.ActivityHomeBinding
 import com.aks.doggydoo.login.ui.LoginActivity
 import com.aks.doggydoo.myprofile.ui.MyProfileActivity
+import com.aks.doggydoo.onboarding.ui.OnBoardingActivity
+import com.aks.doggydoo.rateplace.ui.RatePlaceActivity
 import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.network.ApiConstant
@@ -67,6 +69,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         menuIcon = binding.mainContent.hamburger
 
+        binding.mainContent.pback.setOnClickListener(){
+            val intent = Intent(this,OnBoardingActivity::class.java)
+            startActivity(intent)
+        }
+
+//        binding.mainContent.rateAct.setOnClickListener(){
+//            val intent = Intent(this,RatePlaceActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

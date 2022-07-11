@@ -29,6 +29,7 @@ import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityUploadPetimageBinding
 import com.aks.doggydoo.homemodule.ui.HomeActivity
 import com.aks.doggydoo.onboarding.viewmodel.OnBoardingViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MultipartFile
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
@@ -49,10 +50,12 @@ class PetImageUploadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityUploadPetimageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getInit()
 
+        CommonMethod.makeTransparentStatusBar(window)
+        getInit()
     }
 
     private fun getInit() {

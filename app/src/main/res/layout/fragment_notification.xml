@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".homemodule.ui.NotificationFrag">
 
@@ -70,6 +72,7 @@
                 android:layout_marginEnd="10sp"
                 android:layout_toStartOf="@id/requestCheck"
                 android:fontFamily="@font/regular"
+                android:textColor="@color/black"
                 android:text="Allow to get request nofications"
                 android:textSize="12sp" />
 
@@ -118,6 +121,7 @@
                 android:layout_marginEnd="10sp"
                 android:layout_toStartOf="@id/callCheck"
                 android:fontFamily="@font/regular"
+                android:textColor="@color/black"
                 android:text="Allow to get message/call nofications"
                 android:textSize="12sp" />
 
@@ -168,6 +172,7 @@
                 android:layout_marginEnd="10sp"
                 android:layout_toStartOf="@id/newsCheck"
                 android:fontFamily="@font/regular"
+                android:textColor="@color/black"
                 android:text="Allow to get newsfeed nofications"
                 android:textSize="12sp" />
 
@@ -217,6 +222,7 @@
                 android:layout_marginEnd="10sp"
                 android:layout_toStartOf="@id/trackCheck"
                 android:fontFamily="@font/regular"
+                android:textColor="@color/black"
                 android:text="Allow to get tracking nofications"
                 android:textSize="12sp" />
 

@@ -7,6 +7,7 @@ import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.ActivityDoyouHavepetBinding
 import com.aks.doggydoo.login.ui.LoginActivity
+import com.aks.doggydoo.utils.CommonMethod
 
 class DoYouhavePetActivity: AppCompatActivity() {
     private lateinit var binding: ActivityDoyouHavepetBinding
@@ -15,7 +16,17 @@ class DoYouhavePetActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDoyouHavepetBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+        //binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+
+        CommonMethod.makeTransparentStatusBar(window)
+
+        binding.lottie.addLottieOnCompositionLoadedListener { composition ->
+            val startFrame = composition.startFrame
+            val endFrame = composition.endFrame
+            val end = endFrame - 1
+            binding.lottie.setMinAndMaxFrame(1, end.toInt())
+
+        }
 
         binding.button.setOnClickListener{
             startActivity(Intent(this, PetOnBoardingActivity::class.java))

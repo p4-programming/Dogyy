@@ -72,9 +72,9 @@ class SplashScreen : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         getInit()
 
-        val videoview = findViewById<View>(R.id.videoView) as VideoView
-        videoview!!.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.introsceneh))
-        videoview.start()
+//        val videoview = findViewById<View>(R.id.videoView) as VideoView
+//        videoview!!.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.introsceneh))
+//        videoview.start()
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (MyApp.getSharedPref().userRegistered == "no") {
@@ -101,7 +101,7 @@ class SplashScreen : AppCompatActivity() {
 
             }
 
-        }, 3000)
+        }, 5000)
     }
 
     private fun getInit() {

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.FragmentDogInfoBinding
+import com.aks.doggydoo.utils.CommonMethod
 
 class PetOnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: FragmentDogInfoBinding
@@ -16,7 +17,8 @@ class PetOnBoardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = FragmentDogInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+        CommonMethod.makeTransparentStatusBar(window)
+       // binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
 
         binding.button.setOnClickListener{
             if (binding.ePetName.text.isEmpty()){

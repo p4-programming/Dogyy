@@ -9,7 +9,10 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -70,6 +73,12 @@ public class CommonMethod {
         datePickerDialog.getDatePicker().setMinDate(myCalendar.getTimeInMillis());
         datePickerDialog.show();
 
+    }
+
+    public static void makeTransparentStatusBar(Window w){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
     }
 
 

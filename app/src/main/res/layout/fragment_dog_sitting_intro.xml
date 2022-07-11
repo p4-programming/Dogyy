@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,11 +35,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adoptionTitleText" />
 
-    <ImageView
-        android:id="@+id/ivTraining"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/adoptionIntroText" />
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/lady_petting_her_dog"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/adoptionIntroText"/>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/ivTraining"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/adoptionIntroText" />-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

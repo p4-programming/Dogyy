@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentLayout"
@@ -12,101 +12,137 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <ImageView
-        android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="20dp"
-        android:src="@mipmap/back_icon"/>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/bold"
-        android:gravity="center"
-        android:text="@string/tell_us_about_your_pooch"
-        android:textColor="@color/on_boarding_tite_text"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:id="@+id/gifImageView"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/dog_wiggle_lottie" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nameLayout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_above="@+id/button"
-        android:layout_marginBottom="10sp"
-        android:maxHeight="200dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/ePetName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/back_icon" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:text="@string/tell_us_about_your_pooch"
+                android:textColor="@color/on_boarding_tite_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/gifImageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:contentDescription="@string/app_name"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent" />-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/nameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10sp"
+            android:maxHeight="200dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <EditText
+                android:id="@+id/ePetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_color"
+                android:fontFamily="@font/regular"
+                android:hint="Pet’s name"
+                android:imeOptions="actionGo"
+                android:inputType="text"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:textAppearance="?android:textAppearanceSmall" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:backgroundTint="@color/cal"
+            android:fontFamily="@font/bold"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp"
+            android:paddingRight="35dp"
+            android:paddingBottom="10dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="10dp" />
+
+        <ImageView
+            android:id="@+id/i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/login_white_rec" />
+
+
+        <TextView
+            android:id="@+id/underlyingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:background="?selectableItemBackground"
             android:fontFamily="@font/regular"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:background="@android:color/transparent"
-            android:hint="Pet’s name"
-            android:inputType="text"
-            android:imeOptions="actionGo"
+            android:gravity="center"
             android:padding="10dp"
-            android:paddingStart="20dp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp"
-        android:fontFamily="@font/bold"
-        android:paddingLeft="35dp"
-        android:paddingTop="10dp"
-        android:paddingRight="35dp"
-        android:paddingBottom="10dp"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:cornerRadius="10dp" />
-
-    <ImageView
-        android:id="@+id/i"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:adjustViewBounds="true"
-        android:src="@drawable/login_white_rec" />
+            android:text="Enter pet name"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
 
-    <TextView
-        android:id="@+id/underlyingText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
-        android:background="?selectableItemBackground"
-        android:fontFamily="@font/regular"
-        android:padding="10dp"
-        android:text="Enter pet name"
-        android:visibility="gone"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="12sp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</FrameLayout>

@@ -23,6 +23,7 @@ import com.aks.doggydoo.newsfeed.util.RecyclerTouchListener.ClickListener
 import com.aks.doggydoo.onboarding.adapter.BreedAdapter
 import com.aks.doggydoo.onboarding.datasource.model.pet.PetBreedDetail
 import com.aks.doggydoo.onboarding.viewmodel.OnBoardingViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,6 +47,7 @@ class PetBreedActivity : AppCompatActivity() {
         binding = ActivityPetbreedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getInit()
+        CommonMethod.makeTransparentStatusBar(window)
         getPetBreedData()
 
         binding.button.setOnClickListener{
@@ -59,6 +61,7 @@ class PetBreedActivity : AppCompatActivity() {
             )
             finish()
         }
+
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -91,7 +94,7 @@ class PetBreedActivity : AppCompatActivity() {
         petAgeYear = intent.getStringExtra("petageyear").toString()
         petAgeMonth = intent.getStringExtra("petagemonth").toString()
 
-        binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
+       // binding.gifImageView.loadImageAsGif(this, R.raw.on_board_dog_next)
         binding.llBreed.visibility = View.GONE
         binding.tvPetBreed.visibility = View.VISIBLE
         binding.i.visibility = View.VISIBLE

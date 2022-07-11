@@ -1,13 +1,16 @@
 package com.aks.doggydoo.onboarding.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.aks.doggydoo.R
-import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.OnboardingBinding
+import com.aks.doggydoo.utils.CommonMethod
 import dagger.hilt.android.AndroidEntryPoint
+
 
 private const val TAG = "onBoardActTag"
 
@@ -19,7 +22,10 @@ class OnBoardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = OnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.gifImageView.loadImageAsGif(this, R.raw.onboard_look_up_down)
+
+        CommonMethod.makeTransparentStatusBar(window)
+       // binding.gifImageView.loadImageAsGif(this, R.raw.onboard_look_up_down)
+
 
         binding.button.setOnClickListener{
             if (binding.etUserName.text.isEmpty()){
@@ -29,6 +35,13 @@ class OnBoardingActivity : AppCompatActivity() {
                 startActivity(Intent(this, ChooseUserIdActivity::class.java)
                     .putExtra("name", binding.etUserName.text.toString()))
             }
+        }
+
+        binding.lottie.addLottieOnCompositionLoadedListener { composition ->
+            val startFrame = composition.startFrame
+            val endFrame = composition.endFrame
+            val end = endFrame - 1
+                binding.lottie.setMinAndMaxFrame(1, end.toInt())
 
         }
 

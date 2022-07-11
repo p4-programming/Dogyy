@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentLayout"
@@ -12,6 +13,24 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/dog_wiggle_lottie" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:animateLayoutChanges="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -19,33 +38,35 @@
         android:visibility="gone"
         android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="55dp"
-        android:layout_marginStart="20dp"
-        android:src="@mipmap/back_icon"/>
-
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/bold"
+        android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/tell_us_about_your_pooch"
-        android:textColor="@color/on_boarding_tite_text"
-        android:textSize="18sp" />
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/back_icon" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="@string/tell_us_about_your_pooch"
+            android:textColor="@color/on_boarding_tite_text"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/ageLayout"
@@ -64,8 +85,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:fontFamily="@font/regular"
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/black"
             android:drawableEnd="@drawable/blue_dropdown_arrow"
-            android:background="@android:color/transparent"
+            android:background="@color/white"
             android:hint="Pet’s breed"
             android:maxLines="1"
             android:padding="12dp"
@@ -78,77 +101,77 @@
         android:id="@+id/llBreed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_sheet_bg"
         android:orientation="vertical"
         android:paddingBottom="20dp"
-        android:visibility="visible"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_sheet_bg">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/bold"
             android:text="Select Breed"
-            android:layout_gravity="center"
             android:textAppearance="?android:textAppearanceMedium"
-            android:layout_marginTop="20dp"
             android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/etBreddSearch"
             android:layout_width="match_parent"
-            android:background="@drawable/round_corner_bg"
+            android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
             android:layout_marginTop="20dp"
-            android:padding="10dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/round_corner_bg"
             android:drawableEnd="@drawable/search_icon"
             android:fontFamily="@font/regular"
-            android:textColor="@color/black"
-            android:textAppearance="?android:textAppearanceSmall"
             android:hint="Search your pets breed"
-            android:layout_height="wrap_content"/>
+            android:padding="10dp"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBreed"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                tools:listitem="@layout/single_breed_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/single_breed_item" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
-            android:background="@color/on_boarding_view"/>
+            android:background="@color/on_boarding_view" />
 
         <TextView
             android:id="@+id/tvConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/confirm_bg"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:padding="10dp"
-            android:fontFamily="@font/medium"
-            android:textColor="@color/cal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:text="Confirm"
             android:textAppearance="?android:textAppearanceMedium"
-            android:background="@drawable/confirm_bg"
-            android:text="Confirm"/>
+            android:textColor="@color/cal" />
 
     </LinearLayout>
 
@@ -159,12 +182,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="120dp"
         android:fontFamily="@font/bold"
         android:paddingLeft="35dp"
         android:paddingTop="10dp"
         android:paddingRight="35dp"
         android:paddingBottom="10dp"
+        android:backgroundTint="@color/cal"
+        android:textColor="@color/white"
         android:text="@string/next"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -183,7 +208,7 @@
         android:id="@+id/underlyingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
+        android:layout_marginBottom="55dp"
         android:background="?selectableItemBackground"
         android:fontFamily="@font/regular"
         android:padding="10dp"
@@ -197,3 +222,5 @@
 
 
 </RelativeLayout>
+
+</FrameLayout>

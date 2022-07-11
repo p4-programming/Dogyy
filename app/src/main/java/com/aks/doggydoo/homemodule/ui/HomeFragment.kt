@@ -125,7 +125,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
 
             // Start the autocomplete intent.
-            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
                 .build(requireContext())
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
@@ -144,11 +144,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         }
 
         binding.bottomSheetLayout.rectangle.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HALF_EXPANDED) {
                 binding.llLocation.visibility = View.VISIBLE
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             } else {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
                 binding.bottomSheetLayout.bottomSheet.show()
                 binding.llLocation.visibility = View.GONE
             }
@@ -431,14 +431,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private fun setBottomSheet() {
         //Initialized bottomSheetBehavior here!!
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetLayout.bottomSheet)
-        bottomSheetBehavior.isFitToContents = true
-        bottomSheetBehavior.peekHeight = 200
+        bottomSheetBehavior.isFitToContents = false
+       // bottomSheetBehavior.peekHeight = 200
+        bottomSheetBehavior.halfExpandedRatio=0.6f
+
 
 
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                val upperState = 0.66
+                val lowerState = 0.33
+                if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_SETTLING ) {
+                    if(slideOffset >= upperState){
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    }
+                    if(slideOffset > lowerState && slideOffset < upperState){
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+                    }
+                    if(slideOffset <= lowerState){
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    }
+                }
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -467,6 +482,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         println("STATE_DRAGGING")
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        initializeBottomSheetAdapters()
                         binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
                         println("STATE_HALF_EXPANDED")
                     }
