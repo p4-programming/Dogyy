@@ -13,6 +13,7 @@ import com.aks.doggydoo.commonutility.inVisible
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityRateDoctorBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +28,7 @@ class RateDoctorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRateDoctorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
     }
 

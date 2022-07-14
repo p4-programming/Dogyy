@@ -15,6 +15,7 @@ import com.aks.doggydoo.databinding.ActivityViewallBinding
 import com.aks.doggydoo.fostering.adapter.ViewAllFosteringAdapter
 import com.aks.doggydoo.fostering.datasource.model.NearByFosterPetList
 import com.aks.doggydoo.fostering.viewmodel.FosteringModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class ViewAllFosteringActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityViewallBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
         callFosterViewAallAPI()

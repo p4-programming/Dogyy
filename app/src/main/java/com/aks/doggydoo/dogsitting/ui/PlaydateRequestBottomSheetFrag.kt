@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aks.doggydoo.databinding.PlayDateRequestBottomSheetBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PlaydateRequestBottomSheetFrag(): BottomSheetDialogFragment() {
@@ -16,6 +17,7 @@ class PlaydateRequestBottomSheetFrag(): BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = PlayDateRequestBottomSheetBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding.no.setOnClickListener {
             dismiss()
         }

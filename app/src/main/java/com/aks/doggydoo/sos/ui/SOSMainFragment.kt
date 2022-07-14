@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.aks.doggydoo.databinding.FragmentSosMainBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 
 class SOSMainFragment : Fragment() {
@@ -20,6 +21,7 @@ class SOSMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding = FragmentSosMainBinding.inflate(layoutInflater)
         return binding.root
     }

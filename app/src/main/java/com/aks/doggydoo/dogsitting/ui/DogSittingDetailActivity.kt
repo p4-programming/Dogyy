@@ -44,6 +44,7 @@ class DogSittingDetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActvityDogsittingDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         callGetDogDescriptionAPI()
     }

@@ -7,6 +7,7 @@ import com.aks.doggydoo.R
 import com.aks.doggydoo.adoption.ui.AdoptionIntroFragment
 import com.aks.doggydoo.adoption.ui.AdoptionMainFragment
 import com.aks.doggydoo.databinding.ActivityTrainingBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.ViewPager
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ class TrainingActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityTrainingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(TrainIntroFragment())
         viewPager.addFragment(TrainingMainFragment())

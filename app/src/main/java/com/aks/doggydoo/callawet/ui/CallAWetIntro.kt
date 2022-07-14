@@ -3,6 +3,7 @@ package com.aks.doggydoo.callawet.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.databinding.ActivityCallAWetBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.ViewPager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +16,7 @@ class CallAWetIntro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCallAWetBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
 
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(CallAVetIntroFragment())

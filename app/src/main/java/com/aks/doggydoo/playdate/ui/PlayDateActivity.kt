@@ -3,6 +3,7 @@ package com.aks.doggydoo.playdate.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.databinding.ActivityPlaydateBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.ViewPager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +16,7 @@ class PlayDateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityPlaydateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(PlayDateIntroFrag())
         viewPager.addFragment(PlayDateMainFrag())

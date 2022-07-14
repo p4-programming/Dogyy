@@ -21,6 +21,7 @@ import com.aks.doggydoo.myprofile.datasource.model.profile.MyProfileResponse
 import com.aks.doggydoo.myprofile.ui.UserProfileActivity
 import com.aks.doggydoo.myprofile.viewmodel.MyProfileViewModel
 import com.aks.doggydoo.newsfeed.util.RecyclerTouchListener
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant
@@ -47,6 +48,7 @@ class FosteringHerosDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFosteringHerosDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
 
         getInit()
         getMyProfileInfoAPI()

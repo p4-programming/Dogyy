@@ -74,10 +74,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(intent)
         }
 
-//        binding.mainContent.rateAct.setOnClickListener(){
-//            val intent = Intent(this,RatePlaceActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.mainContent.rateAct.setOnClickListener(){
+            val intent = Intent(this,RatePlaceActivity::class.java)
+            startActivity(intent)
+        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

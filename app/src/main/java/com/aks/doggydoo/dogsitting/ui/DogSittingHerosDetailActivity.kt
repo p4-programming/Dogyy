@@ -43,6 +43,7 @@ class DogSittingHerosDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDogsittingHerosDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         getMyProfileInfoAPI()
     }

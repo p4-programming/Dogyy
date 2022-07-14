@@ -18,6 +18,7 @@ import com.aks.doggydoo.databinding.ActivityViewallBinding
 import com.aks.doggydoo.playdate.adapter.ViewAllPlaydateAdapter
 import com.aks.doggydoo.playdate.datasource.model.homepage.LastPlayDates
 import com.aks.doggydoo.playdate.viewmodel.PlayDateViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.google.android.gms.location.FusedLocationProviderClient

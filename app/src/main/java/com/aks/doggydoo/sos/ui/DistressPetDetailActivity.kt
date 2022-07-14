@@ -16,6 +16,7 @@ import com.aks.doggydoo.databinding.ActivityDistressPetDetailBinding
 import com.aks.doggydoo.homemodule.ui.HomeActivity
 import com.aks.doggydoo.mydog.datasource.model.petdescriptionmodel.Distresspetdetail
 import com.aks.doggydoo.mydog.viewmodel.MyDogViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MultipartFile
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
@@ -33,6 +34,7 @@ class DistressPetDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDistressPetDetailBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
     }

@@ -20,6 +20,7 @@ import com.aks.doggydoo.commonutility.loadImageFromString
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityDocDetailsBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant

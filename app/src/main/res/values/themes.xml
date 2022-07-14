@@ -15,7 +15,6 @@
         <!-- Customize your theme here. -->
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="android:windowContentTransitions">true</item>
-
     </style>
 
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
@@ -41,6 +40,14 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
 <!--        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>-->
+    </style>
+
+    <style name="Theme.DoggyDooBase.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
+<!--                <item name="android:statusBarColor" tools:targetApi="l">@color/dark_transparent</item>-->
     </style>
 
     <style name="textFont" parent="Widget.AppCompat.TextView">

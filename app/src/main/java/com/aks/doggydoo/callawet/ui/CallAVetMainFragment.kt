@@ -17,6 +17,7 @@ import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.FragmentCallAVetMainBinding
 import com.aks.doggydoo.sos.ui.SOSIntro
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint

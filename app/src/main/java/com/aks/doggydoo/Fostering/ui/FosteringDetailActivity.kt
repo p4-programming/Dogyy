@@ -17,6 +17,7 @@ import com.aks.doggydoo.firebaseChat.ChatActivity
 import com.aks.doggydoo.fostering.datasource.model.fosteringDetail
 import com.aks.doggydoo.fostering.viewmodel.FosteringModel
 import com.aks.doggydoo.myprofile.ui.UserProfileActivity
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant
@@ -36,6 +37,7 @@ class FosteringDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFosteringDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         callFosterDetailAPI()
     }

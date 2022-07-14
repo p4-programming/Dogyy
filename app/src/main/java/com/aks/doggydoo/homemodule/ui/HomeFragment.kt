@@ -109,6 +109,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.recentre.setOnClickListener(){
+            setUpMap()
+            binding.Place.text=null
+        }
+
 
     }
 
@@ -153,8 +158,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 binding.llLocation.visibility = View.GONE
             }
         }
-
-
     }
 
     private fun exploreDialog() {
@@ -273,7 +276,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             //  binding.bottomSheetLayout.bottomSheet.hide()
         }
 
-
         rlType8.setOnClickListener {
             clieckedType = "clinic"
             ivType1.visibility = View.GONE
@@ -363,7 +365,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         )
 
                         // mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
+
                         mMap!!.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+
                     }
                 }
                 AutocompleteActivity.RESULT_ERROR -> {
@@ -697,7 +701,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 }
 
             }
-            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(12f))
+            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(18f))
         }
 
         mMap!!.setInfoWindowAdapter(object : InfoWindowAdapter {
@@ -721,17 +725,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                     marker.position.longitude,
                     1
                 )
-                val address: String? = addresses[0].getAddressLine(0)
-                val city: String? = addresses[0].getLocality()
-                val state: String? = addresses[0].getAdminArea()
-                val zip: String? = addresses[0].getPostalCode()
-                val country: String? = addresses[0].getCountryName()
-                try {
-                    parkAddress.text = "$city, $state"
-                    parkadd.text = "$country, $zip"
-                } catch (e: Exception) {
+                if(addresses.isNotEmpty()) {
+                    val address: String? = addresses[0].getAddressLine(0)
+                    val city: String? = addresses[0].getLocality()
+                    val state: String? = addresses[0].getAdminArea()
+                    val zip: String? = addresses[0].getPostalCode()
+                    val country: String? = addresses[0].getCountryName()
+                    try {
+                        parkAddress.text = "$city, $state"
+                        parkadd.text = "$country, $zip"
+                    } catch (e: Exception) {
+                    }
                 }
-
                 return v
             }
         })
@@ -839,15 +844,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         mMap!!.setOnMarkerClickListener(this)
         mMap!!.uiSettings.isMyLocationButtonEnabled = false
 
-
-
         // mMap!!.getUiSettings().setMyLocationButtonEnabled(false);
-
         mapStyle = MyApp.getSharedPref().userReqType
         if (mapStyle.isEmpty()) {
             mapStyle = "Retro"
         }
-
         if (mapStyle == "Standard") {
             mapStyleOptions =
                 MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.standard_style)
@@ -895,7 +896,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             return
         }
 
+        mMap!!.clear()
         mMap!!.isMyLocationEnabled = true
+
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
             if (location != null) {
                 lastLocation = location
@@ -908,8 +911,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
                     ).position(currentLatLng!!).title("You")
                 )
-                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 12f))
-                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng!!))
+                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
+                val zoomLevel = 18.0f //This goes up to 21
+                mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, zoomLevel))
+               // mMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng!!))
             }
         }
 

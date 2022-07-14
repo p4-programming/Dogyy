@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.databinding.ActivitySuccessRequestSentBinding
 import com.aks.doggydoo.dogsitrequestmsg.DogsitRequestMessageActivity
+import com.aks.doggydoo.utils.CommonMethod
 
 class SuccessSendRequestActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySuccessRequestSentBinding
@@ -17,6 +18,7 @@ class SuccessSendRequestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySuccessRequestSentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
     }
 

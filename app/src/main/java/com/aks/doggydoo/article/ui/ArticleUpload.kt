@@ -37,6 +37,7 @@ class ArticleUpload : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleUploadBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
     }

@@ -19,6 +19,7 @@ import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityAdoptionViewAllBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,6 +40,7 @@ class AdoptionViewAll : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdoptionViewAllBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         if (fromValue == "Shelter") {
             callGetShelterDogViewApi()

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.aks.doggydoo.R
 import com.aks.doggydoo.databinding.FragmentFosterBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.bumptech.glide.Glide
 
 class FosterIntroFrag : Fragment() {
@@ -16,6 +17,8 @@ class FosterIntroFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding = FragmentFosterBinding.inflate(layoutInflater)
         binding.apply {
 //            Glide.with(requireActivity()).asGif().load(R.raw.fostering).centerCrop().into(

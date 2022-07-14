@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.aks.doggydoo.R
 import com.aks.doggydoo.databinding.FragmentDogSittingIntroBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.bumptech.glide.Glide
 
 class DogSittingIntroFrag : Fragment() {
@@ -24,6 +25,7 @@ class DogSittingIntroFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            CommonMethod.makeTransparentStatusBar(activity?.window)
 //            Glide.with(requireActivity()).asGif().load(R.raw.dog_sitting).centerCrop().into(
 //                ivTraining
 //            )

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.databinding.ActivityAdoptionIntroBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.ViewPager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +16,7 @@ class AdoptionIntro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdoptionIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(AdoptionIntroFragment())
         viewPager.addFragment(AdoptionMainFragment())

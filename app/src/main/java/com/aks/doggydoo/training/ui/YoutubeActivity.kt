@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.aks.doggydoo.R
+import com.aks.doggydoo.utils.CommonMethod
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -18,6 +19,7 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
         super.onCreate(savedInstanceState)
         val layout = layoutInflater.inflate(R.layout.activity_youtube, null) as ConstraintLayout
         setContentView(layout)
+        CommonMethod.makeTransparentStatusBar(window)
 
         video_url = intent.getStringExtra("videoUrl").toString()
         val playerView = YouTubePlayerView(this)

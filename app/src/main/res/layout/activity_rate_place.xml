@@ -65,7 +65,7 @@
                 android:visibility="invisible"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/bad_rate" />
+                android:src="@drawable/ic_bad" />
 
             <ImageView
                 android:id="@+id/ivExpressIcon2"
@@ -77,19 +77,19 @@
                 android:visibility="invisible"
                 android:scaleType="centerInside"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_good"/>
+                android:src="@drawable/ic_sad"/>
 
             <ImageView
                 android:id="@+id/ivExpressIcon3"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:contentDescription="@string/todo"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:visibility="invisible"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_amazing" />
+                android:src="@drawable/ic_alright" />
 
             <ImageView
                 android:id="@+id/ivExpressIcon4"
@@ -228,18 +228,19 @@
             app:cardElevation="0dp">
 
             <LinearLayout
-                android:minHeight="200dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:minHeight="200dp"
                 android:padding="10sp">
 
                 <EditText
+                    android:id="@+id/reviewText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
-                    android:gravity="start" android:inputType="textCapSentences"
-                    android:id="@+id/reviewText"
-                    android:hint="Write your review here." />
+                    android:gravity="start"
+                    android:hint="Write your review here."
+                    android:inputType="textCapSentences" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -266,10 +267,10 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/petFriendly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/petFriendly"
                     android:buttonTint="@color/on_boarding_blue"
                     android:fontFamily="@font/regular"
                     android:text="Yes"

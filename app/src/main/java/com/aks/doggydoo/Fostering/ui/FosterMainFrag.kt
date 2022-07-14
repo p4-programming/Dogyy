@@ -19,6 +19,7 @@ import com.aks.doggydoo.fostering.adapter.InviteFosterAdapter
 import com.aks.doggydoo.fostering.adapter.NearByFosterAdapter
 import com.aks.doggydoo.fostering.datasource.model.FosteringHomeResponse
 import com.aks.doggydoo.fostering.viewmodel.FosteringModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +44,7 @@ class FosterMainFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         getInit()
         callFosterAPI()
     }

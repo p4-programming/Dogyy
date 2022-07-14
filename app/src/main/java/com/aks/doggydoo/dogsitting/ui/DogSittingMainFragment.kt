@@ -19,6 +19,7 @@ import com.aks.doggydoo.dogsitting.adapter.InviteDogAdapter
 import com.aks.doggydoo.dogsitting.adapter.UpcomingDogAdapter
 import com.aks.doggydoo.dogsitting.datasource.model.DogSittingHomeResponse
 import com.aks.doggydoo.dogsitting.viewmodel.DogsittingModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +44,7 @@ class DogSittingMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         getInit()
         callDogsittingAPI()
     }

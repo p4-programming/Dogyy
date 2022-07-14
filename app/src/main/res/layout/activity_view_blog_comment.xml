@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/parent"
     android:paddingBottom="20dp"
+    android:paddingTop="10dp"
     tools:context=".newsfeed.ui.CommentActivity">
 
     <ProgressBar

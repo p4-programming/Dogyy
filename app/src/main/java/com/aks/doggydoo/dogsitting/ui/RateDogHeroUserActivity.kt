@@ -16,6 +16,7 @@ import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityRateUserBinding
 import com.aks.doggydoo.dogsitting.viewmodel.DogsittingModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,7 @@ class RateDogHeroUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRateUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
     }
 

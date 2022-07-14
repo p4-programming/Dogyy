@@ -15,6 +15,7 @@ import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityArticleviewallBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,7 @@ class ViewAllArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleviewallBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
         callAllArticleAPI()

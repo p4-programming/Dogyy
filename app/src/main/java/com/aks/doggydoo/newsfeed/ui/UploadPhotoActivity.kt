@@ -18,6 +18,7 @@ import com.aks.doggydoo.databinding.ActivityUploadPhotoBinding
 import com.aks.doggydoo.mydog.ui.MyDog
 import com.aks.doggydoo.mydog.viewmodel.MyDogViewModel
 import com.aks.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MultipartFile
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result

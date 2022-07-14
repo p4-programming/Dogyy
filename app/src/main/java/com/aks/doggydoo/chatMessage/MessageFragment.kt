@@ -24,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.DataSnapshot
 
 import android.R.bool
+import android.util.Log
 
 
 class MessageFragment : Fragment() {
@@ -61,6 +62,7 @@ class MessageFragment : Fragment() {
         mAuth = Firebase.auth
         mDbRef = FirebaseDatabase.getInstance().reference
 
+        Log.d("TAG", "getItemCount: "+ userFirebaseList.size)
         adapter = FirebaseUserAdapter(requireContext(), userFirebaseList)
         binding.rvMessage.adapter = adapter
 
@@ -89,11 +91,20 @@ class MessageFragment : Fragment() {
                                     for (userMessage in messageList) {
                                         if (userMessage.senderId!! == Firebase.auth.currentUser?.uid || userMessage.senderId!! == currentUser?.uid) {
                                             if (mAuth.currentUser?.uid != currentUser?.uid) {
-                                                userFirebaseList.add(currentUser!!)
+                                                var isPresent = false
+                                                for(i in userFirebaseList){
+                                                    if(i.uid.equals(currentUser?.uid)){
+                                                        isPresent=true
+                                                    }
+                                                }
+                                                if(!isPresent){
+                                                    userFirebaseList.add(currentUser!!)
+                                                }
                                             }
                                         }
                                     }
                                 }
+                                Log.d("TAG", "getItemCount: "+ userFirebaseList.size)
                                 adapter.notifyDataSetChanged()
 
 

@@ -16,6 +16,7 @@ import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityCommentBinding
 import com.aks.doggydoo.newsfeed.adapter.UserAdapter
 import com.aks.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint

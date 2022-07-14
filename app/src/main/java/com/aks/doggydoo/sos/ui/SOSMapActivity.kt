@@ -18,6 +18,7 @@ import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.databinding.ActivitySosMapBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -40,6 +41,7 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
         super.onCreate(savedInstanceState)
         binding = ActivitySosMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)

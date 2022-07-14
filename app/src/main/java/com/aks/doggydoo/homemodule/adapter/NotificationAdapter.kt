@@ -88,7 +88,22 @@ class NotificationAdapter(
         val cross = dialog.findViewById<View>(R.id.ivCross) as ImageView
         val btNo = dialog.findViewById<View>(R.id.btNo) as Button
 
-        cbStandard.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+        mapType=MyApp.getSharedPref().userReqType
+        if(mapType.equals("Standard")){
+            cbStandard.isChecked=true
+        }else if(mapType.equals("Silver")){
+            cbSilver.isChecked=true
+        }else if(mapType.equals("Retro")){
+            cbRetro.isChecked=true
+        }else if(mapType.equals("Dark")) {
+            cbDark.isChecked = true
+        }else if(mapType.equals("Night")) {
+        cbNight.isChecked = true
+        }else if(mapType.equals("Aubergine")) {
+            cbAubergine.isChecked = true
+        }
+
+    cbStandard.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
             if (b){
                 mapType =  "Standard"
                 cbSilver.isChecked = false

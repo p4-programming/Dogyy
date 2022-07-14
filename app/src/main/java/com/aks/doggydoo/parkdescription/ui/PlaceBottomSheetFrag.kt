@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.aks.doggydoo.databinding.PlaceCheckInBottomSheetBinding
 import com.aks.doggydoo.rateplace.ui.RatePlaceActivity
+import com.aks.doggydoo.utils.CommonMethod
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PlaceBottomSheetFrag : BottomSheetDialogFragment() {
@@ -17,6 +18,7 @@ class PlaceBottomSheetFrag : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = PlaceCheckInBottomSheetBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding.no.setOnClickListener {
             dismiss()
         }

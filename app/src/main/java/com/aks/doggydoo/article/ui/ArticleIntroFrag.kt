@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.aks.doggydoo.R
 import com.aks.doggydoo.commonutility.loadImageAsGif
 import com.aks.doggydoo.databinding.FragArticleIntroBinding
+import com.aks.doggydoo.utils.CommonMethod
 
 class ArticleIntroFrag : Fragment() {
 
@@ -24,6 +25,7 @@ class ArticleIntroFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding.articleGif.loadImageAsGif(requireContext(), R.raw.article_gif)
     }
 }

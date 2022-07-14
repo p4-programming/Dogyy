@@ -21,6 +21,7 @@ import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.FragmentAdoptionMainBinding
 import com.aks.doggydoo.postadoptiondetail.ui.PostAdoption
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,7 @@ class AdoptionMainFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         getInit()
         callGetAdoptionListApi()
     }

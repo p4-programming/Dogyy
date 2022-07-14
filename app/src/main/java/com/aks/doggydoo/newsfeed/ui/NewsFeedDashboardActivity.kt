@@ -16,6 +16,7 @@ import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.databinding.ActivityNewsfeedDeshboardBinding
 import com.aks.doggydoo.upload.ui.UploadActivity
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

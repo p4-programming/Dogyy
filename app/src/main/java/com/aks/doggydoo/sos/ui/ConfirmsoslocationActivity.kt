@@ -31,6 +31,7 @@ import com.aks.doggydoo.databinding.ActivityConfirmsoslocationBinding
 import com.aks.doggydoo.homemodule.ui.HomeActivity
 import com.aks.doggydoo.mydog.ui.MyDog
 import com.aks.doggydoo.mydog.viewmodel.MyDogViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MultipartFile
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
@@ -49,6 +50,7 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfirmsoslocationBinding.inflate(layoutInflater)
+        CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
     }

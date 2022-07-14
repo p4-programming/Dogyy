@@ -26,6 +26,7 @@ import com.aks.doggydoo.parkdescription.datasource.model.ParkDetail
 import com.aks.doggydoo.parkdescription.utility.OverlappingItem
 import com.aks.doggydoo.parkdescription.viewmodel.PetDescriptionViewModel
 import com.aks.doggydoo.rateplace.ui.RatePlaceActivity
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import com.aks.doggydoo.utils.network.ApiConstant
@@ -49,6 +50,7 @@ class PetParkDescription : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPetParkDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         showRatingList()
 

@@ -18,6 +18,7 @@ import com.aks.doggydoo.commonutility.hide
 import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityArticleBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,7 @@ class ArticleMain : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreate(savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding = ActivityArticleBinding.inflate(layoutInflater)
         return binding.root
     }

@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.R
 import com.aks.doggydoo.databinding.ActivityFullscreenVideoBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.network.ApiConstant.BLOG_IMAGE_BASE_URL
 import com.halilibo.bvpkotlin.BetterVideoPlayer
 
@@ -25,6 +26,7 @@ class FullScreenVideoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityFullscreenVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         // callTrainingDetailAPI()
     }

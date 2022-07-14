@@ -15,6 +15,7 @@ import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.FragmentTrainingMainBinding
 import com.aks.doggydoo.training.adapter.TrainingVideoAdapter
 import com.aks.doggydoo.training.viewmodel.TrainingViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +35,7 @@ class TrainingMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         getInit()
         callTrainingListAPI()
     }

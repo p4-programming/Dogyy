@@ -15,6 +15,7 @@ import com.aks.doggydoo.databinding.ActivityViewallBinding
 import com.aks.doggydoo.dogsitting.adapter.ViewAllDogsitAdapter
 import com.aks.doggydoo.dogsitting.datasource.model.ViewAllDogsitPetList
 import com.aks.doggydoo.dogsitting.viewmodel.DogsittingModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,7 @@ class ViewAllDogsitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityViewallBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
         callDogsittingAPI()
     }

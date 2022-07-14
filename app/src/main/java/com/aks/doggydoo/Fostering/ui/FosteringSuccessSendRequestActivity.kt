@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aks.doggydoo.chatMessage.ChatMessageRequestActivity
 import com.aks.doggydoo.databinding.ActivitySuccessRequestSentBinding
 import com.aks.doggydoo.firebaseChat.ChatActivity
+import com.aks.doggydoo.utils.CommonMethod
 
 class FosteringSuccessSendRequestActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySuccessRequestSentBinding
@@ -21,6 +22,8 @@ class FosteringSuccessSendRequestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySuccessRequestSentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        CommonMethod.makeTransparentStatusBar(window)
 
         getInit()
         binding.tvGoBack.setOnClickListener {

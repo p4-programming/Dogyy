@@ -13,6 +13,7 @@ import com.aks.doggydoo.commonutility.show
 import com.aks.doggydoo.commonutility.snack
 import com.aks.doggydoo.databinding.ActivityUploadVideoUrlBinding
 import com.aks.doggydoo.training.viewmodel.TrainingViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,7 @@ class UploadVideoUrlActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityUploadVideoUrlBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CommonMethod.makeTransparentStatusBar(window)
         getInit()
     }
 

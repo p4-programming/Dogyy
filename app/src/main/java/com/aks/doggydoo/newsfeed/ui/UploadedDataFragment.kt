@@ -19,6 +19,7 @@ import com.aks.doggydoo.databinding.FragmentNewsfeedDataBinding
 import com.aks.doggydoo.newsfeed.adapter.NewsFeedDataAdapter
 import com.aks.doggydoo.newsfeed.datasource.model.NewsFeedDetail
 import com.aks.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
+import com.aks.doggydoo.utils.CommonMethod
 import com.aks.doggydoo.utils.MyApp
 import com.aks.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,6 @@ class UploadedDataFragment() : Fragment() {
     }
 
     companion object {
-
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

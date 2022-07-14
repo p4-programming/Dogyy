@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.aks.doggydoo.R
 import com.aks.doggydoo.databinding.FragmentTrainIntroBinding
+import com.aks.doggydoo.utils.CommonMethod
 import com.bumptech.glide.Glide
 
 class TrainIntroFragment : Fragment() {
@@ -21,6 +22,7 @@ class TrainIntroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CommonMethod.makeTransparentStatusBar(activity?.window)
         binding.apply {
             Glide.with(requireActivity()).asGif().load(R.raw.training).centerCrop().into(
                 ivTraining
