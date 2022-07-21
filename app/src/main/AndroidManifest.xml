@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.aks.doggydoo">
+    package="com.bnb.doggydoo">
 
     <supports-screens
         android:anyDensity="true"
@@ -50,7 +50,7 @@
     </queries>
 
     <application
-        android:name=".utils.MyApp"
+        android:name="com.bnb.doggydoo.utils.MyApp"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/app_icon"
@@ -62,317 +62,325 @@
         android:theme="@style/Theme.DoggyDooBase.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".auth.SplashScreen">
+        <activity android:name="com.bnb.doggydoo.auth.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tracking.Tracking" />
+        <activity android:name="com.bnb.doggydoo.tracking.Tracking" />
         <activity
-            android:name=".login.ui.LoginActivity"
+            android:name="com.bnb.doggydoo.login.ui.LoginActivity"
             android:theme="@style/Theme.DoggyDoo.NoActionBar" />
-        <activity android:name=".recievedrequestprofile.ui.ReceivedRequestedProfile" />
-        <activity android:name=".postadoptiondetail.ui.PostAdoption" />
-        <activity android:name=".adoptionrequestsent.ui.AdoptionRequestSend" />
-        <activity android:name=".shelter.ui.DogShelterActivity" />
-        <activity android:name=".adoptdogdetails.ui.AdoptDogDetailActivity" />
-        <activity android:name=".upload.ui.UploadActivity" />
-        <activity android:name=".adoption.ui.AdoptionIntro" />
-        <activity android:name=".myfriendsdog.ui.MyFriendsDogDescription" />
-        <activity android:name=".myfrienddescription.ui.MyFriendProfile" />
-        <activity android:name=".parkdescription.ui.PetParkDescription" />
-        <activity android:name=".upcomingorderdescription.ui.UpcomingOderDescription" />
-        <activity android:name=".article.ui.ArticleIntro" />
-        <activity android:name=".mydog.ui.AddDocument" />
-        <activity android:name=".mydog.ui.SetReminder" />
+        <activity android:name="com.bnb.doggydoo.recievedrequestprofile.ui.ReceivedRequestedProfile" />
+        <activity android:name="com.bnb.doggydoo.postadoptiondetail.ui.PostAdoption" />
+        <activity android:name="com.bnb.doggydoo.adoptionrequestsent.ui.AdoptionRequestSend" />
+        <activity android:name="com.bnb.doggydoo.shelter.ui.DogShelterActivity" />
+        <activity android:name="com.bnb.doggydoo.adoptdogdetails.ui.AdoptDogDetailActivity" />
+        <activity android:name="com.bnb.doggydoo.upload.ui.UploadActivity" />
+        <activity android:name="com.bnb.doggydoo.adoption.ui.AdoptionIntro" />
+        <activity android:name="com.bnb.doggydoo.myfriendsdog.ui.MyFriendsDogDescription" />
+        <activity android:name="com.bnb.doggydoo.myfrienddescription.ui.MyFriendProfile" />
+        <activity android:name="com.bnb.doggydoo.parkdescription.ui.PetParkDescription" />
+        <activity android:name="com.bnb.doggydoo.upcomingorderdescription.ui.UpcomingOderDescription" />
+        <activity android:name="com.bnb.doggydoo.article.ui.ArticleIntro" />
+        <activity android:name="com.bnb.doggydoo.mydog.ui.AddDocument" />
+        <activity android:name="com.bnb.doggydoo.mydog.ui.SetReminder" />
         <activity
-            android:name=".mydog.ui.MyDog"
+            android:name="com.bnb.doggydoo.mydog.ui.MyDog"
             android:launchMode="singleTask" />
-        <activity android:name=".mydog.ui.PreviewDocument" />
-        <activity android:name=".myprofile.ui.MyProfileActivity" />
-        <activity android:name=".callawet.ui.ReasonForCallingDoc" />
-        <activity android:name=".callawet.ui.CallAWetIntro" />
-        <activity android:name=".PaymentCard" />
+        <activity android:name="com.bnb.doggydoo.mydog.ui.PreviewDocument" />
+        <activity android:name="com.bnb.doggydoo.myprofile.ui.MyProfileActivity" />
+        <activity android:name="com.bnb.doggydoo.callawet.ui.ReasonForCallingDoc" />
+        <activity android:name="com.bnb.doggydoo.callawet.ui.CallAWetIntro" />
+        <activity android:name="com.bnb.doggydoo.PaymentCard" />
         <activity
-            android:name=".adoption.ui.AdoptionViewAll"
+            android:name="com.bnb.doggydoo.adoption.ui.AdoptionViewAll"
             android:exported="true" />
-        <activity android:name=".article.ui.ArticleUpload" />
-        <activity android:name=".articledescription.ui.ArticleDescription" />
+        <activity android:name="com.bnb.doggydoo.article.ui.ArticleUpload" />
+        <activity android:name="com.bnb.doggydoo.articledescription.ui.ArticleDescription" />
         <activity
-            android:name=".homemodule.ui.HomeActivity"
+            android:name="com.bnb.doggydoo.homemodule.ui.HomeActivity"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".onboarding.ui.OnBoardingActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.OnBoardingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.DoggyDoo.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".rateplace.ui.RatePlaceActivity"
+            android:name="com.bnb.doggydoo.rateplace.ui.RatePlaceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".training.ui.FullScreenVideoActivity"
+            android:name="com.bnb.doggydoo.training.ui.FullScreenVideoActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.DoggyDoo.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.DogSittingActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.DogSittingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.DogSittingDetailActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.DogSittingDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.DogSittingHerosDetailActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.DogSittingHerosDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".senddogsitrequest.ui.SendRequestActivity"
+            android:name="com.bnb.doggydoo.senddogsitrequest.ui.SendRequestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.SuccessSendRequestActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.SuccessSendRequestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".postdogsittinginfo.AddDogSittingInfoActivity"
+            android:name="com.bnb.doggydoo.postdogsittinginfo.AddDogSittingInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitrequestmsg.DogsitRequestMessageActivity"
+            android:name="com.bnb.doggydoo.dogsitrequestmsg.DogsitRequestMessageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.RateDogHeroUserActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.RateDogHeroUserActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".badge.BadgeActivity"
+            android:name="com.bnb.doggydoo.badge.BadgeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringDetailActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringHerosDetailActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringHerosDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringSuccessSendRequestActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringSuccessSendRequestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringBadgeActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringBadgeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.FosteringRequestMessageActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.FosteringRequestMessageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.AddFosteringInfoActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.AddFosteringInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".newsfeed.ui.NewsFeedDashboardActivity"
+            android:name="com.bnb.doggydoo.newsfeed.ui.NewsFeedDashboardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".newsfeed.ui.UploadPhotoActivity"
+            android:name="com.bnb.doggydoo.newsfeed.ui.UploadPhotoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".training.ui.TrainingActivity"
+            android:name="com.bnb.doggydoo.newsfeed.ui.NewsfeedActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".findmate.ui.FindMate"
+            android:name="com.bnb.doggydoo.training.ui.TrainingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".playdate.ui.PlayDateActivity"
+            android:name="com.bnb.doggydoo.findmate.ui.FindMate"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".playdate.ui.PlayDateDetailActivity"
+            android:name="com.bnb.doggydoo.playdate.ui.PlayDateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".playdate.ui.SelectTimeDateActivity"
+            android:name="com.bnb.doggydoo.playdate.ui.PlayDateDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".playdate.ui.PlayDateSuccessSendRequestActivity"
+            android:name="com.bnb.doggydoo.playdate.ui.SelectTimeDateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".chatMessage.ChatMessageRequestActivity"
+            android:name="com.bnb.doggydoo.playdate.ui.PlayDateSuccessSendRequestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".callawet.ui.DoctorDetailActivity"
+            android:name="com.bnb.doggydoo.chatMessage.ChatMessageRequestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".callawet.ui.RateDoctorActivity"
+            android:name="com.bnb.doggydoo.callawet.ui.DoctorDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.ChooseUserIdActivity"
+            android:name="com.bnb.doggydoo.callawet.ui.RateDoctorActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.UploadUserPhotoActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.ChooseUserIdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.DoYouhavePetActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.UploadUserPhotoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.PetOnBoardingActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.DoYouhavePetActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.PetAgeActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.PetOnBoardingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.PetBreedActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.PetAgeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.PetGenderActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.PetBreedActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".onboarding.ui.PetImageUploadActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.PetGenderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".myprofile.ui.EditProfileActivity"
+            android:name="com.bnb.doggydoo.onboarding.ui.PetImageUploadActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".mydog.ui.EditPetProfileActivity"
+            android:name="com.bnb.doggydoo.myprofile.ui.EditProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".adoption.ui.AdoptionViewAllShelter"
+            android:name="com.bnb.doggydoo.mydog.ui.EditPetProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".playdate.ui.ViewAllPlayDateActivity"
+            android:name="com.bnb.doggydoo.adoption.ui.AdoptionViewAllShelter"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".fostering.ui.ViewAllFosteringActivity"
+            android:name="com.bnb.doggydoo.playdate.ui.ViewAllPlayDateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".dogsitting.ui.ViewAllDogsitActivity"
+            android:name="com.bnb.doggydoo.fostering.ui.ViewAllFosteringActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".training.ui.YoutubeActivity"
+            android:name="com.bnb.doggydoo.dogsitting.ui.ViewAllDogsitActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".article.ui.ViewAllArticleActivity"
+            android:name="com.bnb.doggydoo.training.ui.YoutubeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".myprofile.ui.UserProfileActivity"
+            android:name="com.bnb.doggydoo.article.ui.ViewAllArticleActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".mydog.ui.PetProfileActivity"
+            android:name="com.bnb.doggydoo.myprofile.ui.UserProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".article.ui.ArticleDetail"
+            android:name="com.bnb.doggydoo.mydog.ui.PetProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".homemodule.ui.AllUserListActivity"
+            android:name="com.bnb.doggydoo.article.ui.ArticleDetail"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".firebaseChat.ChatActivity"
+            android:name="com.bnb.doggydoo.homemodule.ui.AllUserListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.bnb.doggydoo.firebaseChat.ChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".firebaseChat.ChatImageFullActivity"
+            android:name="com.bnb.doggydoo.firebaseChat.ChatImageFullActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".homemodule.ui.ViewAllReminderActivity"
+            android:name="com.bnb.doggydoo.homemodule.ui.ViewAllReminderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".newsfeed.ui.ArticleDetailsActivity"
+            android:name="com.bnb.doggydoo.newsfeed.ui.ArticleDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".training.ui.UploadVideoUrlActivity"
+            android:name="com.bnb.doggydoo.training.ui.UploadVideoUrlActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".newsfeed.ui.CommentActivity"
+            android:name="com.bnb.doggydoo.newsfeed.ui.CommentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".sos.ui.SOSIntro"
+            android:name="com.bnb.doggydoo.sos.ui.SOSIntro"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".sos.ui.ConfirmsoslocationActivity"
+            android:name="com.bnb.doggydoo.sos.ui.SOSDistressManager"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".sos.ui.SOSMapActivity"
+            android:name="com.bnb.doggydoo.sos.ui.ConfirmsoslocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".sos.ui.DistressPetDetailActivity"
+            android:name="com.bnb.doggydoo.sos.ui.SOSMapActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".callawet.ui.ViewAllVetActivity"
+            android:name="com.bnb.doggydoo.sos.ui.DistressPetDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".article.ui.ViewBlogCommentActivity"
+            android:name="com.bnb.doggydoo.callawet.ui.ViewAllVetActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".videocall.CreateRoomActivity"
+            android:name="com.bnb.doggydoo.article.ui.ViewBlogCommentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".videocall.VideoConferenceActivity"
+            android:name="com.bnb.doggydoo.videocall.CreateRoomActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
-            android:name=".videocall.ReceiverActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name=".mydog.ui.SelectStartDateTimeActivity"
+            android:name="com.bnb.doggydoo.videocall.VideoConferenceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".mydog.ui.SelectEndDateTimeActivity"
+            android:name="com.bnb.doggydoo.videocall.ReceiverActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.bnb.doggydoo.mydog.ui.SelectStartDateTimeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.bnb.doggydoo.mydog.ui.SelectEndDateTimeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
@@ -387,7 +395,7 @@
             android:value="@string/default_notification_channel_id" />
 
         <service
-            android:name=".auth.MyFirebaseMessagingService"
+            android:name="com.bnb.doggydoo.auth.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -409,11 +417,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc" />
 
-        <receiver android:name=".firebaseChat.Notification.NotificationService" />
+        <receiver android:name="com.bnb.doggydoo.firebaseChat.Notification.NotificationService" />
 
 
         <receiver
-            android:name=".auth.MyBroadcastReceiver"
+            android:name="com.bnb.doggydoo.auth.MyBroadcastReceiver"
             android:exported="false" />
 
     </application>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "28527804904-9k1k273qfm3j14mm38tp8hgl6e70i00c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aks.doggydoo",
+            "certificate_hash": "6585000616a2abba8f674437660f9a5cf747ab3a"
+          }
+        },
+        {
           "client_id": "28527804904-9rlf6vd8hanmibgt3b1b7ei0tkiplivo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -46,6 +54,42 @@
             "certificate_hash": "07b351f66a09bde93e2c5d2c9a9a693779ac8ab9"
           }
         },
+        {
+          "client_id": "28527804904-4lkiiasnc9lhuid0no8f1sjsets88s7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGPe4ga_M8KYrj-o_VuCLXqbxSkWuRRA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28527804904-4lkiiasnc9lhuid0no8f1sjsets88s7m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28527804904-62arpb72ot2p7804vaqkqjg1oji42i7t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shuttercast.DOGGYDOO"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28527804904:android:291b53e6cf76e7bd07245d",
+        "android_client_info": {
+          "package_name": "com.bnb.doggydoo"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "28527804904-4lkiiasnc9lhuid0no8f1sjsets88s7m.apps.googleusercontent.com",
           "client_type": 3

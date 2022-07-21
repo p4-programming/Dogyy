@@ -50,7 +50,7 @@
     <string name="vaccinated">Vaccinated</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="call_a_wet">Call A Vet</string>
+    <string name="call_a_wet">Find a vet</string>
     <string name="nearby_doctors">Nearby Doctors</string>
     <string name="neaby_hospitals">Nearby Hospitals</string>
     <string name="select_time_date"><![CDATA[Select Time & Date]]></string>
@@ -171,6 +171,8 @@
     <string name="you_are_a_true_hero">You are a true hero! We have also recommended your profile for DoggyDoo Heroes Badge.</string>
     <string name="thank_you_for">Thank you for making this a better place for our four legged friends.</string>
     <string name="are_you_sure_you">Are you sure you want to put up a notification for a dog in distress? if yes, select yes and continue.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

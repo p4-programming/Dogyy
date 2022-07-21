@@ -1,0 +1,36 @@
+package com.bnb.doggydoo.myprofile.datasource.model.profile
+
+import com.google.gson.annotations.SerializedName
+
+data class UserDetail(
+    @SerializedName("id") val id: String,
+    @SerializedName("uname") val uname: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("mobile") val mobile: String,
+    @SerializedName("uage") val uage: String,
+    @SerializedName("gender") val gender: String,
+    @SerializedName("address") val address: String,
+    @SerializedName("city") val city: String,
+    @SerializedName("state") val state: String,
+    @SerializedName("country") val country: String,
+    @SerializedName("pincode") val pincode: String,
+    @SerializedName("lattitute") val lattitute: String,
+    @SerializedName("longitute") val longitute: String,
+    @SerializedName("dogsitter") val dogsitter: String,
+    @SerializedName("fostering") val fostering: String,
+    @SerializedName("adoption") val adoption: String,
+    @SerializedName("dogtrainner") val dogtrainner: String,
+    @SerializedName("homechef") val homechef: String,
+    @SerializedName("profile_pic") val profile_pic: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("totalpet") val totalpet: String,
+    @SerializedName("visibility") val visibility: String,
+    @SerializedName("username") val username: String,
+    @SerializedName("DOB") val DOB: String,
+    @SerializedName("rescue_hero") val rescueHero: String,
+    @SerializedName("adopting_king") val adoptionKing: String,
+    @SerializedName("dogsit_champ") val dogsitChamp: String,
+    @SerializedName("dogtrainner_hero") val dogtrainnerBadge: String,
+    @SerializedName("homechef_hero") val homechefBadge: String,
+    @SerializedName("userUid") var userUid: String,
+    )

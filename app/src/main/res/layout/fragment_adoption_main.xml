@@ -237,7 +237,7 @@
                 android:adjustViewBounds="true"
                 android:layout_alignParentRight="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ref_image" />
+                android:src="@drawable/camera" />
 
 
             <View

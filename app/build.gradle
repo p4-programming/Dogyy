@@ -5,14 +5,15 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id "androidx.navigation.safeargs.kotlin"
     id("kotlin-parcelize")
+    id 'com.google.gms.google-services'
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.aks.doggydoo"
+        applicationId "com.bnb.doggydoo"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -26,6 +27,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            crunchPngs false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -138,6 +140,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:23.0.4'
+
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-core'
+    implementation('com.google.firebase:firebase-auth') {
+        exclude module: "play-services-safetynet"
+    }
 
 
 

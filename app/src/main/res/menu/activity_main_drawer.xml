@@ -9,13 +9,18 @@
         android:title="Home" />
 
     <item
+        android:id="@+id/LostFound"
+        android:icon="@drawable/sos_pin"
+        android:title="Lost &amp; Found" />
+
+    <item
         android:id="@+id/message"
         android:icon="@drawable/messages"
-        android:title="My Messages" />
+        android:title="Messages" />
     <item
         android:id="@+id/request"
         android:icon="@drawable/request"
-        android:title="My Requests" />
+        android:title="Requests" />
     <item
         android:id="@+id/myCalendar"
         android:icon="@drawable/calendar"

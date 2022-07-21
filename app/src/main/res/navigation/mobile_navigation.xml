@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.aks.doggydoo.homemodule.ui.HomeFragment"
+        android:name="com.bnb.doggydoo.homemodule.ui.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
 
@@ -25,33 +25,39 @@
         <action
             android:id="@+id/action_nav_home_to_paymentFrag"
             app:destination="@id/paymentFrag" />
-       <!-- <action
-            android:id="@+id/action_nav_home_to_requestFrag"
-            app:destination="@id/requestFrag" />-->
+        <action
+            android:id="@+id/action_nav_home_to_SOSMainFragment"
+            app:destination="@id/SOSMainFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_SOSDistressFragment"
+            app:destination="@id/SOSDistressFragment" />
+        <!-- <action
+             android:id="@+id/action_nav_home_to_requestFrag"
+             app:destination="@id/requestFrag" />-->
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.aks.doggydoo.homemodule.ui.NotificationFrag"
+        android:name="com.bnb.doggydoo.homemodule.ui.NotificationFrag"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/nav_setting"
-        android:name="com.aks.doggydoo.homemodule.ui.SettingFrag"
+        android:name="com.bnb.doggydoo.homemodule.ui.SettingFrag"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/myFriendsFrag"
-        android:name="com.aks.doggydoo.homemodule.ui.MyFriendsFrag"
+        android:name="com.bnb.doggydoo.homemodule.ui.MyFriendsFrag"
         android:label="fragment_my_friends"
         tools:layout="@layout/fragment_my_friends" />
 
     <fragment
         android:id="@+id/paymentFrag"
-        android:name="com.aks.doggydoo.homemodule.ui.PaymentFrag"
+        android:name="com.bnb.doggydoo.homemodule.ui.PaymentFrag"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
 
@@ -62,7 +68,20 @@
         tools:layout="@layout/fragment_request" />-->
     <fragment
         android:id="@+id/UpcomingFrag"
-        android:name="com.aks.doggydoo.homemodule.ui.UpcomingFrag"
+        android:name="com.bnb.doggydoo.homemodule.ui.UpcomingFrag"
         android:label="UpcomingFrag" />
+    <fragment
+        android:id="@+id/SOSMainFragment"
+        android:name="com.bnb.doggydoo.sos.ui.SOSMainFragment"
+        android:label="SOSMainFragment" />
+    <fragment
+        android:id="@+id/SOSDistressFragment"
+        android:name="com.bnb.doggydoo.sos.ui.SOSDistressFragment"
+        android:label="fragment_s_o_s_distress"
+        tools:layout="@layout/fragment_s_o_s_distress" >
+        <action
+            android:id="@+id/action_SOSDistressFragment_to_SOSMainFragment"
+            app:destination="@id/SOSMainFragment" />
+    </fragment>
 
 </navigation>

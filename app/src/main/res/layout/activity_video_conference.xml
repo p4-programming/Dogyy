@@ -31,9 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll"
-        android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/disconnect"/>
+        android:padding="10dp"
+        android:src="@drawable/disconnect" />
 
 
     <LinearLayout

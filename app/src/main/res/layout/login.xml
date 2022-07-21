@@ -180,7 +180,7 @@
                 android:id="@+id/underlyingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="70dp"
                 android:layout_gravity="bottom|center_horizontal"
                 android:fontFamily="@font/regular"
                 android:text="@string/skipLogin"

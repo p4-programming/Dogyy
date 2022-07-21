@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="125dp"
-    android:layout_height="190dp"
+    android:layout_height="210dp"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
     android:layout_margin="5dp"
     android:background="@drawable/white_bg"
     android:elevation="2dp"
@@ -12,29 +18,38 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:id="@+id/llImage"
-        android:layout_height="150dp">
+        android:layout_height="170dp">
 
-        <ImageView
-            android:id="@+id/image"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/app_name"
-            android:src="@mipmap/fostering" />
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lady_wear_mask" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/image"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:contentDescription="@string/app_name"-->
+<!--            android:src="@mipmap/fostering" />-->
 
     </RelativeLayout>
 
+
+</LinearLayout>
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/medium"
         android:gravity="center_horizontal"
-        android:padding="10dp"
         android:text="Title"
         android:textColor="@color/black"
         android:textSize="16dp" />
-
 
 </LinearLayout>
