@@ -12,15 +12,15 @@ object ApiConstant {
 
     //image constants
     const val PROFILE_IMAGE_BASE_URL =
-        "https://clients.aksinteractive.com/doggydo/assets/uploads/profile/"
-    const val BLOG_IMAGE_BASE_URL = "https://clients.aksinteractive.com/doggydo/assets/uploads/blog/"
+        "https://doggydoo.in/assets/uploads/profile/"
+    const val BLOG_IMAGE_BASE_URL = "https://doggydoo.in/assets/uploads/blog/"
     const val PLACE_IMAGE_BASE_URL =
-        "https://clients.aksinteractive.com/doggydo/assets/uploads/place/"
-    const val PET_IMAGE_BASE_URL = "https://clients.aksinteractive.com/doggydo/assets/uploads/pets/"
+        "https://doggydoo.in/assets/uploads/place/"
+    const val PET_IMAGE_BASE_URL = "https://doggydoo.in/assets/uploads/pets/"
     const val PET_DOC_IMAGE_BASE_URL =
-        "https://clients.aksinteractive.com/doggydo/assets/uploads/pet_document/"
+        "https://doggydoo.in/uploads/pet_document/"
     const val NEARBY_DOC_IMAGE_BASE_URL =
-        "https://clients.aksinteractive.com/doggydo/assets/uploads/doctor/"
+        "https://doggydoo.in/assets/uploads/doctor/"
     const val NEARBY_HOS_IMAGE_BASE_URL =
-        "https://clients.aksinteractive.com/doggydo/assets/uploads/place/"
+        "https://doggydoo.in/assets/uploads/place/"
 }
