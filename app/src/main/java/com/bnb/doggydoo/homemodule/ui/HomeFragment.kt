@@ -73,7 +73,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<RelativeLayout>
     private lateinit var playDateAdapter: HomePlayDateAdapter
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val bind get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private var mMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -96,7 +96,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
-        return binding.root
+        return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -104,29 +104,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         getInit()
         getLocationDetail()
         getUserStatusApi()
-        //setBottomSheet()
+
+
         initializeBottomSheetAdapters()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        binding.recentre.setOnClickListener(){
+        bind.recentre.setOnClickListener(){
             setUpMap()
-            binding.Place.text=null
+            bind.Place.text=null
         }
-        //Test branch
     }
 
 
     private fun getInit() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         isAllFabsVisible = false
-        binding.ivUser.loadImageFromString(
+        bind.ivUser.loadImageFromString(
             requireContext(),
             ApiConstant.PROFILE_IMAGE_BASE_URL + MyApp.getSharedPref().userImage
         )
 
-        binding.Place.setOnClickListener {
+        bind.Place.setOnClickListener {
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
 
             // Start the autocomplete intent.
@@ -135,7 +135,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
 
-        if (binding.llLocation.visibility == View.VISIBLE) {
+        if (bind.llLocation.visibility == View.VISIBLE) {
             val apiKey = getString(R.string.google_map_api_key)
 
             if (!Places.isInitialized()) {
@@ -144,20 +144,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             placesClient = Places.createClient(context)
         }
 
-        binding.filterData.setOnClickListener {
+        bind.filterData.setOnClickListener {
             exploreDialog()
         }
 
-        binding.bottomSheetLayout.rectangle.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HALF_EXPANDED) {
-                binding.llLocation.visibility = View.VISIBLE
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            } else {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-                binding.bottomSheetLayout.bottomSheet.show()
-                binding.llLocation.visibility = View.GONE
-            }
-        }
     }
 
     private fun exploreDialog() {
@@ -327,7 +317,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                     data?.let {
                         val place = Autocomplete.getPlaceFromIntent(data)
                         Log.i(TAG, "Place: ${place.name}, ${place.id}")
-                        binding.Place.text = place.name
+                        bind.Place.text = place.name
                         val destinationLatLng: LatLng? = place.latLng
                         mcurrentLat = destinationLatLng?.latitude.toString()
                         mcurrentLang = destinationLatLng?.longitude.toString()
@@ -432,76 +422,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         alert.show()
     }
 
-    private fun setBottomSheet() {
-        //Initialized bottomSheetBehavior here!!
-        bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetLayout.bottomSheet)
-        bottomSheetBehavior.isFitToContents = false
-       // bottomSheetBehavior.peekHeight = 200
-        bottomSheetBehavior.halfExpandedRatio=0.4f
-        bottomSheetBehavior.isDraggable=true
-
-
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                val upperState = 0.66
-                val lowerState = 0.33
-                if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_SETTLING ) {
-                    if(slideOffset >= upperState){
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                    }
-                    if(slideOffset > lowerState && slideOffset < upperState){
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-                    }
-                    if(slideOffset <= lowerState){
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                    }
-                }
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-
-                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                    binding.llLocation.visibility = View.GONE
-                    HomeActivity.menuIcon.visibility=View.GONE
-                } else {
-                    binding.llLocation.visibility = View.VISIBLE
-                    HomeActivity.menuIcon.visibility=View.VISIBLE
-                }
-
-                when (newState) {
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        bottomSheetBehavior.peekHeight = 200
-                        bottomSheetBehavior.isFitToContents = true
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-
-                      binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
-                        initializeBottomSheetAdapters()
-                        println("STATE_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                        binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
-                        println("STATE_DRAGGING")
-                    }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-                        initializeBottomSheetAdapters()
-                        binding.bottomSheetLayout.llStaticSection.visibility=View.GONE
-                        println("STATE_HALF_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                        println("STATE_HIDDEN")
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                        println("STATE_SETTLING")
-                    }
-                }
-            }
-        })
-
-    }
-
     private fun initializeBottomSheetAdapters() {
         val name = arrayOf<String>(
             "Playdate",
@@ -522,26 +442,26 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             R.raw.sos_lottie,
             R.raw.heavy_lady_loving_her_dog,
 
-//            R.mipmap.play_date,
-//            R.drawable.ic_market,
-//            R.mipmap.fostering,// adoption
-//            R.drawable.sos,
-//           // R.mipmap.fostering, // dog sitting
-//          //  R.mipmap.fostering,
-//            R.mipmap.calavet,
-//            //R.mipmap.article, // article
-//          //  R.mipmap.training,
+            R.mipmap.play_date,
+            R.drawable.ic_market,
+            R.mipmap.fostering,// adoption
+            R.drawable.sos,
+           // R.mipmap.fostering, // dog sitting
+          //  R.mipmap.fostering,
+            R.mipmap.calavet,
+            //R.mipmap.article, // article
+          //  R.mipmap.training,
 
             )
-        binding.bottomSheetLayout.featuresRv.adapter = HomeFeatureAdapter(
+        bind.bottomSheetLayout.featuresRv.adapter = HomeFeatureAdapter(
             requireContext(),
             name,
             bgDrawableIds
         )
 
         playDateAdapter = HomePlayDateAdapter(requireContext())
-        binding.bottomSheetLayout.pladateRv.adapter = playDateAdapter
-        getPlayDateApi()
+        bind.bottomSheetLayout.pladateRv.adapter = playDateAdapter
+        //getPlayDateApi()
     }
 
     private fun getUserStatusApi() {
@@ -562,7 +482,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             }
                         }
                         Result.Status.ERROR -> {
-                            it.message!!.snack(Color.RED, binding.root)
+                            it.message!!.snack(Color.RED, bind.root)
                         }
                     }
                 })
@@ -581,18 +501,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         }
                         Result.Status.SUCCESS -> {
                             if (it.data!!.responseCode == "0") {
-                                binding.bottomSheetLayout.noPlayDate.show()
+                                //bind.bottomSheetLayout.noPlayDate.show()
                                 return@Observer
                             }
                             if (it.data.parkPlayDate.isEmpty()) {
-                                binding.bottomSheetLayout.noPlayDate.show()
+                                //bind.bottomSheetLayout.noPlayDate.show()
                                 return@Observer
                             }
-                            binding.bottomSheetLayout.noPlayDate.hide()
+                            //bind.bottomSheetLayout.noPlayDate.hide()
                             playDateAdapter.submitList(it.data.parkPlayDate)
                         }
                         Result.Status.ERROR -> {
-                            it.message!!.snack(Color.RED, binding.root)
+                            it.message!!.snack(Color.RED, bind.root)
                         }
                     }
                 })
@@ -612,14 +532,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 //                        }
 //                        Result.Status.SUCCESS -> {
 //                            if (it.data!!.responseCode == "0") {
-//                                binding.bottomSheetLayout.noPlayDate.show()
 //                                return@Observer
 //                            }
 //                            // mMap!!.clear()
 //                            setMarker(it.data.ParkDetailList)
 //                        }
 //                        Result.Status.ERROR -> {
-//                            it.message!!.snack(Color.RED, binding.root)
 //                        }
 //                    }
 //                })

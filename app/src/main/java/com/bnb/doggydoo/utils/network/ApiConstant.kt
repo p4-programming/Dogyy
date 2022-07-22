@@ -2,6 +2,8 @@ package com.bnb.doggydoo.utils.network
 
 
 object ApiConstant {
+
+    //"https://clients.aksinteractive.com/doggydo/API/"
     const val API_BASE_URL = "https://doggydoo.in/API/"
     const val HEADER_CACHE_CONTROL = "Cache-Control"
     const val HEADER_PRAGMA = "Pragma"
