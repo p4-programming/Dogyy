@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:background="@drawable/bottom_sheet_bg"
     android:scrollbars="none"
     app:behavior_hideable="false"
-    app:behavior_peekHeight="110dp"
+    app:behavior_peekHeight="60dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+    <ImageView
+        android:id="@+id/rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/rectangle" />
+
     <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/rectangle"
         android:fillViewport="true">
 
         <LinearLayout
@@ -23,31 +34,25 @@
             android:animateLayoutChanges="true"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/rectangle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20sp"
-                android:src="@drawable/rectangle" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/llStaticSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:weightSum="3"
+
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -74,13 +79,13 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/playdate_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/image"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/play_date" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/image"-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/play_date" />-->
 
                         </LinearLayout>
 
@@ -103,10 +108,10 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="10dp"
-                    app:cardCornerRadius="20dp"
+                    android:layout_weight="1"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -131,12 +136,12 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/newsfeed_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/article" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/article" />-->
 
                         </LinearLayout>
 
@@ -159,8 +164,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -185,12 +190,12 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/adoption_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/fostering" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/fostering" />-->
 
                         </LinearLayout>
 
