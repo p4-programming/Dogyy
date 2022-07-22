@@ -114,6 +114,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             binding.Place.text=null
         }
 
+        //Test branch
 
     }
 
