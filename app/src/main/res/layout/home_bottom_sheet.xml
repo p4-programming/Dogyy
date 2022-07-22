@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:background="@drawable/bottom_sheet_bg"
     android:scrollbars="none"
     app:behavior_hideable="false"
-    app:behavior_peekHeight="110dp"
+    app:behavior_peekHeight="60dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+    <ImageView
+        android:id="@+id/rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/rectangle" />
+
     <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/rectangle"
         android:fillViewport="true">
 
         <LinearLayout
@@ -23,31 +34,25 @@
             android:animateLayoutChanges="true"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/rectangle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20sp"
-                android:src="@drawable/rectangle" />
 
             <LinearLayout
                 android:id="@+id/llStaticSection"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:weightSum="3"
+
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -74,13 +79,13 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/playdate_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/image"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/play_date" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/image"-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/play_date" />-->
 
                         </LinearLayout>
 
@@ -103,10 +108,10 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="10dp"
-                    app:cardCornerRadius="20dp"
+                    android:layout_weight="1"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -131,12 +136,12 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/newsfeed_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/article" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/article" />-->
 
                         </LinearLayout>
 
@@ -159,8 +164,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
                     android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -185,12 +190,12 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/adoption_lottie" />
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:adjustViewBounds="true"-->
-<!--                                android:src="@mipmap/fostering" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_gravity="center"-->
+                            <!--                                android:adjustViewBounds="true"-->
+                            <!--                                android:src="@mipmap/fostering" />-->
 
                         </LinearLayout>
 
@@ -266,3 +271,283 @@
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<RelativeLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/bottomSheet"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="300dp"-->
+<!--    android:background="@drawable/bottom_sheet_bg"-->
+<!--    android:scrollbars="none"-->
+<!--    app:behavior_hideable="false"-->
+<!--    app:behavior_peekHeight="110dp"-->
+<!--    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fillViewport="true">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:animateLayoutChanges="true"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/rectangle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20sp"-->
+<!--                android:src="@drawable/rectangle" />-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llStaticSection"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:weightSum="3"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    app:cardCornerRadius="20dp"-->
+<!--                    android:elevation="5dp"-->
+<!--                    app:cardElevation="5dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/llStatic"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="200dp"-->
+<!--                        android:background="#FEECF2"-->
+<!--                        android:elevation="2dp"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/llImage"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="160dp"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <com.airbnb.lottie.LottieAnimationView-->
+<!--                                android:id="@+id/lottie1"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:scaleType="centerCrop"-->
+<!--                                app:lottie_autoPlay="false"-->
+<!--                                app:lottie_loop="true"-->
+<!--                                app:lottie_rawRes="@raw/playdate_lottie" />-->
+
+<!--&lt;!&ndash;                            <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:id="@+id/image"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:adjustViewBounds="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:src="@mipmap/play_date" />&ndash;&gt;-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvTitle"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/medium"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="Playdate"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="16dp" />-->
+
+<!--                    </LinearLayout>-->
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    app:cardCornerRadius="20dp"-->
+<!--                    android:elevation="5dp"-->
+<!--                    app:cardElevation="5dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="200dp"-->
+<!--                        android:background="#FCD668"-->
+<!--                        android:elevation="2dp"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="160dp"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <com.airbnb.lottie.LottieAnimationView-->
+<!--                                android:id="@+id/lottie2"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:scaleType="centerCrop"-->
+<!--                                app:lottie_autoPlay="false"-->
+<!--                                app:lottie_loop="true"-->
+<!--                                app:lottie_rawRes="@raw/newsfeed_lottie" />-->
+
+<!--&lt;!&ndash;                            <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:adjustViewBounds="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:src="@mipmap/article" />&ndash;&gt;-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/medium"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="News Feed"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="16dp" />-->
+
+
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    app:cardCornerRadius="20dp"-->
+<!--                    android:elevation="5dp"-->
+<!--                    app:cardElevation="5dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="200dp"-->
+<!--                        android:background="#FED56B"-->
+<!--                        android:elevation="2dp"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="160dp"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <com.airbnb.lottie.LottieAnimationView-->
+<!--                                android:id="@+id/lottie3"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:scaleType="centerCrop"-->
+<!--                                app:lottie_autoPlay="false"-->
+<!--                                app:lottie_loop="true"-->
+<!--                                app:lottie_rawRes="@raw/adoption_lottie" />-->
+
+<!--&lt;!&ndash;                            <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:adjustViewBounds="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:src="@mipmap/fostering" />&ndash;&gt;-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/medium"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="Adoption"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="16dp" />-->
+
+
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+<!--            </LinearLayout>-->
+
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/featuresRv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10sp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                tools:listitem="@layout/single_home_feature" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/bold"-->
+<!--                android:text="Upcoming Playdates"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="16sp" />-->
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/progressBar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:visibility="gone" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/noPlayDate"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/medium_italic"-->
+<!--                android:text="No Upcoming PlayDates Found"-->
+<!--                android:textSize="16sp"-->
+<!--                android:visibility="gone" />-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/pladateRv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10sp"-->
+<!--                android:layout_marginTop="20sp"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                tools:listitem="@layout/single_playdate" />-->
+
+<!--        </LinearLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+<!--</RelativeLayout>-->

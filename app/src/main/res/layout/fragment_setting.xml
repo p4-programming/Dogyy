@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:padding="10sp"
             android:src="@drawable/back_icon"
-            android:visibility="gone"
             app:tint="@color/on_boarding_blue" />
 
         <TextView

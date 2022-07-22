@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,14 +20,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
-import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.databinding.FragmentSOSDistressBinding
-import com.bnb.doggydoo.databinding.FragmentSosMainBinding
-import com.bnb.doggydoo.databinding.SosDistressManagerBinding
+import com.bnb.doggydoo.homemodule.ui.HomeActivity
 import com.bnb.doggydoo.utils.CommonMethod
 import com.github.dhaval2404.imagepicker.ImagePicker
 
@@ -36,7 +34,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 class SOSDistressFragment : Fragment() {
     private var _binding: FragmentSOSDistressBinding? = null
     // This property is only valid between onCreateView and
-// onDestroyView.
+    // onDestroyView.
     private val binding get() = _binding!!
     private val REQUEST_PERMISSION = 100
     private var uri: Uri? = null
@@ -53,6 +51,7 @@ class SOSDistressFragment : Fragment() {
         CommonMethod.makeTransparentStatusBar(activity?.window)
         _binding = FragmentSOSDistressBinding.inflate(inflater, container, false)
         val view = binding.root
+        HomeActivity.menuIcon.visibility = View.GONE
         binding.b2.isChecked=true
         getInit()
         setRadiogroup()
@@ -60,9 +59,16 @@ class SOSDistressFragment : Fragment() {
             binding.llUploadPic.performClick()
         })
 
+        binding.ivBack.setOnClickListener(){
+            HomeActivity.menuIcon.visibility = View.VISIBLE
+            requireView().findNavController().popBackStack()
+        }
+
         return view
 
     }
+
+
     private fun setRadiogroup() {
         binding.b1.setOnClickListener(){
             binding.b1.isChecked=true

@@ -61,7 +61,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_fragment)
@@ -198,7 +197,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navController = findNavController(R.id.nav_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawerLayout.close()
         when (item.itemId) {
@@ -247,7 +245,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             //super.onBackPressed()
-
             val a = Intent(Intent.ACTION_MAIN)
             a.addCategory(Intent.CATEGORY_HOME)
             a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -255,9 +252,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             return
         }
-
         this.doubleBackToExitPressedOnce = true
-        CommonMethod.showSnack(binding.drawerLayout, "Please click BACK again to exit")
+        CommonMethod.showSnack(binding.drawerLayout, "Please click BACK agafin to exit")
 
         Handler(Looper.getMainLooper()).postDelayed({
             doubleBackToExitPressedOnce = false
