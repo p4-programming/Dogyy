@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
@@ -43,6 +45,8 @@ class UpcomingFrag : Fragment(R.layout.fragment_calendar) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        HomeActivity.menuIcon.visibility = View.GONE
+
         reminderAdapter =  ReminderAdapter(requireContext())
         binding.reminderRv.adapter = reminderAdapter
 
@@ -53,6 +57,11 @@ class UpcomingFrag : Fragment(R.layout.fragment_calendar) {
         binding.Playdatesrv.adapter = playdateAdapter
 
         getUserUpcomingApi()
+        
+        binding.ivBack.setOnClickListener(){
+            HomeActivity.menuIcon.visibility = View.VISIBLE
+            requireView().findNavController().popBackStack()
+        }
 
         binding.viewAllPlaydated.setOnClickListener {
             startActivity(

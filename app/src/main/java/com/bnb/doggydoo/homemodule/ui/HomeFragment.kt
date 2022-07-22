@@ -105,8 +105,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         getLocationDetail()
         getUserStatusApi()
 
-        initializeBottomSheetAdapters()
 
+        initializeBottomSheetAdapters()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -532,14 +532,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 //                        }
 //                        Result.Status.SUCCESS -> {
 //                            if (it.data!!.responseCode == "0") {
-//                                //bind.bottomSheetLayout.noPlayDate.show()
 //                                return@Observer
 //                            }
 //                            // mMap!!.clear()
 //                            setMarker(it.data.ParkDetailList)
 //                        }
 //                        Result.Status.ERROR -> {
-//                            it.message!!.snack(Color.RED, bind.root)
 //                        }
 //                    }
 //                })

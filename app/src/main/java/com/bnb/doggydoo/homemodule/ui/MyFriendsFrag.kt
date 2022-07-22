@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
@@ -53,8 +54,14 @@ MyFriendsFrag : Fragment(R.layout.fragment_my_friends) {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        HomeActivity.menuIcon.visibility = View.GONE
+
         getInit()
         getAllFriendApi()
+        binding.ivBack.setOnClickListener(){
+            HomeActivity.menuIcon.visibility = View.VISIBLE
+            requireView().findNavController().popBackStack()
+        }
     }
 
     override fun onResume() {

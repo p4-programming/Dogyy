@@ -24,7 +24,10 @@ class SettingFrag : Fragment(R.layout.fragment_setting) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        HomeActivity.menuIcon.visibility = View.GONE
         binding.settingRv.adapter = NotificationAdapter(requireContext(),"Setting", titleList){}
-        binding.backButton.setOnClickListener { findNavController().popBackStack() }
+        binding.backButton.setOnClickListener {
+            HomeActivity.menuIcon.visibility = View.VISIBLE
+            findNavController().popBackStack() }
     }
 }
