@@ -37,7 +37,12 @@ class NotificationFrag : Fragment(R.layout.fragment_notification) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.backButton.setOnClickListener { findNavController().popBackStack() }
+
+        HomeActivity.menuIcon.visibility = View.GONE
+
+        binding.backButton.setOnClickListener {
+            HomeActivity.menuIcon.visibility = View.VISIBLE
+            findNavController().popBackStack() }
 
         binding.requestCheck.setOnCheckedChangeListener { _, isChecked ->
             postNotificationData(isChecked, "request")

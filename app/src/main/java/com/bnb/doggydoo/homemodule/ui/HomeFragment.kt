@@ -104,7 +104,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         getInit()
         getLocationDetail()
         getUserStatusApi()
-        setBottomSheet()
+        //setBottomSheet()
+        initializeBottomSheetAdapters()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -113,9 +114,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             setUpMap()
             binding.Place.text=null
         }
-
         //Test branch
-
     }
 
 
@@ -600,30 +599,30 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     }
 
     private fun getMapDateApi(currentLat: String, currentLang: String, type: String) {
-        homeViewModel.getHomeMapResponse(
-            MyApp.getSharedPref().userId,
-            currentLat,
-            currentLang,
-            type
-        )
-            .observe(viewLifecycleOwner,
-                Observer {
-                    when (it.status) {
-                        Result.Status.LOADING -> {
-                        }
-                        Result.Status.SUCCESS -> {
-                            if (it.data!!.responseCode == "0") {
-                                binding.bottomSheetLayout.noPlayDate.show()
-                                return@Observer
-                            }
-                            // mMap!!.clear()
-                            setMarker(it.data.ParkDetailList)
-                        }
-                        Result.Status.ERROR -> {
-                            it.message!!.snack(Color.RED, binding.root)
-                        }
-                    }
-                })
+//        homeViewModel.getHomeMapResponse(
+//            MyApp.getSharedPref().userId,
+//            currentLat,
+//            currentLang,
+//            type
+//        )
+//            .observe(viewLifecycleOwner,
+//                Observer {
+//                    when (it.status) {
+//                        Result.Status.LOADING -> {
+//                        }
+//                        Result.Status.SUCCESS -> {
+//                            if (it.data!!.responseCode == "0") {
+//                                binding.bottomSheetLayout.noPlayDate.show()
+//                                return@Observer
+//                            }
+//                            // mMap!!.clear()
+//                            setMarker(it.data.ParkDetailList)
+//                        }
+//                        Result.Status.ERROR -> {
+//                            it.message!!.snack(Color.RED, binding.root)
+//                        }
+//                    }
+//                })
     }
 
     private fun setMarker(parkDetailList: List<MapParkDetail>) {
