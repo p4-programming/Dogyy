@@ -18,7 +18,7 @@ class SOSIntro : AppCompatActivity() {
         setContentView(binding.root)
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(SOSIntroFragment())
-        viewPager.addFragment(SOSMainFragment())
+        viewPager.addFragment(SOSDistressFragment())
         binding.pager.adapter = viewPager
     }
 }

@@ -49,6 +49,7 @@
         </intent>
     </queries>
 
+
     <application
         android:name="com.bnb.doggydoo.utils.MyApp"
         android:allowBackup="false"

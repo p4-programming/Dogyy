@@ -1,6 +1,7 @@
 package com.bnb.doggydoo.sos.ui
 
 import android.Manifest
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,16 +9,19 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
-import com.bnb.doggydoo.databinding.ActivitySosMapBinding
+import com.bnb.doggydoo.databinding.FragmentPinMapBinding
 import com.bnb.doggydoo.utils.CommonMethod
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -29,37 +33,56 @@ import com.google.android.gms.maps.model.*
 import java.util.*
 
 
-class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
-    GoogleMap.OnMarkerClickListener {
+class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
+
+    private var _binding: FragmentPinMapBinding? = null
+    private val binding get() = _binding!!
     private var mMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private var currentLatLng: LatLng? = null
-    private lateinit var binding: ActivitySosMapBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySosMapBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        CommonMethod.makeTransparentStatusBar(window)
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        _binding = FragmentPinMapBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        CommonMethod.makeTransparentStatusBar(activity?.window)
+
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         binding.ivBack.setOnClickListener {
-            finish()
+            requireView().findNavController().popBackStack()
         }
+
+
+        return view
+
     }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap!!.uiSettings.isZoomControlsEnabled = false
         mMap!!.setOnMarkerClickListener(this)
-        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.standard_style))
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.standard_style))
         setUpMap()
     }
 
@@ -67,21 +90,21 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(
-                this,
+                requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
-                this,
+                requireActivity(),
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
+                Pin_Map_Fragment.LOCATION_PERMISSION_REQUEST_CODE
             )
             return
         }
 
         mMap!!.isMyLocationEnabled = true
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
             if (location != null) {
                 lastLocation = location
                 currentLatLng = LatLng(location.latitude, location.longitude)
@@ -134,7 +157,7 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
                         marker.position.longitude.toString()
                     )
                 } else {
-                    Toast.makeText(this, "Pin a location on map.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Pin a location on map.", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -142,9 +165,28 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
         }
     }
 
+    private fun showPinOption(lat: String, longg: String) {
+        binding.llLocation.show()
+        val geocoder: Geocoder
+        val addresses: List<Address>
+        geocoder = Geocoder(requireContext(), Locale.getDefault())
+
+        addresses = geocoder.getFromLocation(
+            lat.toDouble(),
+            longg.toDouble(),
+            1
+        )
+
+        if(!addresses.isNullOrEmpty()){
+            val address: String = addresses[0].getAddressLine(0)
+            binding.tvAddress.text = address
+        }
+
+
+    }
 
     private fun confirmPinOption(lat: String, longg: String) {
-        val dialog = Dialog(this, R.style.Theme_Dialog)
+        val dialog = Dialog(requireContext(), R.style.Theme_Dialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.confirm_pin_option)
@@ -166,12 +208,15 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
 //                fragobj.setArguments(bundle)
 //            }
 
-            startActivity(
-                Intent(this, ConfirmsoslocationActivity::class.java)
-                    .putExtra("pin_lat", lat)
-                    .putExtra("pin_long", longg)
-                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            )
+            val action = Pin_Map_FragmentDirections.actionPinMapFragmentToSOSMainFragment(lat,longg)
+            requireView().findNavController().navigate(action)
+
+//            startActivity(
+//                Intent(this, ConfirmsoslocationActivity::class.java)
+//                    .putExtra("pin_lat", lat)
+//                    .putExtra("pin_long", longg)
+//                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            )
             dialog.dismiss()
         }
 
@@ -179,24 +224,5 @@ class SOSMapActivity : AppCompatActivity(), OnMapReadyCallback,
         dialog.show()
     }
 
-    private fun showPinOption(lat: String, longg: String) {
-        binding.llLocation.show()
-        val geocoder: Geocoder
-        val addresses: List<Address>
-        geocoder = Geocoder(this, Locale.getDefault())
-
-        addresses = geocoder.getFromLocation(
-            lat.toDouble(),
-            longg.toDouble(),
-            1
-        )
-
-        if(!addresses.isNullOrEmpty()){
-            val address: String = addresses[0].getAddressLine(0)
-            binding.tvAddress.text = address
-        }
-
-
-    }
 
 }

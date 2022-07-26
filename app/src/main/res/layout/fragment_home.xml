@@ -67,6 +67,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
+            android:visibility="invisible"
             android:elevation="10dp"
             android:scaleType="fitXY"
             android:src="@mipmap/ham_icon"
