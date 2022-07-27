@@ -6,15 +6,18 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
@@ -25,11 +28,15 @@ import com.bnb.doggydoo.utils.CommonMethod
 import com.bnb.doggydoo.utils.MultipartFile
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SOSMainFragment : Fragment() {
     private lateinit var binding: FragmentSosMainBinding
     private val myDogViewModel: MyDogViewModel by viewModels()
     private var uri: Uri? = null
+    private val args : SOSMainFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +45,23 @@ class SOSMainFragment : Fragment() {
         // Inflate the layout for this fragment
         CommonMethod.makeTransparentStatusBar(activity?.window)
         binding = FragmentSosMainBinding.inflate(layoutInflater)
+
+        HomeActivity.menuIcon.visibility = View.GONE
+
+        val pin_latitude = args.lattitude
+        val pin_longitude = args.longitude
+        if(!pin_latitude.isNullOrEmpty() && !pin_longitude.isNullOrEmpty()){
+            addDistressPetAPI(pin_latitude,pin_longitude)
+        }
+
         return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+       // val pinLatitude = arguments!!.getString("latitude")
 
         binding.apply {
             tvCurrentLocation.setOnClickListener {
@@ -68,10 +86,14 @@ class SOSMainFragment : Fragment() {
 
             tvDropPin.setOnClickListener {
                 if (binding.rbCheck.isChecked) {
-                    startActivity(
-                        Intent(requireContext(), SOSMapActivity::class.java)
-                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    )
+
+                    requireView().findNavController().navigate(R.id.action_SOSMainFragment_to_pin_Map_Fragment)
+//                    startActivity(
+//                        Intent(requireContext(), SOSMapActivity::class.java)
+//                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    )
+                   // Log.d("TAG", "onViewCreated: "+ pinLatitude)
+
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -83,7 +105,7 @@ class SOSMainFragment : Fragment() {
             }
 
             ivBack.setOnClickListener {
-                requireActivity().finish()
+                requireView().findNavController().popBackStack()
             }
 
         }
