@@ -49,7 +49,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
-                    android:text="What`s upcoming"
+                    android:text="Notifications"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 

@@ -16,6 +16,7 @@ import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.FragmentCallAVetMainBinding
+import com.bnb.doggydoo.sos.ui.SOSDistressFragment
 import com.bnb.doggydoo.sos.ui.SOSIntro
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
@@ -68,6 +69,7 @@ class CallAVetMainFragment : Fragment() {
         }
 
         binding.ambulance.setOnClickListener {
+
             startActivity(Intent(requireContext(),SOSIntro::class.java)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }

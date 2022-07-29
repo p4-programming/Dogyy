@@ -18,7 +18,7 @@ class NewsfeedActivity: AppCompatActivity()  {
 
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(NewsfeedIntroFrag())
-        viewPager.addFragment(TempFragment())
+        viewPager.addFragment(NewsfeedDashboardFragment())
         //viewPager.addFragment(NewsFeedDashboardActivity())
         binding.pager.adapter = viewPager
     }

@@ -30,7 +30,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/medium"
-        android:text="Lorem ipsum amet, consectetuer\nsitzala adipiscing elit aen."
+        android:text="Paws are waiting for their chance to do\nSocial media better."
         android:textColor="#5935D5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adoptionTitleText" />
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_playdate_home_icon"
+        android:src="@drawable/frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adoptionIntroText"
         app:layout_constraintTop_toTopOf="parent" />

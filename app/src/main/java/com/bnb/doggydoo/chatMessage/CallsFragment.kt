@@ -2,6 +2,7 @@ package com.bnb.doggydoo.chatMessage
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,12 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CallsFragment : Fragment(R.layout.fragment_calls) {
 
-
     private var _binding: FragmentCallsBinding? = null
     private val binding get() = _binding!!
     private val requestViewModel: CallListViewModel by viewModels()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +51,8 @@ class CallsFragment : Fragment(R.layout.fragment_calls) {
                         Result.Status.LOADING -> {
                         }
                         Result.Status.SUCCESS -> {
-                            Toast.makeText(requireActivity(), "it.data!!.responseCode", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireActivity(), "it.data!!.responseCode"+it.data!!.responseCode, Toast.LENGTH_SHORT).show()
+                            Log.d("TAG", "callsListRequestApi: "+ it.data)
                             if (it.data!!.responseCode == "0") {
                                 //  binding.tvNoData1.show()
                                 // binding.tvNoData.text = it.data.responseMessage

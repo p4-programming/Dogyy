@@ -44,12 +44,7 @@
             android:layout_margin="20dp"
             android:orientation="vertical">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,6 +88,13 @@
                 android:text="@string/sends_your"
                 android:textSize="16sp"
                 android:textStyle="italic" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
 
 
             <TextView

@@ -104,7 +104,7 @@ class HomeFeatureAdapter(
                     }
                     "NewsFeed" -> {
                         context.startActivity(Intent(context, NewsfeedActivity::class.java))
-                        // context.startActivity(Intent(context, NewsFeedDashboardActivity::class.java))
+                       //  context.startActivity(Intent(context, NewsFeedDashboardActivity::class.java))
                     }
                     "Fostering" -> {
                         context.startActivity(Intent(context, FosteringActivity::class.java))

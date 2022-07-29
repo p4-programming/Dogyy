@@ -2,17 +2,20 @@ package com.bnb.doggydoo.sos.ui
 
 import android.Manifest
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +29,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.databinding.FragmentSOSDistressBinding
 import com.bnb.doggydoo.homemodule.ui.HomeActivity
 import com.bnb.doggydoo.utils.CommonMethod
-import com.github.dhaval2404.imagepicker.ImagePicker
+import java.io.ByteArrayOutputStream
 
 
 class SOSDistressFragment : Fragment() {
@@ -44,6 +46,7 @@ class SOSDistressFragment : Fragment() {
     private var uri: Uri? = null
     private lateinit var navController: NavController
     private final val REQUEST_IMAGE_CAPTURE = 1475357526
+    private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +61,12 @@ class SOSDistressFragment : Fragment() {
         val view = binding.root
         HomeActivity.menuIcon.visibility = View.GONE
         binding.b2.isChecked=true
+
         getInit()
         setRadiogroup()
+
         binding.ivDog.setOnClickListener({
-            binding.llUploadPic.performClick()
+            binding.getImageFromGallery.performClick()
         })
 
         binding.ivBack.setOnClickListener(){
@@ -72,7 +77,6 @@ class SOSDistressFragment : Fragment() {
         return view
 
     }
-
 
     private fun setRadiogroup() {
         binding.b1.setOnClickListener(){
@@ -123,8 +127,13 @@ class SOSDistressFragment : Fragment() {
             if (binding.etPetDescription.text.isEmpty()) {
                 Toast.makeText(requireContext(), "Please add description.", Toast.LENGTH_SHORT).show()
             }else{
-                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null
-                )
+
+//                val transaction = childFragmentManager?.beginTransaction()
+//                transaction?.replace(R.id.SOSDistressFragment, SOSMainFragment())
+//                transaction?.disallowAddToBackStack()
+//                transaction?.commit()
+
+                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null)
                 requireView().findNavController().navigate(action)
             }
 
@@ -158,6 +167,7 @@ class SOSDistressFragment : Fragment() {
 //                    300
 //                )    //Final image resolution will be less than 1080 x 1080(Optional)
 //                .start()
+
             dialog.dismiss()
         }
 
@@ -180,12 +190,32 @@ class SOSDistressFragment : Fragment() {
             // display error state to the user
         }
     }
+
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 //            val imageBitmap = data?.extras?.get("data") as Bitmap
 //            binding.ivDog.setImageBitmap(imageBitmap)
 //        }
 //    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val bmp = data?.extras!!["data"] as Bitmap?
+                val stream = ByteArrayOutputStream()
+                bmp!!.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                val byteArray: ByteArray = stream.toByteArray()
+
+                // convert byte array to Bitmap
+                val bitmap = BitmapFactory.decodeByteArray(
+                    byteArray, 0,
+                    byteArray.size
+                )
+               // binding.llUploadPic.visibility = View.GONE
+                binding.ivDog.setImageBitmap(bitmap)
+            }
+        }
+    }
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -207,26 +237,6 @@ class SOSDistressFragment : Fragment() {
             }
         }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data!=null) {
-            //Image Uri will not be null for RESULT_OK
-            uri = data.data!!
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                val source = ImageDecoder.createSource(activity!!.contentResolver, uri!!)
-                binding.ivDog.setImageBitmap(ImageDecoder.decodeBitmap(source))
-                binding.llUploadPic.hide()
-            } else {
-                binding.ivDog.setImageURI(uri)
-                binding.llUploadPic.hide()
-            }
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)

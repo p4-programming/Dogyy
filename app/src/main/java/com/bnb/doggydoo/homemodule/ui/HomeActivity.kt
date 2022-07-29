@@ -28,7 +28,6 @@ import com.bnb.doggydoo.login.ui.LoginActivity
 import com.bnb.doggydoo.myprofile.ui.MyProfileActivity
 import com.bnb.doggydoo.onboarding.ui.OnBoardingActivity
 import com.bnb.doggydoo.rateplace.ui.RatePlaceActivity
-import com.bnb.doggydoo.sos.ui.SOSDistressFragmentDirections
 import com.bnb.doggydoo.utils.CommonMethod
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.network.ApiConstant
@@ -135,6 +134,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+
     private fun setuserDetail() {
         name.text = MyApp.getSharedPref().userName
         userMobile.text = MyApp.getSharedPref().userMobile
@@ -205,13 +205,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 navController.navigate(R.id.nav_home)
             }
             R.id.LostFound -> {
-
                 navController.navigate(R.id.SOSDistressFragment)
                //navController.navigate(R.id.action_nav_home_to_SOSMainFragment)
             }
-            R.id.notification -> {
-                navController.navigate(R.id.nav_notification)
-            }
+//            R.id.notification -> {
+//                navController.navigate(R.id.nav_notification)
+//            }
             R.id.setting -> {
                 navController.navigate(R.id.nav_setting)
             }
