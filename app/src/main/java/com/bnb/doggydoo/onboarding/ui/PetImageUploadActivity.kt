@@ -103,7 +103,6 @@ class PetImageUploadActivity : AppCompatActivity() {
                 .cameraOnly()
                 .crop()
                 .compress(500)
-                .maxResultSize(500, 500)
                 .start()
             dialog.dismiss()
         }

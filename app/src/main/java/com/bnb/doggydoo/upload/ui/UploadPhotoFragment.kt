@@ -67,10 +67,6 @@ class UploadPhotoFragment : Fragment() {
         ImagePicker.with(this)
             .crop()
             .compress(500)
-            .maxResultSize(
-                500,
-                500
-            )
             .start()
     }
 

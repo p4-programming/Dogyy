@@ -18,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
@@ -41,6 +42,10 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private var currentLatLng: LatLng? = null
+    private val args: Pin_Map_FragmentArgs by navArgs()
+
+//    val petDescription = args.description
+//    val distressType = args.type
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -208,7 +213,10 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
 //                fragobj.setArguments(bundle)
 //            }
 
-            val action = Pin_Map_FragmentDirections.actionPinMapFragmentToSOSMainFragment(lat,longg)
+            val petDescription = args.description
+            val distressType = args.type
+
+            val action = Pin_Map_FragmentDirections.actionPinMapFragmentToSOSMainFragment(lat,longg,petDescription, distressType)
             requireView().findNavController().navigate(action)
 
 //            startActivity(

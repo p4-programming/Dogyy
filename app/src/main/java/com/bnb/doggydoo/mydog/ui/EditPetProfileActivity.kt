@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
@@ -34,6 +35,8 @@ import com.bnb.doggydoo.utils.MultipartFile
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.bnb.doggydoo.utils.network.ApiConstant
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -218,11 +221,19 @@ class EditPetProfileActivity : AppCompatActivity() {
     }
 
     private fun setDataInUI(data: PetDescriptionResponse) {
+
+        Log.d("TAG", "pet image :"+ApiConstant.PET_IMAGE_BASE_URL + data.petImage[0])
+        Log.d("TAG", "size    : "+data.petImage.size)
         if (data.petImage.size > 0)
-            binding.petImage.loadImageFromString(
-                this,
-                ApiConstant.PET_IMAGE_BASE_URL + data.petImage[0]
-            )
+
+            Glide.with(this)
+                .load(ApiConstant.PET_IMAGE_BASE_URL+data.petImage[0])
+                .into(binding.petImage)
+
+//            binding.petImage.loadImageFromString(
+//                this,
+//                ApiConstant.PET_IMAGE_BASE_URL + data.petImage[0]
+//            )
 
         binding.etName.setText(data.petdetail.pet_name)
         binding.tvAge.text = "${data.petdetail.pet_age} Year ${data.petdetail.pet_age_month} Month"
@@ -240,7 +251,6 @@ class EditPetProfileActivity : AppCompatActivity() {
 
     }
 
-
     private fun ChooseOption() {
         val dialog = Dialog(this, R.style.Theme_Dialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -255,11 +265,7 @@ class EditPetProfileActivity : AppCompatActivity() {
             ImagePicker.with(this)
                 .cameraOnly()
                 .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(500)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    300,
-                    300
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(500)            //Final image size will be less than 1 MB(Optional) //Final image resolution will be less than 1080 x 1080(Optional)
                 .start()
             dialog.dismiss()
         }

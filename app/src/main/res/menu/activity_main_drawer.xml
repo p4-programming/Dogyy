@@ -24,16 +24,16 @@
     <item
         android:id="@+id/myCalendar"
         android:icon="@drawable/calendar"
-        android:title="What`s upcoming" />
+        android:title="Notifications" />
     <item
         android:id="@+id/friend"
         android:icon="@drawable/my_friend"
         android:title="My Friends" />
 
-    <item
-        android:id="@+id/notification"
-        android:icon="@drawable/notification"
-        android:title="Notifications" />
+<!--    <item-->
+<!--        android:id="@+id/notification"-->
+<!--        android:icon="@drawable/notification"-->
+<!--        android:title="Notifications" />-->
     <item
         android:id="@+id/setting"
         android:icon="@drawable/settings"

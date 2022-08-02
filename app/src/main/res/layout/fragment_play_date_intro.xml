@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jem.liquidswipe.layout.LiquidSwipeConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +30,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/medium"
-        android:text="Lorem ipsum amet, consectetuer\nsitzala adipiscing elit aen."
+        android:text="Pup, Pup, Hooray! It's time to play"
         android:textColor="#5935D5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adoptionTitleText" />

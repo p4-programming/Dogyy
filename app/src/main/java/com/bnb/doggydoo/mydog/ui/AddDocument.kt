@@ -168,8 +168,7 @@ class AddDocument : AppCompatActivity() {
         ImagePicker.with(this)
             .cameraOnly()
             .crop()	    			//Crop image(Optional), Check Customization for more option
-            .compress(300)			//Final image size will be less than 1 MB(Optional)
-            .maxResultSize(300, 300)	//Final image resolution will be less than 1080 x 1080(Optional)
+            .compress(300)			//Final image size will be less than 1 MB(Optional) //Final image resolution will be less than 1080 x 1080(Optional)
             .start()
     }
 

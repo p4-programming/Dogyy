@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
+            android:layout_toEndOf="@+id/requestProfilePic"
             android:fontFamily="@font/bold"
             android:text="Tanvir Singh"
-            android:layout_toEndOf="@+id/requestProfilePic"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:transitionName="requestedProfileName" />
@@ -38,17 +38,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profileName"
-            android:layout_marginTop="12dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
             android:layout_toEndOf="@+id/requestProfilePic"
             android:src="@drawable/ic_missed_call_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/profileName"
             android:layout_marginStart="10sp"
             android:layout_marginTop="5sp"
-            android:layout_below="@+id/profileName"
             android:layout_toEndOf="@+id/ivMissed"
             android:fontFamily="@font/regular"
             android:text="Today, 7:44 pm"

@@ -3,6 +3,7 @@ package com.bnb.doggydoo.homemodule.adapter
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,23 +12,31 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.databinding.SingleNotificationBinding
 import com.bnb.doggydoo.homemodule.ui.HomeActivity
+import com.bnb.doggydoo.homemodule.ui.NotificationFrag
 import com.bnb.doggydoo.myprofile.ui.EditProfileActivity
+import com.bnb.doggydoo.newsfeed.ui.NewsfeedIntroFrag.Companion.newInstance
 import com.bnb.doggydoo.utils.MyApp
 
 class NotificationAdapter(
     var context: Context,
     var comingFrom: String,
     var titleList: List<String>,
+    var nCLick:onCLick,
     private var getStatusOfType: () -> Unit
 ) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
+
+    interface onCLick{
+        fun onNotificationClicked()
+    }
     var mapType:String ="Standard"
-    private val descriptionList = listOf( "Change map styles.", "Edit/Update your profile information.")
+    private val descriptionList = listOf( "Change map settings.", "Change your profile information.","Change your notifications preference.")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val binding =
@@ -44,6 +53,7 @@ class NotificationAdapter(
     }
 
     override fun getItemCount(): Int {
+        Log.d("TAG", "getItemCount: size of list "+titleList.size)
         return titleList.size
     }
 
@@ -66,6 +76,9 @@ class NotificationAdapter(
                         context.startActivity(
                             Intent(context, EditProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         )
+                    }
+                    "Notifications"->{
+                        nCLick.onNotificationClicked()
                     }
                 }
             }

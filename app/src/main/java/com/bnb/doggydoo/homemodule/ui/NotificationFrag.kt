@@ -41,7 +41,7 @@ class NotificationFrag : Fragment(R.layout.fragment_notification) {
         HomeActivity.menuIcon.visibility = View.GONE
 
         binding.backButton.setOnClickListener {
-            HomeActivity.menuIcon.visibility = View.VISIBLE
+           // HomeActivity.menuIcon.visibility = View.VISIBLE
             findNavController().popBackStack() }
 
         binding.requestCheck.setOnCheckedChangeListener { _, isChecked ->

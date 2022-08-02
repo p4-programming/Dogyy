@@ -47,7 +47,11 @@
         android:id="@+id/nav_setting"
         android:name="com.bnb.doggydoo.homemodule.ui.SettingFrag"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_nav_setting_to_nav_notification2"
+            app:destination="@id/nav_notification" />
+    </fragment>
 
     <fragment
         android:id="@+id/myFriendsFrag"
@@ -85,6 +89,15 @@
             android:name="longitude"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_SOSMainFragment_to_nav_home3"
+            app:destination="@id/nav_home" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SOSDistressFragment"
@@ -102,6 +115,12 @@
         <action
             android:id="@+id/action_pin_Map_Fragment_to_SOSMainFragment"
             app:destination="@id/SOSMainFragment" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
 
 </navigation>

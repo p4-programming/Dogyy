@@ -519,28 +519,28 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     }
 
     private fun getMapDateApi(currentLat: String, currentLang: String, type: String) {
-//        homeViewModel.getHomeMapResponse(
-//            MyApp.getSharedPref().userId,
-//            currentLat,
-//            currentLang,
-//            type
-//        )
-//            .observe(viewLifecycleOwner,
-//                Observer {
-//                    when (it.status) {
-//                        Result.Status.LOADING -> {
-//                        }
-//                        Result.Status.SUCCESS -> {
-//                            if (it.data!!.responseCode == "0") {
-//                                return@Observer
-//                            }
-//                            // mMap!!.clear()
-//                            setMarker(it.data.ParkDetailList)
-//                        }
-//                        Result.Status.ERROR -> {
-//                        }
-//                    }
-//                })
+        homeViewModel.getHomeMapResponse(
+            MyApp.getSharedPref().userId,
+            currentLat,
+            currentLang,
+            type
+        )
+            .observe(viewLifecycleOwner,
+                Observer {
+                    when (it.status) {
+                        Result.Status.LOADING -> {
+                        }
+                        Result.Status.SUCCESS -> {
+                            if (it.data!!.responseCode == "0") {
+                                return@Observer
+                            }
+                            // mMap!!.clear()
+                            setMarker(it.data.ParkDetailList)
+                        }
+                        Result.Status.ERROR -> {
+                        }
+                    }
+                })
     }
 
     private fun setMarker(parkDetailList: List<MapParkDetail>) {
