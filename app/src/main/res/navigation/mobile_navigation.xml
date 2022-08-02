@@ -92,6 +92,12 @@
         <action
             android:id="@+id/action_SOSMainFragment_to_nav_home3"
             app:destination="@id/nav_home" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SOSDistressFragment"
@@ -109,6 +115,12 @@
         <action
             android:id="@+id/action_pin_Map_Fragment_to_SOSMainFragment"
             app:destination="@id/SOSMainFragment" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
 
 </navigation>

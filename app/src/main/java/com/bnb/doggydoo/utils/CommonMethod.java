@@ -17,7 +17,10 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +30,19 @@ public class CommonMethod {
     public static void showSnack(View view, String msg) {
         Snackbar snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG);
         snackbar.show();
+    }
+
+    public static String getTimeStamp(){
+        long tsLong = System.currentTimeMillis()/1000;
+        Random r = new Random();
+        long random = r.nextLong();
+        return String.valueOf(tsLong + random);
+    }
+
+    public static String getDate(){
+        Date date = new Date();
+        String modifiedDate= new SimpleDateFormat("yyyy-MM-dd hh-mm").format(date);
+        return modifiedDate;
     }
 
     public static void showAlert(View view) {

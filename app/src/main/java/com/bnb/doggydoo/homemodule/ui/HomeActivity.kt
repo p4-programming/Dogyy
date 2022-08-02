@@ -87,6 +87,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         userMobile = header.findViewById(R.id.tvMobile)
         email = header.findViewById(R.id.tvEmail)
 
+
         drawerLayout.closeDrawer(Gravity.LEFT)
 
         //open drawer from hamburger icon

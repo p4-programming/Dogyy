@@ -297,10 +297,6 @@ class EditProfileActivity : AppCompatActivity() {
                 .cameraOnly()
                 .crop()
                 .compress(500)
-                .maxResultSize(
-                    300,
-                    300
-                )
                 .start()
             dialog.dismiss()
         }

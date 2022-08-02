@@ -47,6 +47,7 @@ class SOSDistressFragment : Fragment() {
     private lateinit var navController: NavController
     private final val REQUEST_IMAGE_CAPTURE = 1475357526
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888
+    private var distressType:String= "Lost my pet"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,31 +82,37 @@ class SOSDistressFragment : Fragment() {
     private fun setRadiogroup() {
         binding.b1.setOnClickListener(){
             binding.b1.isChecked=true
+            distressType = "Medical emergency"
             binding.rg2.clearCheck()
             binding.rg3.clearCheck()
         }
         binding.b2.setOnClickListener(){
             binding.b2.isChecked=true
+            distressType = "Lost my pet"
             binding.rg2.clearCheck()
             binding.rg3.clearCheck()
         }
         binding.b3.setOnClickListener(){
             binding.b3.isChecked=true
+            distressType = "Animal Cruelty"
             binding.rg1.clearCheck()
             binding.rg3.clearCheck()
         }
         binding.b4.setOnClickListener(){
             binding.b4.isChecked=true
+            distressType = "Spotted Missing Dog"
             binding.rg1.clearCheck()
             binding.rg3.clearCheck()
         }
         binding.b5.setOnClickListener(){
             binding.b5.isChecked=true
+            distressType = "Litter report"
             binding.rg1.clearCheck()
             binding.rg2.clearCheck()
         }
         binding.b6.setOnClickListener(){
             binding.b6.isChecked=true
+            distressType = "Food & Shelter"
             binding.rg1.clearCheck()
             binding.rg2.clearCheck()
         }
@@ -133,7 +140,7 @@ class SOSDistressFragment : Fragment() {
 //                transaction?.disallowAddToBackStack()
 //                transaction?.commit()
 
-                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null)
+                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType)
                 requireView().findNavController().navigate(action)
             }
 

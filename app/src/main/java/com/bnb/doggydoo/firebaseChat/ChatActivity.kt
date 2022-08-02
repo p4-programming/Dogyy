@@ -176,11 +176,7 @@ class ChatActivity : AppCompatActivity() {
         binding.ivSendImage.setOnClickListener {
             ImagePicker.with(this)
                 .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(500)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    500,
-                    500
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(500)            //Final image size will be less than 1 MB(Optional) //Final image resolution will be less than 1080 x 1080(Optional)
                 .start()
         }
 

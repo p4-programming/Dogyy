@@ -1,8 +1,6 @@
 package com.bnb.doggydoo.sos.ui
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -11,8 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -32,8 +28,10 @@ import com.bnb.doggydoo.utils.CommonMethod
 import com.bnb.doggydoo.utils.MultipartFile
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
-import com.google.android.youtube.player.internal.x
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class SOSMainFragment : Fragment() {
@@ -41,7 +39,9 @@ class SOSMainFragment : Fragment() {
     private val myDogViewModel: MyDogViewModel by viewModels()
     private var uri: Uri? = null
     private val args: SOSMainFragmentArgs by navArgs()
-
+    private var hashMap:HashMap<String,String> = HashMap<String,String>()
+//    val petDescription = args.description
+//    val distressType = args.type
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,13 +49,16 @@ class SOSMainFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         CommonMethod.makeTransparentStatusBar(activity?.window)
+
         binding = FragmentSosMainBinding.inflate(layoutInflater)
 
         HomeActivity.menuIcon.visibility = View.GONE
 
         val pin_latitude = args.lattitude
         val pin_longitude = args.longitude
+
         if (!pin_latitude.isNullOrEmpty() && !pin_longitude.isNullOrEmpty()) {
+            //addDistressPetFirebase(CommonMethod.getTimeStamp(),pin_latitude, pin_longitude)
             addDistressPetAPI(pin_latitude, pin_longitude)
         }
 
@@ -71,7 +74,11 @@ class SOSMainFragment : Fragment() {
         binding.apply {
             tvCurrentLocation.setOnClickListener {
                 if (binding.rbCheck.isChecked) {
+
+                    //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
+                    
                     addDistressPetAPI(MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
+                    
 //                    startActivity(
 //                        Intent(requireContext(), ConfirmsoslocationActivity::class.java)
 //                            .putExtra("pin_lat", MyApp.getSharedPref().userLat)
@@ -91,8 +98,15 @@ class SOSMainFragment : Fragment() {
             tvDropPin.setOnClickListener {
                 if (binding.rbCheck.isChecked) {
 
-                    requireView().findNavController()
-                        .navigate(R.id.action_SOSMainFragment_to_pin_Map_Fragment)
+                    val petDescription = args.description
+                    val distressType = args.type
+
+                    val action = SOSMainFragmentDirections.actionSOSMainFragmentToPinMapFragment(petDescription,distressType)
+                    requireView().findNavController().navigate(action)
+
+//                    requireView().findNavController()
+//                        .navigate(R.id.action_SOSMainFragment_to_pin_Map_Fragment)
+
 //                    startActivity(
 //                        Intent(requireContext(), SOSMapActivity::class.java)
 //                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -113,6 +127,32 @@ class SOSMainFragment : Fragment() {
                 requireView().findNavController().popBackStack()
             }
 
+        }
+    }
+
+    private fun addDistressPetFirebase(timestamp:String, pinLatitude: String, pinLongitude: String) {
+
+        val petDescription = args.description
+        val distressType = args.type
+
+        hashMap.put("user_id",MyApp.getSharedPref().userId)
+        hashMap.put("pet_description",petDescription)
+        hashMap.put("lattitude",pinLatitude)
+        hashMap.put("longitude",pinLongitude)
+        hashMap.put("type",distressType)
+        hashMap.put("date",CommonMethod.getDate())
+
+        FirebaseDatabase.getInstance().reference.child("DogDistress").child(timestamp)
+            .setValue(hashMap)
+            .addOnCompleteListener{task->
+            if (task.isSuccessful) {
+                Log.d("TAG", "addDistressPetFirebase: added")
+                customDialog()
+            } else {
+                task.exception?.let {
+                    Log.d("TAG", "addDistressPetFirebase: error")
+                }
+            }
         }
     }
 
