@@ -61,7 +61,6 @@ class NewsfeedDashboardFragment : Fragment() {
         _binding = FragmentNewsfeedDashboardBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // startActivity(Intent(requireContext(),NewsFeedDashboardActivity::class.java))
         getInit()
         setViewPager()
 

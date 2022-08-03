@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="400dp"
     android:background="@drawable/bottom_sheet_bg"
     android:scrollbars="none"
     app:behavior_hideable="false"
@@ -234,7 +234,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/bold"
-                android:text="Upcoming Playdates"
+                android:text="NewsFeed"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -252,12 +252,24 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/medium_italic"
-                android:text="No Upcoming PlayDates Found"
+                android:text="No Upcoming NewsFeed Found"
                 android:textSize="16sp"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pladateRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="20sp"
+                android:visibility="gone"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/single_playdate" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newsfeedRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"

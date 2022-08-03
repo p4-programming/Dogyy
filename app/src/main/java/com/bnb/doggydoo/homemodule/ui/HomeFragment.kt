@@ -22,6 +22,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +39,10 @@ import com.bnb.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.bnb.doggydoo.login.ui.LoginActivity
 import com.bnb.doggydoo.mydog.ui.PetProfileActivity
 import com.bnb.doggydoo.myprofile.ui.UserProfileActivity
+import com.bnb.doggydoo.newsfeed.adapter.NewsFeedDataAdapter
+import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedDetail
+import com.bnb.doggydoo.newsfeed.ui.NewsfeedAdapterCustom
+import com.bnb.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
 import com.bnb.doggydoo.parkdescription.ui.PetParkDescription
 import com.bnb.doggydoo.shelter.ui.DogShelterActivity
 import com.bnb.doggydoo.sos.ui.DistressPetDetailActivity
@@ -89,6 +94,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private var clieckedType: String = "allexplore"
     private val AUTOCOMPLETE_REQUEST_CODE = 1
 
+    private lateinit var newsFeedViewModel: NewsFeedViewModel
+    private lateinit var adapter: NewsfeedAdapterCustom
+    private var filterType: String = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,7 +114,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         getLocationDetail()
         getUserStatusApi()
 
-
         initializeBottomSheetAdapters()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -113,6 +121,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
         bind.recentre.setOnClickListener(){
             setUpMap()
+            getMapDateApi(
+                MyApp.getSharedPref().userLat,
+                MyApp.getSharedPref().userLong,
+                clieckedType
+            )
             bind.Place.text=null
         }
     }
@@ -462,6 +475,187 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         playDateAdapter = HomePlayDateAdapter(requireContext())
         bind.bottomSheetLayout.pladateRv.adapter = playDateAdapter
         //getPlayDateApi()
+
+        setUpNewsfeed()
+    }
+
+    private fun setUpNewsfeed() {
+        getNewsData()
+        getNewsFeedData()
+    }
+
+
+    private fun getNewsData() {
+        newsFeedViewModel = ViewModelProvider(this).get(NewsFeedViewModel::class.java)
+       // adapter = NewsFeedDataAdapter(requireContext(), MyApp.getSharedPref().newsTypeFilter)
+        adapter = NewsfeedAdapterCustom(requireContext(), MyApp.getSharedPref().newsTypeFilter) { blockUserId, type ->
+            when (type) {
+                "block" -> {
+                    blockUser(blockUserId)
+                }
+                "delete" -> {
+                    deletePost(blockUserId, "1")
+                }
+                "like" -> {
+                    likePost(blockUserId, "1")
+                }
+                else -> {
+                    likePost(blockUserId, "2")
+                }
+            }
+
+        }
+        bind.bottomSheetLayout.newsfeedRv.adapter = adapter
+
+
+        //** Set the colors of the Pull To Refresh View
+//        binding.itemsswipetorefresh.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(requireContext(), R.color.cal))
+//        binding.itemsswipetorefresh.setColorSchemeColors(Color.WHITE)
+//
+//        binding.itemsswipetorefresh.setOnRefreshListener {
+//            binding.rvUploadedItem.clearAnimation()
+//            getNewsFeedData()
+//            adapter = NewsFeedDataAdapter(requireContext(), MyApp.getSharedPref().newsTypeFilter) { blockUserId, type ->
+//                when (type) {
+//                    "block" -> {
+//                        blockUser(blockUserId)
+//                    }
+//                    "delete" -> {
+//                        deletePost(blockUserId, "1")
+//                    }
+//                    "like" -> {
+//                        likePost(blockUserId, "1")
+//                    }
+//                    else -> {
+//                        likePost(blockUserId, "2")
+//                    }
+//                }
+//
+//            }
+//
+//            binding.rvUploadedItem.adapter = adapter
+//            binding.itemsswipetorefresh.isRefreshing = false
+//        }
+    }
+
+    private fun likePost(newsfeedId: String, type: String) {
+        newsFeedViewModel.likeNewsFeedPost(newsfeedId, type, MyApp.getSharedPref().userId).observe(
+            viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                      //  binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                      //  binding.progressBar.hide()
+                        if (it.data!!.responseCode == ("0")) {
+                           // it.message?.snack(Color.RED, binding.parent)
+                            return@Observer
+                        }
+                        getNewsFeedData()
+                    }
+                    Result.Status.ERROR -> {
+                       // binding.progressBar.hide()
+                       // it.message?.snack(Color.RED, binding.parent)
+                        Log.d("TAG", "likePost: error")
+                    }
+                }
+            }
+        )
+    }
+    private fun getNewsFeedData() {
+        filterType = when (MyApp.getSharedPref().newsTypeFilter) {
+            "All" -> {
+                "1"
+            }
+            "My Post" -> {
+                "3"
+            }
+            else -> {
+                "2"
+            }
+        }
+        newsFeedViewModel.getByNewsFeedId(
+            "1",
+            MyApp.getSharedPref().userId,
+            filterType
+        ).observe(
+            viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        //binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                       // binding.progressBar.hide()
+
+                        if (it.data!!.responseCode == ("0")) {
+                           // binding.noData.show()
+                            return@Observer
+                        }
+                        renderList(it.data.newsfeeddetail)
+                    }
+                    Result.Status.ERROR -> {
+                        Log.d("TAG", "getNewsFeedData: error")
+                        //binding.progressBar.hide()
+                       // it.message?.snack(Color.RED, binding.parent)
+                    }
+                }
+            }
+        )
+    }
+
+    private fun renderList(data: List<NewsFeedDetail>) {
+        adapter.addData(data)
+    }
+
+    private fun deletePost(newsfeedId: String, type: String) {
+        newsFeedViewModel.deleteNewsFeedPost(MyApp.getSharedPref().userId,newsfeedId).observe(
+            viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        //binding.progressBar.show()
+                    }
+                    Result.Status.SUCCESS -> {
+                        //binding.progressBar.hide()
+                        if (it.data!!.responseCode == ("0")) {
+                          //  it.data.responseMessage.snack(Color.RED, binding.parent)
+                            return@Observer
+                        }
+                       // it.data.responseMessage.snack(Color.BLACK, binding.parent)
+                        getNewsFeedData()
+                    }
+                    Result.Status.ERROR -> {
+                       // binding.progressBar.hide()
+                       // it.message?.snack(Color.RED, binding.parent)
+                        Log.d("TAG", "deletePost: error")
+                    }
+                }
+            }
+        )
+    }
+
+    private fun blockUser(blockUserId: String) {
+        newsFeedViewModel.blockNewsFeedUser(MyApp.getSharedPref().userId, blockUserId).observe(
+            viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+
+                    }
+                    Result.Status.SUCCESS -> {
+
+
+                        if (it.data!!.responseCode == ("0")) {
+                            //binding.noData.show()
+                            return@Observer
+                        }
+                        getNewsFeedData()
+                    }
+                    Result.Status.ERROR -> {
+                        Log.d("TAG", "blockUser: er")
+                       // it.message?.snack(Color.RED, binding.parent)
+                    }
+                }
+            }
+        )
     }
 
     private fun getUserStatusApi() {
@@ -672,6 +866,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             val parlLat = marker.position.latitude
             val parkLong = marker.position.longitude
 
+
             if (markerName == "You") {
                 Toast.makeText(
                     requireContext(),
@@ -797,6 +992,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         }
         googleMap.setMapStyle(mapStyleOptions)
         setUpMap()
+
     }
 
     override fun onDestroy() {

@@ -1,9 +1,10 @@
-package com.bnb.doggydoo.newsfeed.adapter
+package com.bnb.doggydoo.newsfeed.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,21 +19,18 @@ import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.loadImageFromString
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.databinding.SingleItemNewsfeedBinding
+import com.bnb.doggydoo.databinding.SingleNewsfeedCustomBinding
 import com.bnb.doggydoo.firebaseChat.ChatActivity
 import com.bnb.doggydoo.myprofile.ui.UserProfileActivity
+import com.bnb.doggydoo.newsfeed.adapter.NewsFeedDataAdapter
 import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedDetail
-import com.bnb.doggydoo.newsfeed.ui.ArticleDetailsActivity
-import com.bnb.doggydoo.newsfeed.ui.CommentActivity
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.network.ApiConstant
-import com.bnb.doggydoo.utils.network.ApiConstant.BLOG_IMAGE_BASE_URL
 
-
-class NewsFeedDataAdapter(
-    private var context: Context, private var callingFrom: String,
-    private var callRequestedUserInfo: (userId: String, type: String) -> Unit
+class NewsfeedAdapterCustom(private var context: Context, private var callingFrom: String,
+                            private var callRequestedUserInfo: (userId: String, type: String) -> Unit
 ) :
-    RecyclerView.Adapter<NewsFeedDataAdapter.NewsFeedUploadedDataViewHolder>() {
+    RecyclerView.Adapter<NewsfeedAdapterCustom.NewsFeedUploadedDataViewHolder>() {
     var petList: ArrayList<NewsFeedDetail> = ArrayList()
     var petListFiltered: ArrayList<NewsFeedDetail> = ArrayList()
     private var content: String = ""
@@ -43,16 +41,16 @@ class NewsFeedDataAdapter(
         viewType: Int
     ): NewsFeedUploadedDataViewHolder {
         val binding =
-            SingleItemNewsfeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SingleNewsfeedCustomBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsFeedUploadedDataViewHolder(binding)
 
     }
 
-    override fun onBindViewHolder(holder: NewsFeedUploadedDataViewHolder, position: Int) {
-        holder.bind(petListFiltered[position])
-    }
+//    fun onBindViewHolder(holder: NewsFeedUploadedDataViewHolder, position: Int) {
+//        holder.bind(petListFiltered[position])
+//    }
 
-    inner class NewsFeedUploadedDataViewHolder(var binding: SingleItemNewsfeedBinding) :
+    inner class NewsFeedUploadedDataViewHolder(var binding: SingleNewsfeedCustomBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(detail: NewsFeedDetail) {
@@ -86,7 +84,7 @@ class NewsFeedDataAdapter(
                             context.startActivity(
                                 Intent(context, ArticleDetailsActivity::class.java)
                                     .putExtra("type", "image")
-                                    .putExtra("url", BLOG_IMAGE_BASE_URL + detail.file)
+                                    .putExtra("url", ApiConstant.BLOG_IMAGE_BASE_URL + detail.file)
                                     .putExtra("caption", "")
                                     .putExtra("description", "")
                                     .putExtra("likeCount", detail.countlike)
@@ -118,7 +116,7 @@ class NewsFeedDataAdapter(
                             context.startActivity(
                                 Intent(context, ArticleDetailsActivity::class.java)
                                     .putExtra("type", "video")
-                                    .putExtra("url", BLOG_IMAGE_BASE_URL + detail.file)
+                                    .putExtra("url", ApiConstant.BLOG_IMAGE_BASE_URL + detail.file)
                                     .putExtra("caption", "")
                                     .putExtra("description", "")
                                     .putExtra("likeCount", detail.countlike)
@@ -177,7 +175,7 @@ class NewsFeedDataAdapter(
                         context.startActivity(
                             Intent(context, ArticleDetailsActivity::class.java)
                                 .putExtra("type", "article")
-                                .putExtra("url", BLOG_IMAGE_BASE_URL + detail.file)
+                                .putExtra("url", ApiConstant.BLOG_IMAGE_BASE_URL + detail.file)
                                 .putExtra("caption", detail.caption)
                                 .putExtra("description", detail.article)
                                 .putExtra("likeCount", detail.countlike)
@@ -219,14 +217,25 @@ class NewsFeedDataAdapter(
                 }
             }
 
+//            for(i in petList){
+//               var position = petList.indexOf(i)
+//                if(position % 2 ==0)
+//                    binding.mainLayout.setBackgroundResource(R.drawable.accept_bg)
+//                else
+//                    binding.mainLayout.setBackgroundResource(R.drawable.blue_bg)
+//            }
+
+            //binding.mainLayout.setBackgroundResource(R.drawable.accept_bg)
         }
     }
 
     fun addData(list: List<NewsFeedDetail>) {
         petList = list as ArrayList<NewsFeedDetail>
         petListFiltered = petList
+
         notifyDataSetChanged()
     }
+
 
     override fun getItemCount(): Int = petListFiltered.size
 
@@ -361,5 +370,20 @@ class NewsFeedDataAdapter(
         }
 
         dialog.show()
+    }
+
+//    override fun onBindViewHolder(
+//        holder: NewsFeedDataAdapter.NewsFeedUploadedDataViewHolder,
+//        position: Int
+//    ) {
+//        holder.bind(petListFiltered[position])
+//    }
+
+    override fun onBindViewHolder(holder: NewsFeedUploadedDataViewHolder, position: Int) {
+        if(position%2 == 0)
+        holder.binding.mainLayout.setBackgroundResource(R.drawable.pink_bg)
+        else
+            holder.binding.mainLayout.setBackgroundResource(R.drawable.accept_bg)
+        holder.bind(petListFiltered[position])
     }
 }
