@@ -28,7 +28,8 @@
             <ImageView
                 android:id="@+id/ivDog"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="650dp"
+                android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/app_name"
                 android:transitionName="adoptDog" />

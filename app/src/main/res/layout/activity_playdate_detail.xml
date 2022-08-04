@@ -11,9 +11,10 @@
     <ImageView
         android:id="@+id/dogImage"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="650dp"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/app_name"
         android:transitionName="adoptDog" />
 

@@ -383,7 +383,7 @@ class NewsfeedAdapterCustom(private var context: Context, private var callingFro
         if(position%2 == 0)
         holder.binding.mainLayout.setBackgroundResource(R.drawable.pink_bg)
         else
-            holder.binding.mainLayout.setBackgroundResource(R.drawable.accept_bg)
+            holder.binding.mainLayout.setBackgroundResource(R.drawable.green_bg)
         holder.bind(petListFiltered[position])
     }
 }

@@ -184,6 +184,7 @@
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/dog_gender_female.xml" value="0.136" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/dog_gender_male_bg.xml" value="0.136" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/doggydoo_tm_text.xml" value="0.136" />
+        <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/green_bg.xml" value="0.141" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/ic_good.xml" value="0.151" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/ic_send.xml" value="0.153" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/drawable/login_white_rec.xml" value="0.136" />
@@ -263,6 +264,7 @@
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/activity_viewall.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/activity_youtube.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/actvity_dogsitting_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/adopt_dog_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/choose_image_option.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/custom_dialog.xml" value="0.253125" />
@@ -321,6 +323,7 @@
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/send.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_call_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_home_feature.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_item_dogsat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_item_newsfeed.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_item_user.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mehul/OneDrive/Desktop/Projects/DoggyDoo-Android/app/src/main/res/layout/single_item_viewall.xml" value="0.25416666666666665" />
