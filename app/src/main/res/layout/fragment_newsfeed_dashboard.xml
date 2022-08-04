@@ -47,82 +47,83 @@ android:layout_height="match_parent">
 
 </RelativeLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/header"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="20dp"
-    android:orientation="vertical">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/where_are_you_going_bg"
-            android:clickable="true"
-            android:focusable="true"
-            android:layoutDirection="rtl"
-            app:queryBackground="@null"   android:theme="@style/customSearchView"
-            app:queryHint="@string/where_are_you_looking_for"
-            app:searchIcon="@drawable/search_icon" />
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/where_are_you_going_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:layoutDirection="rtl"
+                android:theme="@style/customSearchView"
+                app:queryBackground="@null"
+                app:queryHint="@string/where_are_you_looking_for"
+                app:searchIcon="@drawable/search_icon" />
+
+            <TextView
+                android:id="@+id/searchText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:fontFamily="@font/medium"
+                android:text="Where are you going?"
+                android:textColor="#BBBBBB"
+                android:textSize="16sp" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/searchText"
+            android:id="@+id/friends"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:background="@null"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/unselectedtime_bg"
+            android:drawableEnd="@drawable/blue_dropdown_arrow"
+            android:drawablePadding="8dp"
             android:fontFamily="@font/medium"
-            android:text="Where are you going?"
-            android:textColor="#BBBBBB"
-            android:textSize="16sp" />
-    </RelativeLayout>
+            android:paddingStart="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="5dp"
+            android:text="All"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/unselectedtime_bg"
-        android:drawableEnd="@drawable/blue_dropdown_arrow"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/medium"
-        android:paddingStart="15dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="5dp"
-        android:text="All"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/rlHeader"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/cal"
+            app:tabTextColor="#D9CEFF" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/white"
-        app:tabGravity="center"
-        app:tabMode="scrollable"
-        app:layout_constraintTop_toBottomOf="@+id/rlHeader"
-        app:tabSelectedTextColor="@color/cal"
-        app:tabTextColor="#D9CEFF" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/tab_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@+id/tab_tablayout" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/tab_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layout_constraintTop_toBottomOf="@+id/tab_tablayout" />
-
-</LinearLayout>
+    </LinearLayout>
 
 
 <TextView

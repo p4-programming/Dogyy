@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bnb.doggydoo.chatMessage.ChatMessageRequestActivity
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
@@ -59,6 +60,16 @@ class PlayDateMainFrag : Fragment() {
 
         binding.ivBack.setOnClickListener {
             requireActivity().finish()
+        }
+
+        binding.requestIcon.setOnClickListener(){
+
+            startActivity(
+                Intent(requireContext(), ChatMessageRequestActivity::class.java).putExtra(
+                    "from",
+                    "request"
+                )
+            )
         }
 
         binding.tvViewAllUpcoming.setOnClickListener {
