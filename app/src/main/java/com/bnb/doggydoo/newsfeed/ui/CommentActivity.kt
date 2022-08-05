@@ -52,7 +52,9 @@ class CommentActivity : AppCompatActivity() {
             if (binding.etComment.text.trim().isEmpty()) {
                 Toast.makeText(this, "Please mention your comment.", Toast.LENGTH_SHORT).show()
             } else {
+
                 commentPost(newsFeedId)
+
             }
         }
     }

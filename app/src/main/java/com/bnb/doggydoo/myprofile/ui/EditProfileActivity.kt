@@ -141,7 +141,6 @@ class EditProfileActivity : AppCompatActivity() {
     private fun getInit() {
         onBoardingViewModel = ViewModelProvider(this).get(OnBoardingViewModel::class.java)
         myProfileViewModel = ViewModelProvider(this).get(MyProfileViewModel::class.java)
-
         ActivityCompat.requestPermissions(
             this,
             requestArray,
@@ -277,9 +276,7 @@ class EditProfileActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 getLocationDetail()
             }, SPLASH_TIME_OUT.toLong())
-
         }
-
     }
 
     private fun ChooseOption() {

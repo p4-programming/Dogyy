@@ -42,7 +42,6 @@ class RateDogHeroUserActivity : AppCompatActivity() {
 
         heroId = intent.getStringExtra("heroId").toString()
         heroName = intent.getStringExtra("heroName").toString()
-
         binding.tvTitleName.text = heroName
 
         binding.ivBack.setOnClickListener {

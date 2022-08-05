@@ -97,7 +97,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@mipmap/send_arrow_icon" />
+            android:src="@drawable/arrow_up" />
 
     </RelativeLayout>
 

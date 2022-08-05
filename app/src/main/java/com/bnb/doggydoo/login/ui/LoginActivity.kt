@@ -66,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
 
     //initialized view model here
     private lateinit var loginViewModel: LoginViewModel
-
     val TIME_OUT = 60
 
     private lateinit var currentUserPhone: TextView
@@ -83,7 +82,6 @@ class LoginActivity : AppCompatActivity() {
         Manifest.permission.ACCESS_FINE_LOCATION
     )
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = LoginBinding.inflate(layoutInflater)
@@ -94,7 +92,6 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
-
 
     private fun getLocationDetail() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -160,10 +157,8 @@ class LoginActivity : AppCompatActivity() {
             if (!task.isSuccessful) {
                 return@OnCompleteListener
             }
-
             // Get new FCM registration token
             firebaseToke = task.result
-
             // Log and toast
             //  Toast.makeText(baseContext, firebaseToke, Toast.LENGTH_SHORT).show()
         })

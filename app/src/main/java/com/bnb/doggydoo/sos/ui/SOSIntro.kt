@@ -15,11 +15,12 @@ class SOSIntro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdoptionIntroBinding.inflate(layoutInflater)
         CommonMethod.makeTransparentStatusBar(window)
+
         setContentView(binding.root)
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(SOSIntroFragment())
         viewPager.addFragment(SOSDistressFragment())
-        //setContentView(binding.pager)
+       // setContentView(binding.pager)
         binding.pager.adapter = viewPager
     }
 }
