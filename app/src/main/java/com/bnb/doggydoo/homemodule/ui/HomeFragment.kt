@@ -22,15 +22,13 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.callawet.ui.DoctorDetailActivity
-import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.loadImageFromString
-import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.FragmentHomeBinding
 import com.bnb.doggydoo.homemodule.adapter.*
@@ -39,7 +37,6 @@ import com.bnb.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.bnb.doggydoo.login.ui.LoginActivity
 import com.bnb.doggydoo.mydog.ui.PetProfileActivity
 import com.bnb.doggydoo.myprofile.ui.UserProfileActivity
-import com.bnb.doggydoo.newsfeed.adapter.NewsFeedDataAdapter
 import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedDetail
 import com.bnb.doggydoo.newsfeed.ui.NewsfeedAdapterCustom
 import com.bnb.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
@@ -466,7 +463,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         bind.bottomSheetLayout.featuresRv.adapter = HomeFeatureAdapter(
             requireContext(),
             name,
-            bgDrawableIds
+            bgDrawableIds,
+            this
         )
 
         playDateAdapter = HomePlayDateAdapter(requireContext())
@@ -1036,6 +1034,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             }
         }
 
+    }
+
+    fun onSosClicked() {
+        requireView().findNavController().navigate(R.id.action_nav_home_to_SOSDistressFragment)
     }
 
 }
