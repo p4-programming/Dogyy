@@ -22,7 +22,7 @@
         <ImageView
             android:id="@+id/petImage"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY" />

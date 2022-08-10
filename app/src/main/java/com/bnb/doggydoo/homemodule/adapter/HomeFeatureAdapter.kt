@@ -13,9 +13,12 @@ import com.bnb.doggydoo.adoption.ui.AdoptionIntro
 import com.bnb.doggydoo.article.ui.ArticleIntro
 import com.bnb.doggydoo.callawet.ui.CallAWetIntro
 import com.bnb.doggydoo.databinding.SingleHomeFeatureBinding
+
 import com.bnb.doggydoo.dogsitting.ui.DogSittingActivity
+import com.bnb.doggydoo.homemodule.ui.HomeFragment
 import com.bnb.doggydoo.newsfeed.ui.NewsfeedActivity
 import com.bnb.doggydoo.playdate.ui.PlayDateActivity
+import com.bnb.doggydoo.sos.ui.SOSDistressFragment
 import com.bnb.doggydoo.sos.ui.SOSIntro
 import com.bnb.doggydoo.training.ui.TrainingActivity
 
@@ -24,8 +27,13 @@ private const val TAG = "feturedTag"
 class HomeFeatureAdapter(
     var context: Context,
     private val name: Array<String>,
-    private val bgDrawableIds: IntArray
+    private val bgDrawableIds: IntArray,
+    private val listener: HomeFragment
 ) : RecyclerView.Adapter<HomeFeatureAdapter.HomeFeatureViewHolder>() {
+
+    interface onClick{
+        fun onSosClicked()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeFeatureViewHolder {
         return HomeFeatureViewHolder(
@@ -123,7 +131,8 @@ class HomeFeatureAdapter(
                         context.startActivity(Intent(context, ArticleIntro::class.java))
                     }
                     "SOS" -> {
-                        context.startActivity(Intent(context, SOSIntro::class.java))
+                        listener.onSosClicked()
+                        //context.startActivity(Intent(context, SOSIntro::class.java))
                     }
                 }
             }

@@ -10,10 +10,10 @@
     <ImageView
         android:id="@+id/userImage"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="500dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop" />
+        android:scaleType="center"/>
 
     <RelativeLayout
         android:id="@+id/rlHeader"

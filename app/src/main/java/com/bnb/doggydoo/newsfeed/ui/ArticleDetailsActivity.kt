@@ -112,11 +112,14 @@ class ArticleDetailsActivity : AppCompatActivity() {
 
 
         binding.rlDoComment1.setOnClickListener {
+
             startActivity(
+
                 Intent(this, CommentActivity::class.java)
                     .putExtra("newsFeedId", newsFeedId)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
+
         }
 
     }

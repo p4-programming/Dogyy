@@ -17,6 +17,7 @@ class DogSittingActivity : AppCompatActivity() {
         _binding = ActivityDogSittingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         CommonMethod.makeTransparentStatusBar(window)
+
         val viewPager = ViewPager(supportFragmentManager)
         viewPager.addFragment(DogSittingIntroFrag())
         viewPager.addFragment(DogSittingMainFragment())
