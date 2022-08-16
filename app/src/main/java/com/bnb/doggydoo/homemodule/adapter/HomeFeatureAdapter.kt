@@ -13,7 +13,6 @@ import com.bnb.doggydoo.adoption.ui.AdoptionIntro
 import com.bnb.doggydoo.article.ui.ArticleIntro
 import com.bnb.doggydoo.callawet.ui.CallAWetIntro
 import com.bnb.doggydoo.databinding.SingleHomeFeatureBinding
-
 import com.bnb.doggydoo.dogsitting.ui.DogSittingActivity
 import com.bnb.doggydoo.homemodule.ui.HomeFragment
 import com.bnb.doggydoo.newsfeed.ui.NewsfeedActivity

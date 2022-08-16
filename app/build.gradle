@@ -68,6 +68,7 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.6.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.1'
     testImplementation 'junit:junit:4.13.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
@@ -129,6 +130,7 @@ dependencies {
     //Google map
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.karumi:dexter:5.0.0'
 
     //dots indicators
     implementation 'com.tbuonomo:dotsindicator:4.2'

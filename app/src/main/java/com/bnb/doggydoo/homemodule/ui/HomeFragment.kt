@@ -20,7 +20,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.*
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -31,7 +34,8 @@ import com.bnb.doggydoo.callawet.ui.DoctorDetailActivity
 import com.bnb.doggydoo.commonutility.loadImageFromString
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.FragmentHomeBinding
-import com.bnb.doggydoo.homemodule.adapter.*
+import com.bnb.doggydoo.homemodule.adapter.HomeFeatureAdapter
+import com.bnb.doggydoo.homemodule.adapter.HomePlayDateAdapter
 import com.bnb.doggydoo.homemodule.datasource.model.home.MapParkDetail
 import com.bnb.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.bnb.doggydoo.login.ui.LoginActivity
@@ -46,11 +50,15 @@ import com.bnb.doggydoo.sos.ui.DistressPetDetailActivity
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.bnb.doggydoo.utils.network.ApiConstant
+import com.google.android.gms.common.api.Api
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.*
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.CancelableCallback
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -60,6 +68,11 @@ import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 
@@ -75,6 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private val bind get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private var mMap: GoogleMap? = null
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private var mapStyleOptions: MapStyleOptions? = null
@@ -91,6 +105,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private lateinit var newsFeedViewModel: NewsFeedViewModel
     private lateinit var adapter: NewsfeedAdapterCustom
     private var filterType: String = ""
+
+    private var currentPolyline: Polyline? = null
 
 
     override fun onCreateView(
@@ -110,6 +126,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
         initializeBottomSheetAdapters()
 
+//       val mGoogleApiClient = GoogleApiClient.Builder(requireContext())
+//            .addConnectionCallbacks(this@HomeFragment)
+//            .addOnConnectionFailedListener(requireContext())
+//            .addApi(LocationServices.API)
+//            .build()
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
@@ -122,6 +144,31 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             )
             bind.Place.text=null
         }
+    }
+
+    private fun getUrl(origin: LatLng, dest: LatLng, directionMode: String): String? {
+        // Origin of route
+        val str_origin =
+            "origin=" + origin.latitude.toString() + "," + origin.longitude
+        // Destination of route
+        val str_dest =
+            "destination=" + dest.latitude.toString() + "," + dest.longitude
+        // Mode
+        val mode = "mode=$directionMode"
+        // Building the parameters to the web service
+        val parameters = "$str_origin&$str_dest&$mode"
+        // Output format
+        val output = "json"
+        // Building the url to the web service
+        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters&key=" + getString(
+            R.string.google_map_api_key
+        )
+    }
+
+
+    fun onTaskDone(vararg values: Any?) {
+        if (currentPolyline != null) currentPolyline?.remove()
+        currentPolyline = mMap!!.addPolyline(values[0] as PolylineOptions?)
     }
 
 
@@ -365,6 +412,46 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
                         mMap!!.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 
+                       // FetchURL(requireContext()).execute(getUrl(currentLatLng!!, destinationLatLng, "driving"), "driving");
+
+//                        Log.d("TAG", "Current LatLong : "+ currentLatLng)
+//                        Log.d("TAG", "Destination LatLong : "+ destinationLatLng)
+//
+//                        val base_url = "http://maps.googleapis.com/"
+//                       // val base_url = "https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng?.latitude},${currentLatLng?.longitude}&destination=${destinationLatLng.latitude},${destinationLatLng.longitude}&sensor=true&mode=driving&key=" + getString(R.string.google_map_api_key)+"/"
+//                        val origin = currentLatLng.toString()
+//                        val dest = destinationLatLng.toString()
+//
+//                        val retrofit = Retrofit.Builder()
+//                            .baseUrl(base_url)
+//                            .addConverterFactory(GsonConverterFactory.create())
+//                            .build()
+//
+//                        val service = retrofit.create(MyApi::class.java)
+//                        service.getJson(origin, dest).enqueue(object : Callback<DirectionResults> {
+//                            override fun onResponse(
+//                                call: Call<DirectionResults>,
+//                                response: Response<DirectionResults>
+//                            ) {
+//                                Log.d("CallBack", " response is $response")
+//                                val routeA: Route = response.body()!!.getRoutes()!!.get(0)
+//                                val legs = routeA.legses[0]
+//                            }
+//
+//                            override fun onFailure(call: Call<DirectionResults>, t: Throwable) {
+//                                Log.d("CallBack", " Throwable is $t")
+//                            }
+//                        })
+
+//                        mMap!!.addPolyline(
+//                            PolylineOptions()
+//                                .add(currentLatLng)
+//                                .add(destinationLatLng)
+//                                .width(12f)
+//                                .color(Color.BLACK)
+//
+//                        )
+
                     }
                 }
                 AutocompleteActivity.RESULT_ERROR -> {
@@ -382,6 +469,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+//    private fun getDirectionURL(origin:LatLng, dest:LatLng) : String{
+//        return "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=true&mode=driving&key=AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc"
+//    }
 
     private fun getLocationDetail() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
@@ -1041,3 +1132,4 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     }
 
 }
+
