@@ -156,54 +156,60 @@ class NewsfeedAdapterCustom(private var context: Context, private var callingFro
                         )
                     }
 
-                } else {
-                    imageLayout.hide()
-                    articleLayout.show()
-
-                    content.text = detail.article
-                    title.text = detail.caption
-                    tvLike.text = detail.countlike
-                    tvComment.text = detail.commentcount
-
-                    if (detail.like == "1") {
-                        ivDoLike.setColorFilter(ContextCompat.getColor(context, R.color.red))
-                    } else {
-                        ivDoLike.setColorFilter(ContextCompat.getColor(context, R.color.black))
-                    }
-
-                    articleLayout.setOnClickListener {
-                        context.startActivity(
-                            Intent(context, ArticleDetailsActivity::class.java)
-                                .putExtra("type", "article")
-                                .putExtra("url", ApiConstant.BLOG_IMAGE_BASE_URL + detail.file)
-                                .putExtra("caption", detail.caption)
-                                .putExtra("description", detail.article)
-                                .putExtra("likeCount", detail.countlike)
-                                .putExtra("commentCount", detail.commentcount)
-                                .putExtra("isLiked", detail.like)
-                                .putExtra("newsfeedId", detail.id)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        )
-                    }
-
-
-                    rlDoLike.setOnClickListener {
-                        if (detail.like == "1") {
-                            callRequestedUserInfo(detail.id, "unlike")
-                        } else {
-                            callRequestedUserInfo(detail.id, "like")
-                        }
-
-                    }
-
-                    rlDoComment.setOnClickListener {
-                        context.startActivity(
-                            Intent(context, CommentActivity::class.java)
-                                .putExtra("newsFeedId", detail.id)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        )
-                    }
                 }
+
+//                else {
+//                    imageLayout.hide()
+//                    articleLayout.show()
+//
+//                    //rn
+//                    binding.mainLayout.visibility= View.GONE
+//                   // binding.articleLayout.visibility=View.GONE
+//
+//                    content.text = detail.article
+//                    title.text = detail.caption
+//                    tvLike.text = detail.countlike
+//                    tvComment.text = detail.commentcount
+//
+//                    if (detail.like == "1") {
+//                        ivDoLike.setColorFilter(ContextCompat.getColor(context, R.color.red))
+//                    } else {
+//                        ivDoLike.setColorFilter(ContextCompat.getColor(context, R.color.black))
+//                    }
+//
+//                    articleLayout.setOnClickListener {
+//                        context.startActivity(
+//                            Intent(context, ArticleDetailsActivity::class.java)
+//                                .putExtra("type", "article")
+//                                .putExtra("url", ApiConstant.BLOG_IMAGE_BASE_URL + detail.file)
+//                                .putExtra("caption", detail.caption)
+//                                .putExtra("description", detail.article)
+//                                .putExtra("likeCount", detail.countlike)
+//                                .putExtra("commentCount", detail.commentcount)
+//                                .putExtra("isLiked", detail.like)
+//                                .putExtra("newsfeedId", detail.id)
+//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        )
+//                    }
+//
+//
+//                    rlDoLike.setOnClickListener {
+//                        if (detail.like == "1") {
+//                            callRequestedUserInfo(detail.id, "unlike")
+//                        } else {
+//                            callRequestedUserInfo(detail.id, "like")
+//                        }
+//
+//                    }
+//
+//                    rlDoComment.setOnClickListener {
+//                        context.startActivity(
+//                            Intent(context, CommentActivity::class.java)
+//                                .putExtra("newsFeedId", detail.id)
+//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        )
+//                    }
+//                }
 
 
                 ivMenu.setOnClickListener {

@@ -63,6 +63,9 @@
         android:theme="@style/Theme.DoggyDooBase.NoActionBar"
         android:usesCleartextTraffic="true">
 
+
+
+
         <activity android:name="com.bnb.doggydoo.auth.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -417,6 +420,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <receiver android:name="com.bnb.doggydoo.firebaseChat.Notification.NotificationService" />
 
