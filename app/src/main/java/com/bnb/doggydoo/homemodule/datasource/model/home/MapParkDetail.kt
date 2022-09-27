@@ -19,4 +19,9 @@ data class MapParkDetail(
     var park_longitute: String,
     @SerializedName("km")
     var km: String,
+    @SerializedName("status")
+    var status: String,
+    @SerializedName("sosType")
+    var sosType: String,
+
 )

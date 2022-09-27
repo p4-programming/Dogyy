@@ -61,7 +61,6 @@ class SOSMainFragment : Fragment() {
             //addDistressPetFirebase(CommonMethod.getTimeStamp(),pin_latitude, pin_longitude)
             addDistressPetAPI(pin_latitude, pin_longitude)
         }
-
         return binding.root
     }
 
@@ -162,7 +161,8 @@ class SOSMainFragment : Fragment() {
             "current description",
             pinLatitude,
             pinLongitude,
-            MultipartFile.prepareFilePart(requireContext(), "pet_image[]", uri)
+            MultipartFile.prepareFilePart(requireContext(), "pet_image[]", uri),
+            args.type
         )
             .observe(requireActivity(), Observer {
                 when (it.status) {

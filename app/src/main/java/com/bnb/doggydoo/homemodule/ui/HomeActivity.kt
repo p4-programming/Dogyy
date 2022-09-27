@@ -60,14 +60,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_fragment)
         navView.setupWithNavController(navController)
-
         menuIcon = binding.mainContent.hamburger
-
         binding.mainContent.pback.setOnClickListener(){
             val intent = Intent(this,OnBoardingActivity::class.java)
             startActivity(intent)
@@ -86,8 +83,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         name = header.findViewById(R.id.tvUserName)
         userMobile = header.findViewById(R.id.tvMobile)
         email = header.findViewById(R.id.tvEmail)
-
-
         drawerLayout.closeDrawer(Gravity.LEFT)
 
         //open drawer from hamburger icon
@@ -156,7 +151,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog)
-
         val text = dialog.findViewById<View>(R.id.text_dialog) as TextView
         val yesButton = dialog.findViewById<View>(R.id.btYes) as Button
         val noButton = dialog.findViewById<View>(R.id.btNo) as Button
@@ -229,7 +223,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 )
             }
             R.id.message -> {
-                //navController.navigate(R.id.messageFrag)
+//                navController.navigate(R.id.messageFrag)
                 startActivity(
                     Intent(this, ChatMessageRequestActivity::class.java).putExtra(
                         "from",
@@ -239,6 +233,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myCalendar -> {
                 navController.navigate(R.id.UpcomingFrag)
+            }
+            R.id.faqs -> {
+                navController.navigate(R.id.nav_faqs)
             }
         }
         return true
@@ -251,14 +248,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             a.addCategory(Intent.CATEGORY_HOME)
             a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(a)
-
             return
         }
         this.doubleBackToExitPressedOnce = true
         CommonMethod.showSnack(binding.drawerLayout, "Please click BACK agafin to exit")
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            doubleBackToExitPressedOnce = false
+        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false
         }, 2000)
     }
 }

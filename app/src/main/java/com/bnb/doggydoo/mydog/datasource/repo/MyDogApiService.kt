@@ -3,6 +3,7 @@ package com.bnb.doggydoo.mydog.datasource.repo
 import com.bnb.doggydoo.mydog.datasource.model.EditPetProfileResponse
 import com.bnb.doggydoo.mydog.datasource.model.PetDocResponse
 import com.bnb.doggydoo.mydog.datasource.model.PetReminderResponse
+import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
 import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.DistressPetResponse
 import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.PetDescriptionResponse
 import com.bnb.doggydoo.myprofile.datasource.model.UserImageUploadResponse
@@ -46,6 +47,15 @@ interface MyDogApiService {
         @Field("pet_id") pet_id: String,
         @Field("user_id") user_id: String
     ): Response<PetDescriptionResponse>
+
+
+
+    @FormUrlEncoded
+    @POST("AuthApi/getalldistresspetbyuserid")
+    suspend fun getAllDistressPetByUserid(
+        @Field("user_id") user_id: String
+    ): Response<getDistressPinByUserID>
+
 
     /**
      * Get Dog's Document
@@ -104,7 +114,8 @@ interface MyDogApiService {
         @Part("pet_description") pet_name: RequestBody,
         @Part("lattitute") lattitute: RequestBody,
         @Part("longitute") longitute: RequestBody,
-        @Part pet_image: MultipartBody.Part
+        @Part pet_image: MultipartBody.Part,
+        @Part("type") type: RequestBody,
     ): Response<PetReminderResponse>
 
     @FormUrlEncoded

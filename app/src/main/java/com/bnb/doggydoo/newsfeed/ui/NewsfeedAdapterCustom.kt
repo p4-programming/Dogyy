@@ -321,7 +321,6 @@ class NewsfeedAdapterCustom(private var context: Context, private var callingFro
                             .putExtra("clicked_user_id",userId)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     )
-
                 }
                 dialog.dismiss()
             }

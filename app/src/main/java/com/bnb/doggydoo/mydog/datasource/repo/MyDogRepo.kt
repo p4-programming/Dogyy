@@ -46,6 +46,18 @@ constructor(
             )
         }
     )
+
+    fun getalldistresspetbyuserid(
+        user_id:String
+    ) = resultLiveData(
+        networkCall = {
+            remoteMyDogDataSource.getalldistresspetbyuserid(
+                user_id
+            )
+        }
+    )
+
+
  fun updatePetDocumentLiveData(
      petId: String,
      caption: String,
@@ -126,12 +138,13 @@ constructor(
         pet_description: String,
         lattitute: String,
         longitute: String,
-        profile: MultipartBody.Part
+        profile: MultipartBody.Part,
+        type: String
     ) = resultLiveData(
         networkCall = {
             remoteMyDogDataSource.distressPinPetResponse(
                 user_id,pet_description,lattitute,longitute,
-                profile
+                profile,type
             )
         }
     )

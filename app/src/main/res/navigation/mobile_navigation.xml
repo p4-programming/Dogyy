@@ -60,6 +60,12 @@
         tools:layout="@layout/fragment_my_friends" />
 
     <fragment
+        android:id="@+id/nav_faqs"
+        android:name="com.bnb.doggydoo.homemodule.ui.Faqs"
+        android:label="faqs"
+        tools:layout="@layout/fragment_faqs"/>
+
+    <fragment
         android:id="@+id/paymentFrag"
         android:name="com.bnb.doggydoo.homemodule.ui.PaymentFrag"
         android:label="fragment_payment"
@@ -70,6 +76,7 @@
         android:name="com.aks.doggydoo.homemodule.ui.RequestFrag"
         android:label="fragment_request"
         tools:layout="@layout/fragment_request" />-->
+
     <fragment
         android:id="@+id/UpcomingFrag"
         android:name="com.bnb.doggydoo.homemodule.ui.UpcomingFrag"

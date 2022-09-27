@@ -42,6 +42,7 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfirmsoslocationBinding
     private var pinLatitude: String = ""
     private var pinLongitude: String = ""
+    private var type: String = ""
     private val myDogViewModel: MyDogViewModel by viewModels()
     private val REQUEST_PERMISSION = 100
     private var uri: Uri? = null
@@ -178,7 +179,8 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
             binding.etPetDescription.text.toString(),
             pinLatitude,
             pinLongitude,
-            MultipartFile.prepareFilePart(this, "pet_image[]", uri)
+            MultipartFile.prepareFilePart(this, "pet_image[]", uri),
+            type
         )
             .observe(this, Observer {
                 when (it.status) {

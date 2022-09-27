@@ -49,7 +49,6 @@
         </intent>
     </queries>
 
-
     <application
         android:name="com.bnb.doggydoo.utils.MyApp"
         android:allowBackup="false"
@@ -62,10 +61,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoggyDooBase.NoActionBar"
         android:usesCleartextTraffic="true">
-
-
-
-
+        <activity
+            android:name="com.bnb.doggydoo.mydog.ui.MarkResolved"
+            android:exported="false" />
         <activity android:name="com.bnb.doggydoo.auth.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -316,7 +314,7 @@
         <activity
             android:name="com.bnb.doggydoo.firebaseChat.ChatActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.bnb.doggydoo.firebaseChat.ChatImageFullActivity"
             android:screenOrientation="portrait"
@@ -353,6 +351,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name="com.bnb.doggydoo.sos.ui.MyThread"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name="com.bnb.doggydoo.sos.ui.DistressPetDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
@@ -372,19 +374,20 @@
             android:name="com.bnb.doggydoo.videocall.VideoConferenceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name="com.bnb.doggydoo.videocall.ReceiverActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name="com.bnb.doggydoo.mydog.ui.SelectStartDateTimeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name="com.bnb.doggydoo.mydog.ui.SelectEndDateTimeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.bnb.doggydoo.mydog.ui.DDPActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
@@ -425,12 +428,9 @@
             android:value="@integer/google_play_services_version" />
 
         <receiver android:name="com.bnb.doggydoo.firebaseChat.Notification.NotificationService" />
-
-
         <receiver
             android:name="com.bnb.doggydoo.auth.MyBroadcastReceiver"
             android:exported="false" />
-
     </application>
 
 </manifest>

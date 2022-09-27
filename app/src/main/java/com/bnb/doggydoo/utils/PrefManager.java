@@ -13,7 +13,6 @@ public class PrefManager {
         this.context = context;
         pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = pref.edit();
-
     }
 
     public static final String USER_ID = "user_id";
@@ -29,6 +28,7 @@ public class PrefManager {
     public static final String USER_CURRENT_LAT = "latitude";
     public static final String USER_CURRENT_LONG = "longitude";
     public static final String NEWS_TYPE_FILTER = "newsfilter";
+    public static final String TYPE = "type";
 
     public void setUSERId(String USER_id) {
         editor.putString(USER_ID, USER_id);
@@ -65,7 +65,6 @@ public class PrefManager {
     public String getUserMobile() {
         return pref.getString(USER_MOBILE, "");
     }
-
 
     public void setCallerId(String caller_id) {
         editor.putString(CALLER_ID, caller_id);
@@ -152,6 +151,16 @@ public class PrefManager {
 
     public String getNewsTypeFilter() {
         return pref.getString(NEWS_TYPE_FILTER, "");
+    }
+
+
+    public void setType(String type){
+        editor.putString(TYPE,type);
+        editor.commit();
+    }
+
+    public String getType(){
+        return pref.getString(TYPE,"");
     }
 
 }

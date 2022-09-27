@@ -39,7 +39,6 @@ class HomeViewModel @Inject constructor(private var homeRepo: HomeRepo) :
     fun getAllUser(user_id: String) =
         homeRepo.getAllUserReqLiveData(user_id)
 
-
     fun getAllUserReminder(user_id: String, type: String) =
         homeRepo.getAllReminderLiveData(user_id, type)
 

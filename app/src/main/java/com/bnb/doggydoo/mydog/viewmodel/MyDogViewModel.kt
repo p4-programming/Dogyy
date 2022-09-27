@@ -15,6 +15,10 @@ class MyDogViewModel @Inject constructor(var dogRepo: MyDogRepo) : ViewModel() {
     fun getPetDescriptionData(pet_id: String, user_id: String) =
         dogRepo.updatePetDescriptionPostLiveData(pet_id, user_id)
 
+
+    fun getPetDescriptionDatas(user_id: String) =
+        dogRepo.getalldistresspetbyuserid(user_id)
+
     fun getPostReminderData(
         petId: String,
         petTypeId: String,
@@ -80,17 +84,16 @@ class MyDogViewModel @Inject constructor(var dogRepo: MyDogRepo) : ViewModel() {
     ) =
         dogRepo.deletePetPostLiveData(reminder_id,user_id)
 
-
     fun getDistressPetData(
         user_id: String,
         pet_description: String,
         lattitute: String,
         longitute: String,
-        profile: MultipartBody.Part
+        profile: MultipartBody.Part,
+        type: String
     ) =
         dogRepo.distressPetPostLiveData(user_id,pet_description,lattitute,longitute,
-            profile)
-
+            profile,type)
 
     fun getDistressPetDetailData(
         pet_id: String

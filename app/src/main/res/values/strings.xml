@@ -163,16 +163,33 @@
     <string name="adoption_guide2"><font color="#F9BBC4">Reference image</font></string>
     <string name="lost_found_section"><![CDATA[Lost & found section]]></string>
     <string name="type_message">Type message</string>
-    <string name="this_feature_will">This feature will enable you to help a doggo spotted in distress by sending the location to nearby rescue medical teams &amp; shelter volunteers. <br><br>Choose either of the options to flag a dog in distress.</br></br></string>
+    <string name="this_feature_will">This feature will enable you to help a doggo spotted in distress by sending the location to nearby rescue medical teams &amp; shelter volunteers. <br><br>Choose either of the options to flag a dog in distress.\n</br></br></string>
     <string name="sends_your">Sends your current location, so you may leave the area while marking it for heroes able to help.</string>
     <string name="manually_drop">Manually drop a pin not restricted to location, stay anywhere and help mark the dogs in need of rescue or medical help.</string>
     <string name="agree_to_distress">Agree to <font color="#5935D5"><u>Distress Dog Terms &amp; Conditions.</u></font></string>
+    <string name="stof_nbys">Send to friends, nearby Shelters &amp; Volunteers (Recommended)</string>
+    <string name="send_to_friend">Send to friends</string>
     <string name="distress_location">Distress location was sent to the nearby rescue medical teams &amp; shelter volunteers.</string>
     <string name="you_are_a_true_hero">You are a true hero! We have also recommended your profile for DoggyDoo Heroes Badge.</string>
     <string name="thank_you_for">Thank you for making this a better place for our four legged friends.</string>
     <string name="are_you_sure_you">Are you sure you want to put up a notification for a dog in distress? if yes, select yes and continue.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="paragraph1">What is DoggyDoo mobile application about</string>
+    <string name="paragraph2">Doggy Doo is an environment for canine lovers. It is a functional virtual network of canine parents aiming to simplify and improve their canine parenting life, helping them to spend more quality time with their beloved furry best friend. \n\nDoggy Doo is a platform that can make it easier than ever to schedule your dog play dates, line up veterinarian visits, or even find someone to watch your dogs while you spend a weekend away.</string>
+    <string name="paragraph3">How do I put my dog for adoption?</string>
+    <string name="paragraph4">We firmly believe all dogs belong in a home with a loving family. To put your dog for adoption: \n\n - Go to profile \n - click on Pets profile \n - Tap &quot;Adoption Toggle/Switch&quot; &amp; agreeing terms. \n - upon successful adoption pet shall be transferred to adoption parent. </string>
+    <string name="paragraph5">How do I create my playdate?</string>
+    <string name="paragraph6">To create a pawsome PlayDate for your furry best friend: \n - Go to the playdate module \n - Select nearby pet \n - Select Date Time \n - Wait for playdate request approval. \n - upon approval notification, we are all set for an amazing playdate!</string>
+    <string name="paragraph7">Where do I report an issue?</string>
+    <string name="paragraph8">If you notice that something on DoggyDoo isn\'t working correctly, such as a broken feature or a technical problem, try updating the app. If it\'s still not working after updating, you can report it to us. Make sure that you include as much detail about the problem as possible in your report. Information such as the kind of phone or tablet you were using, what you were doing when the problem occurred and adding a screenshot may help us address the issue. \n\nTo Report a problem, email us at developer.doggydoo@gmail.com. Reporting issues when they happen helps make DoggyDoo better, and we appreciate the time it takes to give us this information.</string>
+    <string name="paragraph9">How is my privacy protected?</string>
+    <string name="paragraph10">We pay close attention to all Data Protection regulations and are totally obsessed with securing your privacy and confidentiality. Everything you tell your instructor is protected by data protection legislation.\n\n</string>
+
+    <string name="navigate">Navigate</string>
+    <string name="view_my_thread">View My Thread</string>
 
 
 </resources>

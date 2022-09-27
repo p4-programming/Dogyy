@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/chat_b"
+    android:layout_above="@+id/llProgress"
     tools:context=".firebaseChat.ChatActivity">
 
     <ProgressBar
@@ -14,10 +15,22 @@
         android:visibility="gone"
         android:layout_height="wrap_content"/>
 
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:id="@+id/toolbar"-->
+<!--        >-->
+
     <RelativeLayout
         android:id="@+id/rlHeader"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="35dp"
         android:background="@drawable/chat_bg"
         android:elevation="10dp"
         android:orientation="horizontal">
@@ -27,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
             android:contentDescription="@string/app_name"
             android:padding="10dp"
             android:src="@drawable/back_icon"
@@ -48,9 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:maxLines="1"
             android:layout_toEndOf="@+id/profileImage"
             android:fontFamily="sans-serif-condensed-medium"
+            android:maxLines="1"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black" />
 
@@ -84,16 +98,17 @@
             app:tint="@color/white" />
 
     </RelativeLayout>
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_above="@+id/llProgress"
         android:layout_below="@+id/rlHeader"
-        android:layout_marginTop="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/llProgress"
@@ -121,56 +136,39 @@
             android:textColor="@color/black" />
 
     </LinearLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/llChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
         android:background="@drawable/white_bg"
+        android:layout_margin="5dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/etChat"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_toStartOf="@+id/ivSend"
-            android:layout_toLeftOf="@+id/ivSend"
-            android:background="@android:color/transparent"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:hint="@string/type_message"
-            android:paddingStart="20dp"
-            android:paddingLeft="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="Start Typing"
+            android:inputType="textCapSentences|textMultiLine"
+            android:padding="15dp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/ivSendImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/ivSend"
-            android:layout_toLeftOf="@+id/ivSend"
-            android:contentDescription="@string/app_name"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
             android:src="@drawable/ic_send" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/ivSend"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/app_name"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
             android:src="@mipmap/outline_send_black_24" />
 
-    </RelativeLayout>
-
-
+    </LinearLayout>
 </RelativeLayout>

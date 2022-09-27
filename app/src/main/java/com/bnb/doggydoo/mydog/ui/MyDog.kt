@@ -78,7 +78,6 @@ class MyDog : AppCompatActivity() {
         petReminder = MyPetReminder(this)
         binding.documentRv.adapter = petDocumentAdapter
         binding.reminderRv.adapter = petReminder
-
         binding.llReminder.visibility = View.GONE
         binding.reminderRv.addOnItemTouchListener(
             RecyclerTouchListener(

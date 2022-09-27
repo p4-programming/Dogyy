@@ -7,13 +7,17 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.media.AudioRouting
+import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,6 +43,7 @@ import com.bnb.doggydoo.homemodule.adapter.HomePlayDateAdapter
 import com.bnb.doggydoo.homemodule.datasource.model.home.MapParkDetail
 import com.bnb.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.bnb.doggydoo.login.ui.LoginActivity
+import com.bnb.doggydoo.mydog.ui.DDPActivity
 import com.bnb.doggydoo.mydog.ui.PetProfileActivity
 import com.bnb.doggydoo.myprofile.ui.UserProfileActivity
 import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedDetail
@@ -51,6 +56,7 @@ import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.bnb.doggydoo.utils.network.ApiConstant
 import com.google.android.gms.common.api.Api
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -67,7 +73,12 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.storage.FileDownloadTask
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.jetbrains.annotations.NotNull
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,7 +99,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     private val bind get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private var mMap: GoogleMap? = null
-
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private var mapStyleOptions: MapStyleOptions? = null
@@ -97,23 +107,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
     var currentLang: String = ""
     var mcurrentLat: String = ""
     var mcurrentLang: String = ""
+    var destinationLatLng: LatLng? = null
     var isAllFabsVisible: Boolean? = null
     var placesClient: PlacesClient? = null
     private var clieckedType: String = "allexplore"
     private val AUTOCOMPLETE_REQUEST_CODE = 1
-
     private lateinit var newsFeedViewModel: NewsFeedViewModel
     private lateinit var adapter: NewsfeedAdapterCustom
     private var filterType: String = ""
-
     private var currentPolyline: Polyline? = null
+    var apiKey: String = ""
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         return bind.root
     }
@@ -123,9 +128,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         getInit()
         getLocationDetail()
         getUserStatusApi()
-
         initializeBottomSheetAdapters()
-
+        val ai: ApplicationInfo = context!!.packageManager
+            .getApplicationInfo(context!!.packageName, PackageManager.GET_META_DATA)
+        val value = ai.metaData["com.google.android.geo.API_KEY"]
+        apiKey = value.toString()
 //       val mGoogleApiClient = GoogleApiClient.Builder(requireContext())
 //            .addConnectionCallbacks(this@HomeFragment)
 //            .addOnConnectionFailedListener(requireContext())
@@ -142,35 +149,34 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 MyApp.getSharedPref().userLong,
                 clieckedType
             )
-            bind.Place.text=null
         }
+        bind.Place.text=null
+
     }
 
-    private fun getUrl(origin: LatLng, dest: LatLng, directionMode: String): String? {
-        // Origin of route
-        val str_origin =
-            "origin=" + origin.latitude.toString() + "," + origin.longitude
-        // Destination of route
-        val str_dest =
-            "destination=" + dest.latitude.toString() + "," + dest.longitude
-        // Mode
-        val mode = "mode=$directionMode"
-        // Building the parameters to the web service
-        val parameters = "$str_origin&$str_dest&$mode"
-        // Output format
-        val output = "json"
-        // Building the url to the web service
-        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters&key=" + getString(
-            R.string.google_map_api_key
-        )
-    }
+//    private fun getUrl(origin: LatLng, dest: LatLng, directionMode: String): String? {
+//        // Origin of route
+//        val str_origin =
+//            "origin=" + origin.latitude.toString() + "," + origin.longitude
+//        // Destination of route
+//        val str_dest =
+//            "destination=" + dest.latitude.toString() + "," + dest.longitude
+//        // Mode
+//        val mode = "mode=$directionMode"
+//        // Building the parameters to the web service
+//        val parameters = "$str_origin&$str_dest&$mode"
+//        // Output format
+//        val output = "json"
+//        // Building the url to the web service
+//        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters&key=" + getString(
+//            R.string.google_map_api_key
+//        )
+//    }
 
-
-    fun onTaskDone(vararg values: Any?) {
-        if (currentPolyline != null) currentPolyline?.remove()
-        currentPolyline = mMap!!.addPolyline(values[0] as PolylineOptions?)
-    }
-
+//    fun onTaskDone(vararg values: Any?) {
+//        if (currentPolyline != null) currentPolyline?.remove()
+//        currentPolyline = mMap!!.addPolyline(values[0] as PolylineOptions?)
+//    }
 
     private fun getInit() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -182,7 +188,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
         bind.Place.setOnClickListener {
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-
             // Start the autocomplete intent.
             val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
                 .build(requireContext())
@@ -201,7 +206,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         bind.filterData.setOnClickListener {
             exploreDialog()
         }
-
     }
 
     private fun exploreDialog() {
@@ -350,13 +354,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             mMap!!.addMarker(
                 MarkerOptions().icon(
                     BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
+                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
                 ).position(currentLatLng!!).title("You")
             )
             mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
             mMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng!!))
         }
-
         dialog.show()
     }
 
@@ -370,55 +373,69 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 Activity.RESULT_OK -> {
                     data?.let {
                         val place = Autocomplete.getPlaceFromIntent(data)
-                        Log.i(TAG, "Place: ${place.name}, ${place.id}")
+                        mMap!!.clear()
+                        Log.d("Deepak", "Place: ${place.name}, ${place.id}")
                         bind.Place.text = place.name
-                        val destinationLatLng: LatLng? = place.latLng
+                        Log.d("Deepak","Place : "+bind.Place.text)
+                        destinationLatLng = place.latLng
                         mcurrentLat = destinationLatLng?.latitude.toString()
                         mcurrentLang = destinationLatLng?.longitude.toString()
 
-                        getMapDateApi(mcurrentLat, mcurrentLang, "allexplore")
-                        MyApp.getSharedPref().userLat = mcurrentLat
-                        MyApp.getSharedPref().userLong = mcurrentLang
-
-                        mMap!!.addMarker(
-                            MarkerOptions().icon(
-                                BitmapDescriptorFactory
-                                    .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
-                            ).position(destinationLatLng!!).title("You")
+                        val destinationLocation = LatLng(
+                            MyApp.getSharedPref().userLat.toDouble(),
+                            MyApp.getSharedPref().userLong.toDouble()
                         )
 
-                        val cameraPosition = CameraPosition.Builder()
-                            .target(destinationLatLng)
-                            .bearing(45f)
-                            .tilt(90f)
-                            .zoom(18f)
-                            .build()
+                        val originLocation = place.latLng
+                        mMap!!.addMarker(MarkerOptions().position(originLocation))
+                        mMap!!.addMarker(MarkerOptions().position(destinationLocation))
+                        val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
+                        GetDirection(urll).execute()
+                        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
 
-                        mMap!!.animateCamera(
-                            CameraUpdateFactory.newCameraPosition(cameraPosition),
-                            3000,
-                            object : CancelableCallback {
-                                override fun onFinish() {
-                                    //  Toast.makeText(requireContext(), "Finished", Toast.LENGTH_SHORT).show()
-                                }
-
-                                override fun onCancel() {
-                                    // Toast.makeText(requireContext(), "Cancel", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        )
-
-                        // mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
-
-                        mMap!!.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-
-                       // FetchURL(requireContext()).execute(getUrl(currentLatLng!!, destinationLatLng, "driving"), "driving");
-
-//                        Log.d("TAG", "Current LatLong : "+ currentLatLng)
-//                        Log.d("TAG", "Destination LatLong : "+ destinationLatLng)
+//                        getMapDateApi(mcurrentLat, mcurrentLang, "allexplore")
+//                        MyApp.getSharedPref().userLat = mcurrentLat
+//                        MyApp.getSharedPref().userLong = mcurrentLang
+//
+//                        mMap!!.addMarker(
+//                            MarkerOptions().icon(
+//                                BitmapDescriptorFactory
+//                                    .defaultMarker(BitmapDescriptorFactory.HUE_RED)
+//                            ).position(destinationLatLng!!).title("You")
+//                        )
+//
+//                        val cameraPosition = CameraPosition.Builder()
+//                            .target(destinationLatLng)
+//                            .bearing(45f)
+//                            .tilt(90f)
+//                            .zoom(18f)
+//                            .build()
+//
+//                        mMap!!.animateCamera(
+//                            CameraUpdateFactory.newCameraPosition(cameraPosition),
+//                            3000,
+//                            object : CancelableCallback {
+//                                override fun onFinish() {
+//                                    //  Toast.makeText(requireContext(), "Finished", Toast.LENGTH_SHORT).show()
+//                                }
+//
+//                                override fun onCancel() {
+//                                    // Toast.makeText(requireContext(), "Cancel", Toast.LENGTH_SHORT).show()
+//                                }
+//                            }
+//                        )
+//
+//                        // mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
+//
+//                        mMap!!.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+//
+//                       // FetchURL(requireContext()).execute(getUrl(currentLatLng!!, destinationLatLng, "driving"), "driving");
+//
+//                        Log.d("Deepak", "Current LatLong : "+ currentLatLng)
+//                        Log.d("Deepak", "Destination LatLong : "+ destinationLatLng)
 //
 //                        val base_url = "http://maps.googleapis.com/"
-//                       // val base_url = "https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng?.latitude},${currentLatLng?.longitude}&destination=${destinationLatLng.latitude},${destinationLatLng.longitude}&sensor=true&mode=driving&key=" + getString(R.string.google_map_api_key)+"/"
+////                        val base_url = "https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng?.latitude},${currentLatLng?.longitude}&destination=${destinationLatLng.latitude},${destinationLatLng.longitude}&sensor=true&mode=driving&key=" + getString(R.string.google_map_api_key)+"/"
 //                        val origin = currentLatLng.toString()
 //                        val dest = destinationLatLng.toString()
 //
@@ -433,46 +450,60 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 //                                call: Call<DirectionResults>,
 //                                response: Response<DirectionResults>
 //                            ) {
-//                                Log.d("CallBack", " response is $response")
-//                                val routeA: Route = response.body()!!.getRoutes()!!.get(0)
-//                                val legs = routeA.legses[0]
+//                                try {
+//                                    Log.d("Deepak", " response is : $response")
+//                                    val routeA = response.body()!!.getRoutes()!!.get(0)
+//                                    val legs = routeA.legses[0]
+//                                }finally{
+//                                    Log.d("Deepak", " finally")
+//                                    return
+//                                }
 //                            }
 //
 //                            override fun onFailure(call: Call<DirectionResults>, t: Throwable) {
 //                                Log.d("CallBack", " Throwable is $t")
 //                            }
 //                        })
-
+//
 //                        mMap!!.addPolyline(
 //                            PolylineOptions()
 //                                .add(currentLatLng)
 //                                .add(destinationLatLng)
 //                                .width(12f)
-//                                .color(Color.BLACK)
-//
+//                                .color(Color.CYAN)
 //                        )
-
-                    }
-                }
-                AutocompleteActivity.RESULT_ERROR -> {
-                    // TODO: Handle the error.
-                    data?.let {
-                        val status = Autocomplete.getStatusFromIntent(data)
-                        Log.i(TAG, status.statusMessage!!)
-                    }
-                }
-                Activity.RESULT_CANCELED -> {
-                    // The user canceled the operation.
-                }
-            }
-            return
-        }
-        super.onActivityResult(requestCode, resultCode, data)
+//                    }
+//                }
+//                AutocompleteActivity.RESULT_ERROR -> {
+//                    // TODO: Handle the error.
+//                    data?.let {
+//                        val status = Autocomplete.getStatusFromIntent(data)
+//                        Log.i(TAG, status.statusMessage!!)
+//                    }
+//                }
+//                Activity.RESULT_CANCELED -> {
+//                    // The user canceled the operation.
+//                }
+//            }
+//            return
+//        }
+//        super.onActivityResult(requestCode, resultCode, data)
     }
+                }}}}
 
 //    private fun getDirectionURL(origin:LatLng, dest:LatLng) : String{
 //        return "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=true&mode=driving&key=AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc"
 //    }
+
+
+    private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String{
+        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}" +
+                "&destination=${dest.latitude},${dest.longitude}" +
+                "&sensor=false" +
+                "&mode=driving" +
+                "&key=$secret"
+    }
+
 
     private fun getLocationDetail() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
@@ -508,6 +539,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             }
         }
     }
+
     private fun buildAlertMessageNoGps() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
@@ -531,7 +563,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             "Find a vet",
           //  "Article",
           //  "Training"
-
         )
         val bgDrawableIds = intArrayOf(
             R.raw.playdate_lottie,
@@ -549,8 +580,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             R.mipmap.calavet,
             //R.mipmap.article, // article
           //  R.mipmap.training,
-
             )
+        
         bind.bottomSheetLayout.featuresRv.adapter = HomeFeatureAdapter(
             requireContext(),
             name,
@@ -560,7 +591,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
         playDateAdapter = HomePlayDateAdapter(requireContext())
         bind.bottomSheetLayout.pladateRv.adapter = playDateAdapter
-        //getPlayDateApi()
+//        getPlayDateApi()
 
         setUpNewsfeed()
     }
@@ -724,11 +755,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             viewLifecycleOwner, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {
-
                     }
                     Result.Status.SUCCESS -> {
-
-
                         if (it.data!!.responseCode == ("0")) {
                             //binding.noData.show()
                             return@Observer
@@ -768,35 +796,35 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 })
     }
 
-    private fun getPlayDateApi() {
-        homeViewModel.getUpcomingPlayDateResponse(
-            MyApp.getSharedPref().userId,
-            currentLat,
-            currentLang
-        )
-            .observe(viewLifecycleOwner,
-                Observer {
-                    when (it.status) {
-                        Result.Status.LOADING -> {
-                        }
-                        Result.Status.SUCCESS -> {
-                            if (it.data!!.responseCode == "0") {
-                                //bind.bottomSheetLayout.noPlayDate.show()
-                                return@Observer
-                            }
-                            if (it.data.parkPlayDate.isEmpty()) {
-                                //bind.bottomSheetLayout.noPlayDate.show()
-                                return@Observer
-                            }
-                            //bind.bottomSheetLayout.noPlayDate.hide()
-                            playDateAdapter.submitList(it.data.parkPlayDate)
-                        }
-                        Result.Status.ERROR -> {
-                            it.message!!.snack(Color.RED, bind.root)
-                        }
-                    }
-                })
-    }
+    //    private fun getPlayDateApi() {
+    //        homeViewModel.getUpcomingPlayDateResponse(
+    //            MyApp.getSharedPref().userId,
+    //            currentLat,
+    //            currentLang
+    //        )
+    //            .observe(viewLifecycleOwner,
+    //                Observer {
+    //                    when (it.status) {
+    //                        Result.Status.LOADING -> {
+    //                        }
+    //                        Result.Status.SUCCESS -> {
+    //                            if (it.data!!.responseCode == "0") {
+    //                                //bind.bottomSheetLayout.noPlayDate.show()
+    //                                return@Observer
+    //                            }
+    //                            if (it.data.parkPlayDate.isEmpty()) {
+    //                                //bind.bottomSheetLayout.noPlayDate.show()
+    //                                return@Observer
+    //                            }
+    //                            //bind.bottomSheetLayout.noPlayDate.hide()
+    //                            playDateAdapter.submitList(it.data.parkPlayDate)
+    //                        }
+    //                        Result.Status.ERROR -> {
+    //                            it.message!!.snack(Color.RED, bind.root)
+    //                        }
+    //                    }
+    //                })
+    //    }
 
     private fun getMapDateApi(currentLat: String, currentLang: String, type: String) {
         homeViewModel.getHomeMapResponse(
@@ -805,28 +833,27 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             currentLang,
             type
         )
-            .observe(viewLifecycleOwner,
-                Observer {
-                    when (it.status) {
-                        Result.Status.LOADING -> {
-                        }
-                        Result.Status.SUCCESS -> {
-                            if (it.data!!.responseCode == "0") {
-                                return@Observer
-                            }
-                            // mMap!!.clear()
-                            setMarker(it.data.ParkDetailList)
-                        }
-                        Result.Status.ERROR -> {
-                        }
+        .observe(viewLifecycleOwner,
+            Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
                     }
-                })
+                    Result.Status.SUCCESS -> {
+                        if (it.data!!.responseCode == "0") {
+                            return@Observer
+                        }
+                        // mMap!!.clear()
+                        setMarker(it.data.ParkDetailList)
+                    }
+                    Result.Status.ERROR -> {
+                    }
+                }
+            })
     }
 
     private fun setMarker(parkDetailList: List<MapParkDetail>) {
         for (i in parkDetailList.indices) {
             if ((parkDetailList[i].park_lattitute != "null") && (parkDetailList[i].park_longitute != "null")) {
-
                 if (parkDetailList[i].response_type == "park") {
                     mMap!!.addMarker(
                         MarkerOptions().position(
@@ -838,6 +865,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
                             .snippet(parkDetailList[i].parkid)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.park_icon))
+
                     )
                 } else if (parkDetailList[i].response_type == "user") {
                     mMap!!.addMarker(
@@ -851,19 +879,154 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             .snippet(parkDetailList[i].parkid)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.fostering_icon))
                     )
-                } else if (parkDetailList[i].response_type == "pet") {
-                    if (parkDetailList[i].type == "distresspet") {
-                        mMap!!.addMarker(
-                            MarkerOptions().position(
-                                LatLng(
-                                    parkDetailList[i].park_lattitute.toDouble(),
-                                    parkDetailList[i].park_longitute.toDouble()
+                }
+
+                //          sosType
+                //                            1.case "Medical emergency":
+                //                            imageName="medicalRequired"
+
+                //                            2.case "Lost My Pet":
+                //                            imageName="alert"
+
+                //                            3.case "Animal Cruelty":
+                //                            imageName="animalCrulity"
+
+                //                            4.case "Spotted Missing Dog":
+                //                            imageName="spotted-doggydoo 1"
+
+                //                            5.case "Litter report":
+                //                            imageName="litterReport"
+
+                //                            6.case "Food & Shelter":
+                //                            imageName="DoggyDoo_All_Illustrations 1"
+
+                //                            7.default:
+                //                            imageName="sos_h"
+
+
+                else if (parkDetailList[i].response_type == "pet") {
+                    if (parkDetailList[i].type == "distresspet"){
+                        if (parkDetailList[i].status != null){
+                            if (parkDetailList[i].status == "1") {
+                                when(parkDetailList[i].sosType){
+                                    "Medical emergency" -> {
+                                                mMap!!.addMarker(
+                                                    MarkerOptions().position(
+                                                        LatLng(
+                                                            parkDetailList[i].park_lattitute.toDouble(),
+                                                            parkDetailList[i].park_longitute.toDouble()
+                                                        )
+                                                    )
+                                                        .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                        .snippet(parkDetailList[i].parkid)
+                                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.medical_required))
+                                                )
+                                            }
+                                    "Lost My Pet" -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.alert))
+                                        )
+                                    }
+                                    "Animal Cruelty" -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.animal_crulity))
+                                        )
+                                    }
+                                    "Spotted Missing Dog" -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.spotted_doggydoo))
+                                        )
+                                    }
+                                    "Litter report" -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.litter_report))
+                                        )
+                                    }
+                                    "Food & Shelter" -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title(parkDetailList[i].park_name + "," + parkDetailList[i].response_type)
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.spotted_doggydoo))
+                                        )
+                                    }
+                                    else -> {
+                                        mMap!!.addMarker(
+                                            MarkerOptions().position(
+                                                LatLng(
+                                                    parkDetailList[i].park_lattitute.toDouble(),
+                                                    parkDetailList[i].park_longitute.toDouble()
+                                                )
+                                            )
+                                                .title("Pinned" + "," + "distress pet")
+                                                .snippet(parkDetailList[i].parkid)
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.sos_pin))
+                                        )
+                                    }
+                                }
+                            }else{
+                                mMap!!.addMarker(
+                                    MarkerOptions().position(
+                                        LatLng(
+                                            parkDetailList[i].park_lattitute.toDouble(),
+                                            parkDetailList[i].park_longitute.toDouble()
+                                        )
+                                    )
+                                        .title("Pinned" + "," + "distress pet")
+                                        .snippet(parkDetailList[i].parkid)
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.sos_pin))
                                 )
+                            }
+                        }else{
+                            mMap!!.addMarker(
+                                MarkerOptions().position(
+                                    LatLng(
+                                        parkDetailList[i].park_lattitute.toDouble(),
+                                        parkDetailList[i].park_longitute.toDouble()
+                                    )
+                                )
+                                    .title("Pinned" + "," + "distress pet")
+                                    .snippet(parkDetailList[i].parkid)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.sos_pin))
                             )
-                                .title("Pinned" + "," + "distress pet")
-                                .snippet(parkDetailList[i].parkid)
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.sos_pin))
-                        )
+                        }
                     } else {
                         mMap!!.addMarker(
                             MarkerOptions().position(
@@ -877,7 +1040,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pet_icon))
                         )
                     }
-
                 } else if (parkDetailList[i].response_type == "clinic") {
                     mMap!!.addMarker(
                         MarkerOptions().position(
@@ -903,48 +1065,46 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.shelter_icon_map))
                     )
                 }
-
             }
             mMap!!.animateCamera(CameraUpdateFactory.zoomTo(18f))
         }
 
-        mMap!!.setInfoWindowAdapter(object : InfoWindowAdapter {
-            override fun getInfoWindow(marker: Marker): View? {
-                return null
-            }
+//        mMap!!.setInfoWindowAdapter(object : InfoWindowAdapter {
+//            override fun getInfoWindow(marker: Marker): View? {
+//                return null
+//            }
+///
 
-            @SuppressLint("SetTextI18n")
-            override fun getInfoContents(marker: Marker): View? {
-                val v = View.inflate(requireContext(), R.layout.single_snap_user, null)
-                // set widget of your custom_layout like below
-                val parkName: TextView = v.findViewById(R.id.userName) as TextView
-                val parkAddress: TextView = v.findViewById(R.id.userDistance) as TextView
-                val parkadd: TextView = v.findViewById(R.id.userDistance1) as TextView
-                parkName.text = marker.title
-
-                val geocoder = Geocoder(context, Locale.getDefault())
-
-                val addresses: List<Address> = geocoder.getFromLocation(
-                    marker.position.latitude,
-                    marker.position.longitude,
-                    1
-                )
-                if(addresses.isNotEmpty()) {
-                    val address: String? = addresses[0].getAddressLine(0)
-                    val city: String? = addresses[0].getLocality()
-                    val state: String? = addresses[0].getAdminArea()
-                    val zip: String? = addresses[0].getPostalCode()
-                    val country: String? = addresses[0].getCountryName()
-                    try {
-                        parkAddress.text = "$city, $state"
-                        parkadd.text = "$country, $zip"
-                    } catch (e: Exception) {
-                    }
-                }
-                return v
-            }
-        })
-
+//            @SuppressLint("SetTextI18n")
+//            override fun getInfoContents(marker: Marker): View? {
+////                val v = View.inflate(requireContext(), R.layout.single_snap_user, null)
+////                // set widget of your custom_layout like below
+////                val parkName: TextView = v.findViewById(R.id.userName) as TextView
+////                val parkAddress: TextView = v.findViewById(R.id.userDistance) as TextView
+////                val parkadd: TextView = v.findViewById(R.id.userDistance1) as TextView
+////                parkName.text = marker.title
+//                val geocoder = Geocoder(context, Locale.getDefault())
+//                val addresses: List<Address> = geocoder.getFromLocation(
+//                    marker.position.latitude,
+//                    marker.position.longitude,
+//                    1
+//                )
+//
+//                if(addresses.isNotEmpty()) {
+//                    val address: String? = addresses[0].getAddressLine(0)
+//                    val city: String? = addresses[0].getLocality()
+//                    val state: String? = addresses[0].getAdminArea()
+//                    val zip: String? = addresses[0].getPostalCode()
+//                    val country: String? = addresses[0].getCountryName()
+////                    try {
+////                        parkAddress.text = "$city, $state"
+////                        parkadd.text = "$country, $zip"
+////                    } catch (e: Exception) {
+////                    }
+//                }
+//                return null
+//            }
+//        })
 
         mMap!!.setOnMarkerClickListener { marker ->
             val markerName = marker.title
@@ -952,105 +1112,105 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             val parlLat = marker.position.latitude
             val parkLong = marker.position.longitude
 
+                if (markerName == "You") {
+                    Toast.makeText(requireContext(),"Please click on other location to see the detail.", Toast.LENGTH_SHORT).show()
+                } else {
+                    val value = markerName
+                    val type = value
+                    Log.d("Deepak","Type : $type")
+    //                mMap!!.setOnInfoWindowClickListener {
+                        when (type) {
+                            ",user" -> {
+                                startActivity(
+                                    Intent(requireContext(), UserProfileActivity::class.java)
+                                        .putExtra("viewuserid", markerId)
+                                        .putExtra("from", "map")
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
+                            ",park" -> {
+                                startActivity(
+                                    Intent(requireContext(), PetParkDescription::class.java)
+                                        .putExtra("parkid", markerId)
+                                        .putExtra("myLat", parlLat)
+                                        .putExtra("myLong", parkLong)
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
+                            ",pet" -> {
+                                startActivity(
+                                    Intent(requireContext(), DDPActivity::class.java)
+                                        .putExtra("petId", markerId)
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
+                            ",clinic" -> {
+                                startActivity(
+                                    Intent(requireContext(), DoctorDetailActivity::class.java)
+                                        .putExtra("from", "nearbyHos")
+                                        .putExtra("id", markerId)
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
 
-            if (markerName == "You") {
-                Toast.makeText(
-                    requireContext(),
-                    "Please click on other location to see the detail.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                val value = markerName!!.split(",").toTypedArray()
-                val type: String = value[1]
+                            ",shelter" -> {
+                                startActivity(
+                                    Intent(requireContext(), DogShelterActivity::class.java)
+                                        .putExtra("title", markerName)
+                                        .putExtra("shelter_id", markerId)
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
 
-                mMap!!.setOnInfoWindowClickListener {
-                    when (type) {
-                        "user" -> {
-                            startActivity(
-                                Intent(requireContext(), UserProfileActivity::class.java)
-                                    .putExtra("viewuserid", markerId)
-                                    .putExtra("from", "map")
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
+                            ",distress pet" -> {
+                                startActivity(
+                                    Intent(requireContext(), DistressPetDetailActivity::class.java)
+                                        .putExtra("id", markerId)
+                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                )
+                            }
+                            else ->{
+                                Log.d("Deepak","Else")
+                            }
                         }
-                        "park" -> {
-                            startActivity(
-                                Intent(requireContext(), PetParkDescription::class.java)
-                                    .putExtra("parkid", markerId)
-                                    .putExtra("myLat", parlLat)
-                                    .putExtra("myLong", parkLong)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                        }
-                        "pet" -> {
-                            startActivity(
-                                Intent(requireContext(), PetProfileActivity::class.java)
-                                    .putExtra("petId", markerId)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-
-                        }
-                        "clinic" -> {
-                            startActivity(
-                                Intent(requireContext(), DoctorDetailActivity::class.java)
-                                    .putExtra("from", "nearbyHos")
-                                    .putExtra("id", markerId)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                        }
-
-                        "shelter" -> {
-                            startActivity(
-                                Intent(requireContext(), DogShelterActivity::class.java)
-                                    .putExtra("title", markerName)
-                                    .putExtra("shelter_id", markerId)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                        }
-
-                        "distress pet" -> {
-                            startActivity(
-                                Intent(requireContext(), DistressPetDetailActivity::class.java)
-                                    .putExtra("id", markerId)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                        }
-
-                    }
-
+    //                }
                 }
-            }
-
             false
         }
 
-    }
-    private fun setMapStyle(map: GoogleMap) {
-        try {
-            // Customize the styling of the base map using a JSON object defined
-            // in a raw resource file.
-            val success = map.setMapStyle(
-                MapStyleOptions.loadRawResourceStyle(
-                    requireActivity(),
-                    R.raw.map_style
-                )
-            )
 
-            if (!success) {
-                Log.e(TAG, "Style parsing failed.")
-            }
-        } catch (e: Resources.NotFoundException) {
-            Log.e(TAG, "Can't find style. Error: ", e)
-        }
+
     }
+
+//    private fun setMapStyle(map: GoogleMap) {
+//        try {
+//            // Customize the styling of the base map using a JSON object defined
+//            // in a raw resource file.
+//            val success = map.setMapStyle(
+//                MapStyleOptions.loadRawResourceStyle(
+//                    requireActivity(),
+//                    R.raw.map_style
+//                )
+//            )
+//
+//            if (!success) {
+//                Log.e(TAG, "Style parsing failed.")
+//            }
+//        } catch (e: Resources.NotFoundException) {
+//            Log.e(TAG, "Can't find style. Error: ", e)
+//        }
+//    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap!!.uiSettings.isZoomControlsEnabled = false
         mMap!!.setOnMarkerClickListener(this)
         mMap!!.uiSettings.isMyLocationButtonEnabled = false
-
         // mMap!!.getUiSettings().setMyLocationButtonEnabled(false);
         mapStyle = MyApp.getSharedPref().userReqType
+
+
+
         if (mapStyle.isEmpty()) {
             mapStyle = "Retro"
         }
@@ -1076,9 +1236,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             mapStyleOptions =
                 MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.standard_style)
         }
+
         googleMap.setMapStyle(mapStyleOptions)
         setUpMap()
-
     }
 
     override fun onDestroy() {
@@ -1086,7 +1246,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         _binding = null
     }
 
-    override fun onMarkerClick(p0: Marker?) = false
+    override fun onMarkerClick(p0: Marker?) = true
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(
@@ -1102,7 +1262,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             return
         }
 
-        mMap!!.clear()
+//        mMap!!.clear()
         mMap!!.isMyLocationEnabled = true
         mMap!!.uiSettings.isCompassEnabled = false
 
@@ -1112,24 +1272,88 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 currentLatLng = LatLng(location.latitude, location.longitude)
                 MyApp.getSharedPref().userLat = location.latitude.toString()
                 MyApp.getSharedPref().userLong = location.longitude.toString()
-                mMap!!.addMarker(
-                    MarkerOptions().icon(
-                        BitmapDescriptorFactory
-                            .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
-                    ).position(currentLatLng!!).title("You")
-                )
+//                mMap!!.addMarker(
+//                    MarkerOptions().icon(
+//                        BitmapDescriptorFactory
+//                            .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
+//                    ).position(currentLatLng!!).title("You")
+//                )
                 mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, 18f))
                 val zoomLevel = 18.0f //This goes up to 21
                 mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng!!, zoomLevel))
-               // mMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng!!))
+//                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng!!))
             }
         }
+    }
 
+
+    @SuppressLint("StaticFieldLeak")
+    private inner class GetDirection(val url : String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
+        override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
+            val client = OkHttpClient()
+            val request = Request.Builder().url(url).build()
+            val response = client.newCall(request).execute()
+            val data = response.body!!.string()
+            val result =  ArrayList<List<LatLng>>()
+            try{
+                val respObj = Gson().fromJson(data,MapData::class.java)
+                val path =  ArrayList<LatLng>()
+                for (i in 0 until respObj.routes[0].legs[0].steps.size){
+                    path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
+                }
+                result.add(path)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+            return result
+        }
+
+        override fun onPostExecute(result: List<List<LatLng>>) {
+            val lineoption = PolylineOptions()
+            for (i in result.indices){
+                lineoption.addAll(result[i])
+                lineoption.width(10f)
+                lineoption.color(Color.BLUE)
+                lineoption.geodesic(true)
+            }
+            bind.recentre.performClick()
+            mMap!!.addPolyline(lineoption)
+        }
+    }
+
+    fun decodePolyline(encoded: String): List<LatLng> {
+        val poly = ArrayList<LatLng>()
+        var index = 0
+        val len = encoded.length
+        var lat = 0
+        var lng = 0
+        while (index < len) {
+            var b: Int
+            var shift = 0
+            var result = 0
+            do {
+                b = encoded[index++].code - 63
+                result = result or (b and 0x1f shl shift)
+                shift += 5
+            } while (b >= 0x20)
+            val dlat = if (result and 1 != 0) (result shr 1).inv() else result shr 1
+            lat += dlat
+            shift = 0
+            result = 0
+            do {
+                b = encoded[index++].code - 63
+                result = result or (b and 0x1f shl shift)
+                shift += 5
+            } while (b >= 0x20)
+            val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
+            lng += dlng
+            val latLng = LatLng((lat.toDouble() / 1E5),(lng.toDouble() / 1E5))
+            poly.add(latLng)
+        }
+        return poly
     }
 
     fun onSosClicked() {
         requireView().findNavController().navigate(R.id.action_nav_home_to_SOSDistressFragment)
     }
-
 }
-

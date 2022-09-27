@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
@@ -17,6 +18,7 @@ class MyFriendDescriptionActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("Deepak","oncreate myfriend description")
         super.onCreate(savedInstanceState)
         binding = ActivityMyFriendDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)

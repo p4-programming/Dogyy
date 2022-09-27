@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="15dp"
+        tools:context=".mydog.ui.MarkResolved"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rlHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:padding="10dp"
+                android:src="@mipmap/back_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/medium"
+                android:text="Title Lable"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/r1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/on_boarding_blue"
+                android:fontFamily="@font/regular"
+                android:paddingStart="30dp"
+                android:text="I found my pet."
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/r2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/on_boarding_blue"
+                android:fontFamily="@font/regular"
+                android:paddingStart="30dp"
+                android:text="It was a false alert my pet is next to me."
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/r3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/on_boarding_blue"
+                android:fontFamily="@font/regular"
+                android:paddingStart="30dp"
+                android:text="My pet is still missing."
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/r4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/on_boarding_blue"
+                android:fontFamily="@font/regular"
+                android:paddingStart="30dp"
+                android:text="Others"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:textSize="15dp"
+            android:background="@drawable/shape"
+            android:gravity="fill_horizontal"
+            android:backgroundTint="@color/off_white" />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mark as Resolved"
+            android:textSize="15dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>

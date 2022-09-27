@@ -70,6 +70,7 @@ class MyApp : Application(){
         private lateinit var ipAddress: String
         private var lat: String? = null
         private var lng: String? = null
+        private var type:String? = null
 
         @SuppressLint("StaticFieldLeak")
         private lateinit var prefManager: PrefManager
@@ -83,6 +84,7 @@ class MyApp : Application(){
         fun getLatitude() = lat
 
         fun getLongitude() = lng
+        fun getType() = type
 
         fun getDeviceId() = deviceId
     }

@@ -30,7 +30,6 @@
         android:src="@drawable/fill_icon"
         android:visibility="gone" />
 
-
     <ImageView
         android:id="@+id/filterData"
         android:layout_width="50dp"

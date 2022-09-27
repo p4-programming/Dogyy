@@ -43,7 +43,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.hbb20.CountryCodePicker
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Arrays.toString
 import java.util.concurrent.TimeUnit
 
 
@@ -63,7 +65,6 @@ class LoginActivity : AppCompatActivity() {
     var versionName: String = ""
     private var profilePic: String =""
     private  var userName: String =""
-
     //initialized view model here
     private lateinit var loginViewModel: LoginViewModel
     val TIME_OUT = 60
@@ -213,7 +214,9 @@ class LoginActivity : AppCompatActivity() {
                     if (isGpsEnabled()) {
                         getLocationDetail()
                         binding.progressBar.visibility = View.VISIBLE
-                        val phoneNo = "+91" + phoneNumberEt.text.toString().trim()
+                        val ccp: CountryCodePicker = findViewById(R.id.code)
+                        val coded = ccp.selectedCountryCode
+                        val phoneNo = "+" + coded + phoneNumberEt.text.toString().trim()
                         val options = PhoneAuthOptions.newBuilder(auth)
                             .setPhoneNumber(phoneNo)
                             .setTimeout(60L, TimeUnit.SECONDS)
@@ -221,12 +224,9 @@ class LoginActivity : AppCompatActivity() {
                             .setCallbacks(mCallback!!)
                             .build()
                         PhoneAuthProvider.verifyPhoneNumber(options)
-
                     } else {
                         CommonMethod.showSnack(binding.parent, "Please enable GPS.")
                     }
-
-
                 } else {
                     if (binding.otpEt.text!!.isNotEmpty()) {
                         val credential =
@@ -244,7 +244,6 @@ class LoginActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                     }
-
                 }
             }
 
@@ -254,7 +253,8 @@ class LoginActivity : AppCompatActivity() {
                     binding.otpLayout.visibility = View.GONE
                     binding.underlyingText.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
-                    val phoneNo = "+91" + binding.phoneNumberEt.text.toString().trim()
+                    val phoneNo = "+"+ binding.phoneNumberEt.text.toString().trim()
+
                     val options = PhoneAuthOptions.newBuilder(auth)
                         .setPhoneNumber(phoneNo)
                         .setTimeout(60L, TimeUnit.SECONDS)

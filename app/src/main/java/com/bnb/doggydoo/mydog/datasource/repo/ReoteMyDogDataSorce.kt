@@ -51,6 +51,18 @@ class RemoteMyDogDataSource @Inject constructor(private val apiFactory: ApiFacto
                 .getPetDescription(pet_id, user_id)
         }
 
+
+
+    suspend fun getalldistresspetbyuserid(
+        user_id: String
+    ) =
+        getResult {
+            apiFactory.createService(MyDogApiService::class.java)
+                .getAllDistressPetByUserid(user_id)
+        }
+
+
+
     /**
      * fetch PetDocument Response from network
      * */
@@ -138,7 +150,8 @@ class RemoteMyDogDataSource @Inject constructor(private val apiFactory: ApiFacto
         pet_description: String,
         lattitute: String,
         longitute: String,
-        profile: MultipartBody.Part
+        profile: MultipartBody.Part,
+        type: String
     ) =
         getResult {
             apiFactory.createService(MyDogApiService::class.java)
@@ -147,7 +160,8 @@ class RemoteMyDogDataSource @Inject constructor(private val apiFactory: ApiFacto
                     MultipartFile.createPartFromString(pet_description),
                     MultipartFile.createPartFromString(lattitute),
                     MultipartFile.createPartFromString(longitute),
-                    profile
+                    profile,
+                    MultipartFile.createPartFromString(type)
                 )
         }
 

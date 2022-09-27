@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
@@ -17,6 +18,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
@@ -54,6 +56,7 @@ class UserProfileActivity : AppCompatActivity() {
     private var from: String = ""
     private lateinit var myProfileViewModel: MyProfileViewModel
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var chat: ChatActivity
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,10 +147,11 @@ class UserProfileActivity : AppCompatActivity() {
                         Intent(this, ChatActivity::class.java)
                             .putExtra("name", userName)
                             .putExtra("uid", firebaseUid)
+                            .putExtra("viewuserid",userId)
                             .putExtra("userImage", userImage)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     )
-
+                    Log.d("Deepak","UID : $userId")
                 }
             } else {
                 Toast.makeText(this, "You are not friends yet.", Toast.LENGTH_SHORT).show()
@@ -159,10 +163,8 @@ class UserProfileActivity : AppCompatActivity() {
             if (binding.tvSendFriendReq.text == "Friend") {
                 blockDialog()
             } else {
-
                 Toast.makeText(this, "Can not block the user.", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -257,7 +259,6 @@ class UserProfileActivity : AppCompatActivity() {
                 binding.tvSendFriendReq.text = "Send Request"
                 binding.userMenu.visibility = View.GONE
             }
-
         }
 
         /*  binding.tvSendFriendReq.setOnClickListener {

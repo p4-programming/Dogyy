@@ -29,6 +29,7 @@ import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.ActivityConfirmsoslocationBinding
+import com.bnb.doggydoo.databinding.FragmentSOSDistressBinding
 import com.bnb.doggydoo.databinding.SosDistressManagerBinding
 import com.bnb.doggydoo.homemodule.ui.HomeActivity
 import com.bnb.doggydoo.mydog.viewmodel.MyDogViewModel
@@ -41,9 +42,10 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SOSDistressManager : AppCompatActivity() {
-    private lateinit var binding: SosDistressManagerBinding
+class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: FragmentSOSDistressBinding
     private var pinLatitude: String = ""
+    private var type: String = ""
     private var pinLongitude: String = ""
     private val myDogViewModel: MyDogViewModel by viewModels()
     private val REQUEST_PERMISSION = 100
@@ -52,30 +54,35 @@ class SOSDistressManager : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = SosDistressManagerBinding.inflate(layoutInflater)
+
+        binding = FragmentSOSDistressBinding.inflate(layoutInflater)
         CommonMethod.makeTransparentStatusBar(window)
         setContentView(binding.root)
         getInit()
         setRadiogroup()
+//        binding.viewMyThread.setOnClickListener(this)
         //binding.b1.isChecked=true
     }
 
     private fun setRadiogroup() {
-        binding.b1.setOnClickListener(){
-            binding.b1.isChecked=true
-            binding.rg2.clearCheck()
-            binding.rg3.clearCheck()
-        }
+//        binding.b1.setOnClickListener(){
+//            binding.b1.isChecked=true
+//            binding.rg2.clearCheck()
+//            binding.rg3.clearCheck()
+//        }
+
         binding.b2.setOnClickListener(){
             binding.b2.isChecked=true
             binding.rg2.clearCheck()
             binding.rg3.clearCheck()
         }
+
         binding.b3.setOnClickListener(){
             binding.b3.isChecked=true
             binding.rg1.clearCheck()
             binding.rg3.clearCheck()
         }
+
         binding.b4.setOnClickListener(){
             binding.b4.isChecked=true
             binding.rg1.clearCheck()
@@ -102,11 +109,13 @@ class SOSDistressManager : AppCompatActivity() {
     private fun getInit() {
         pinLatitude = intent.getStringExtra("pin_lat").toString()
         pinLongitude = intent.getStringExtra("pin_long").toString()
+
         binding.llUploadPic.show()
 
         binding.ivBack.setOnClickListener {
             finish()
         }
+
 
         binding.tvCancel.setOnClickListener {
             startActivity(
@@ -114,6 +123,14 @@ class SOSDistressManager : AppCompatActivity() {
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
         }
+
+        binding.viewMyThread.setOnClickListener {
+            startActivity(
+                Intent(this@SOSDistressManager, MyThread::class.java)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
+        }
+
 
         binding.tvConfirm.setOnClickListener {
             if (binding.etPetDescription.text.isEmpty()) {
@@ -123,13 +140,15 @@ class SOSDistressManager : AppCompatActivity() {
             } else {
                 addDistressPetAPI()
             }
-
         }
 
         binding.ivDog.setOnClickListener {
             ChooseOption()
         }
+
     }
+
+
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -142,6 +161,9 @@ class SOSDistressManager : AppCompatActivity() {
             )
         }
     }
+
+
+
 
     private fun ChooseOption() {
         val dialog = Dialog(this, R.style.Theme_Dialog)
@@ -218,7 +240,8 @@ class SOSDistressManager : AppCompatActivity() {
             binding.etPetDescription.text.toString(),
             pinLatitude,
             pinLongitude,
-            MultipartFile.prepareFilePart(this, "pet_image[]", uri)
+            MultipartFile.prepareFilePart(this, "pet_image[]", uri),
+            type
         )
             .observe(this, Observer {
                 when (it.status) {
@@ -238,8 +261,6 @@ class SOSDistressManager : AppCompatActivity() {
                             )
                             return@Observer
                         }
-
-
                         confirmDialog()
                         //finish()
                     }
@@ -284,4 +305,7 @@ class SOSDistressManager : AppCompatActivity() {
         builder.show()
     }
 
+    override fun onClick(p0: View?) {
+        TODO("Not yet implemented")
+    }
 }

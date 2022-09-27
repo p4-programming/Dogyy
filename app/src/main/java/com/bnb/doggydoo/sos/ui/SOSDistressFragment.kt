@@ -130,6 +130,14 @@ class SOSDistressFragment : Fragment() {
             Toast.makeText(requireContext(), "canceled", Toast.LENGTH_SHORT).show()
         }
 
+        binding.viewMyThread.setOnClickListener {
+            startActivity(
+                Intent(context, MyThread::class.java)
+
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
+        }
+
         binding.tvConfirm.setOnClickListener {
             if (binding.etPetDescription.text.isEmpty()) {
                 Toast.makeText(requireContext(), "Please add description.", Toast.LENGTH_SHORT).show()
@@ -143,7 +151,6 @@ class SOSDistressFragment : Fragment() {
                 val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType)
                 requireView().findNavController().navigate(action)
             }
-
         }
 
         binding.getImageFromGallery.setOnClickListener {

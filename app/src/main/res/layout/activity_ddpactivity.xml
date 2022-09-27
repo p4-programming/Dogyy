@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="15dp"
+    tools:context=".mydog.ui.DDPActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@mipmap/back_icon" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/medium"
+            android:text="Dog Distress Pin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/imgll"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape"
+        android:gravity="bottom|center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+             />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:id="@+id/dogimg"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/pale_pink"
+            android:background="@drawable/shape"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/item"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/medium"
+            android:text="Pet Discription"
+            android:textSize="15dp"
+            android:paddingStart="30dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvdiscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="15dp"
+            android:paddingStart="30dp"
+            android:layout_marginTop="15dp"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/medium"
+            android:text="Comments"
+            android:textSize="15dp"
+            android:paddingStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/resolved"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:text="Resolved"/>
+
+        <Button
+            android:id="@+id/navigate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:text="@string/navigate" />
+
+    </LinearLayout>
+</LinearLayout>

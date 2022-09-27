@@ -27,6 +27,7 @@
     <color name="optionUnselectedcolor">#454545</color>
     <color name="unselecttab">#AC89DD</color>
     <color name="red">#FF0000</color>
+    <color name="pink">#FFC0CB</color>
 
     <color name="fostering"><![CDATA[#68A569]]></color>
     <color name="dogSitting">#FED56B</color>
@@ -35,4 +36,5 @@
     <color name="articles">#AFA4C0</color>
     <color name="training">#F182A0</color>
     <color name="playDate">#FEECF2</color>
+    <color name="pale_pink">#FFDBE5</color>
 </resources>

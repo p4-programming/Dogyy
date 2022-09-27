@@ -4,11 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +19,18 @@ import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
+import com.bnb.doggydoo.commonutility.loadImageFromString
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.databinding.FragmentPinMapBinding
+import com.bnb.doggydoo.homemodule.viewmodel.HomeViewModel
 import com.bnb.doggydoo.utils.CommonMethod
+import com.bnb.doggydoo.utils.MyApp
+import com.bnb.doggydoo.utils.network.ApiConstant
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,6 +38,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import java.util.*
 
 
@@ -42,15 +54,13 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private var currentLatLng: LatLng? = null
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
+    var placesClient: PlacesClient? = null
+    var isAllFabsVisible: Boolean? = null
+    var destinationLatLng: LatLng? = null
+    var apiKey: String = ""
     private val args: Pin_Map_FragmentArgs by navArgs()
 
-//    val petDescription = args.description
-//    val distressType = args.type
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,17 +72,79 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
 
         CommonMethod.makeTransparentStatusBar(activity?.window)
 
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
         binding.ivBack.setOnClickListener {
             requireView().findNavController().popBackStack()
         }
-
-
         return view
-
     }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getInit()
+        val ai: ApplicationInfo = context!!.packageManager
+            .getApplicationInfo(context!!.packageName, PackageManager.GET_META_DATA)
+        val value = ai.metaData["com.google.android.geo.API_KEY"]
+        apiKey = value.toString()
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
+        binding.Place.text=null
+    }
+
+    private fun getInit() {
+        isAllFabsVisible = false
+        binding.Place.setOnClickListener {
+            val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+            // Start the autocomplete intent.
+            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                .build(requireContext())
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+
+        if (binding!!.llLocation.visibility == View.VISIBLE) {
+            val apiKey = getString(R.string.google_map_api_key)
+
+            if (!Places.isInitialized()) {
+                Places.initialize(context, apiKey)
+            }
+            placesClient = Places.createClient(context)
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    data?.let {
+                        val place = Autocomplete.getPlaceFromIntent(data)
+                        mMap!!.clear()
+                        Log.d("Deepak", "Place: ${place.name}, ${place.id}")
+                        binding.Place.text = place.name
+                        Log.d("Deepak", "Place : " + binding.Place.text)
+                        destinationLatLng = place.latLng
+                        //mcurrentLat = destinationLatLng?.latitude.toString()
+                        //mcurrentLang = destinationLatLng?.longitude.toString()
+
+                        val destinationLocation = LatLng(
+                            MyApp.getSharedPref().userLat.toDouble(),
+                            MyApp.getSharedPref().userLong.toDouble()
+                        )
+
+                        val originLocation = place.latLng
+//                        mMap!!.addMarker(MarkerOptions().position(originLocation))
+//                        mMap!!.addMarker(MarkerOptions().position(destinationLocation))
+                        //val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
+                       // GetDirection(urll).execute()
+                        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
+                    }
+                }
+            }
+        }
+    }
+
+
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -86,10 +158,13 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap!!.uiSettings.isZoomControlsEnabled = false
+        mMap!!.uiSettings.isMyLocationButtonEnabled = false
         mMap!!.setOnMarkerClickListener(this)
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.standard_style))
         setUpMap()
     }
+
+
 
     override fun onMarkerClick(p0: Marker?) = false
 

@@ -30,8 +30,6 @@ class SettingFrag : Fragment(R.layout.fragment_setting), NotificationAdapter.onC
         binding.settingRv.adapter = NotificationAdapter(requireContext(),"Setting", titleList,this){}
         binding.backButton.setOnClickListener {
             HomeActivity.menuIcon.visibility = View.VISIBLE
-
-
             findNavController().popBackStack() }
     }
 

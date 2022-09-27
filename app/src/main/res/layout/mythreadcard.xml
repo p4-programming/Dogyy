@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    app:cardElevation="3dp"
+    app:contentPadding="4dp">
+
+    <LinearLayout
+        android:id="@+id/cardll"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/shape">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:id="@+id/dogimgs"
+            android:scaleType="fitCenter"
+            android:backgroundTint="@color/pale_pink"
+            android:src="@drawable/ic_amazing"
+            android:background="@drawable/shape" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/medium"
+                android:text="Pet Discription"
+                android:textSize="18dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/discription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/medium"
+                android:layout_marginTop="10dp"
+                android:textSize="14dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#3c3f41" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/medium"
+                android:textSize="18dp"
+                android:text="Created Date"
+                android:layout_marginTop="15dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/cdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/medium"
+                android:layout_marginTop="10dp"
+                android:textSize="14dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#3c3f41" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

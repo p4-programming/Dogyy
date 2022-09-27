@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -64,6 +65,7 @@ class ChatActivity : AppCompatActivity() {
     private val requestcode = 1
     private var firebaseToken: String = ""
     var clickedUserId: String = ""
+    var clickedUserId1: String = ""
     private var fromValue:String =""
     private  var  reqType:String =""
 
@@ -105,6 +107,9 @@ class ChatActivity : AppCompatActivity() {
         userImage = intent.getStringExtra("userImage").toString()
         firebaseToken = intent.getStringExtra("firebasetoken").toString()
         clickedUserId = intent.getStringExtra("clicked_user_id").toString()
+        clickedUserId1 = intent.getStringExtra("viewuserid").toString()
+
+        Log.d("Deepak", "ClickedUserid : $clickedUserId1")
 
         if (intent.getStringExtra("from").toString().trim() == "1"){
             fromValue =  "direct"
@@ -136,8 +141,10 @@ class ChatActivity : AppCompatActivity() {
 
         binding.profileImage.setOnClickListener {
             startActivity(Intent(this, UserProfileActivity::class.java)
-                .putExtra("viewuserid",clickedUserId)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                .putExtra("viewuserid",clickedUserId1)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            )
         }
 
         if (messageList.size > 0) {
@@ -169,9 +176,7 @@ class ChatActivity : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
             })
-
 
         binding.ivSendImage.setOnClickListener {
             ImagePicker.with(this)
@@ -179,7 +184,6 @@ class ChatActivity : AppCompatActivity() {
                 .compress(500)            //Final image size will be less than 1 MB(Optional) //Final image resolution will be less than 1080 x 1080(Optional)
                 .start()
         }
-
 
         if (fromValue.isNotEmpty()){
             if (fromValue == "direct"){

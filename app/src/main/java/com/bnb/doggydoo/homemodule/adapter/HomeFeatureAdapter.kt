@@ -131,7 +131,7 @@ class HomeFeatureAdapter(
                     }
                     "SOS" -> {
                         listener.onSosClicked()
-                        //context.startActivity(Intent(context, SOSIntro::class.java))
+//                        context.startActivity(Intent(context, SOSIntro::class.java))
                     }
                 }
             }
