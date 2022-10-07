@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/medium"
-                android:text="Title Lable"
+                android:text="Resolved"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/black" />
         </RelativeLayout>
@@ -37,7 +37,7 @@
             android:id="@+id/rg_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:orientation="vertical">
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/on_boarding_blue"
                 android:fontFamily="@font/regular"
-                android:paddingStart="30dp"
+                android:paddingStart="10dp"
                 android:text="I found my pet."
                 android:textSize="16sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/on_boarding_blue"
                 android:fontFamily="@font/regular"
-                android:paddingStart="30dp"
+                android:paddingStart="10dp"
                 android:text="It was a false alert my pet is next to me."
                 android:textSize="16sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/on_boarding_blue"
                 android:fontFamily="@font/regular"
-                android:paddingStart="30dp"
+                android:paddingStart="10dp"
                 android:text="My pet is still missing."
                 android:textSize="16sp" />
 
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/on_boarding_blue"
                 android:fontFamily="@font/regular"
-                android:paddingStart="30dp"
+                android:paddingStart="10dp"
                 android:text="Others"
                 android:textSize="16sp" />
         </RadioGroup>
@@ -88,8 +88,10 @@
             android:layout_height="100dp"
             android:layout_margin="20dp"
             android:textSize="15dp"
+            android:padding="10dp"
             android:background="@drawable/shape"
             android:gravity="fill_horizontal"
+            android:hint="Write Something Here...."
             android:backgroundTint="@color/off_white" />
 
         <Button
@@ -102,7 +104,6 @@
             android:gravity="center_vertical"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
-            android:textAllCaps="false"
-            />
+            android:textAllCaps="false" />
 
     </LinearLayout>

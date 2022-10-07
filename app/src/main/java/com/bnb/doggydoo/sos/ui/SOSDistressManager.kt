@@ -42,10 +42,11 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
+class SOSDistressManager : AppCompatActivity() {
     private lateinit var binding: FragmentSOSDistressBinding
     private var pinLatitude: String = ""
     private var type: String = ""
+    private var notificationType: String = ""
     private var pinLongitude: String = ""
     private val myDogViewModel: MyDogViewModel by viewModels()
     private val REQUEST_PERMISSION = 100
@@ -115,7 +116,6 @@ class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
         binding.ivBack.setOnClickListener {
             finish()
         }
-
 
         binding.tvCancel.setOnClickListener {
             startActivity(
@@ -241,7 +241,8 @@ class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
             pinLatitude,
             pinLongitude,
             MultipartFile.prepareFilePart(this, "pet_image[]", uri),
-            type
+            type,
+            notificationType
         )
             .observe(this, Observer {
                 when (it.status) {
@@ -276,7 +277,7 @@ class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("SOS")
         builder.setMessage("Thank you for your contribution towards helping a pet/stray in need")
-//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+        //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
 
@@ -303,9 +304,5 @@ class SOSDistressManager : AppCompatActivity(), View.OnClickListener {
              ).show()
          }*/
         builder.show()
-    }
-
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
     }
 }

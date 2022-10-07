@@ -151,7 +151,8 @@ class RemoteMyDogDataSource @Inject constructor(private val apiFactory: ApiFacto
         lattitute: String,
         longitute: String,
         profile: MultipartBody.Part,
-        type: String
+        type: String,
+        notificationType: String
     ) =
         getResult {
             apiFactory.createService(MyDogApiService::class.java)
@@ -161,9 +162,11 @@ class RemoteMyDogDataSource @Inject constructor(private val apiFactory: ApiFacto
                     MultipartFile.createPartFromString(lattitute),
                     MultipartFile.createPartFromString(longitute),
                     profile,
-                    MultipartFile.createPartFromString(type)
+                    MultipartFile.createPartFromString(type),
+                    MultipartFile.createPartFromString(notificationType)
                 )
         }
+
 
     suspend fun fetchDistressPetResponse(
         pet_id: String

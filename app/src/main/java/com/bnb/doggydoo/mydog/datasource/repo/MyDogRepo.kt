@@ -139,15 +139,17 @@ constructor(
         lattitute: String,
         longitute: String,
         profile: MultipartBody.Part,
-        type: String
+        type: String,
+        notificationType: String
     ) = resultLiveData(
         networkCall = {
             remoteMyDogDataSource.distressPinPetResponse(
                 user_id,pet_description,lattitute,longitute,
-                profile,type
+                profile,type,notificationType
             )
         }
     )
+
 
 
     fun distressPetPostLiveData(

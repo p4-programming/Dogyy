@@ -17,6 +17,6 @@ class ThreadSecAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle) 
         when (position) {
             0 -> return ThreadFragment()
         }
-        return CallsFragment()
+        return CommentsFragment()
     }
 }

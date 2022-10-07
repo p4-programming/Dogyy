@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ProfilePicture1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/vaccinated"
+            android:transitionName="friendProfile"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
+
+        <LinearLayout
+            android:id="@+id/textLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_toEndOf="@id/ProfilePicture1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:textColor="@color/on_boarding_blue"
+                android:textSize="16sp"
+                android:transitionName="friendName" />
+
+            <TextView
+                android:id="@+id/tvMobileNo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/quantum_grey"
+                android:fontFamily="@font/bold"
+                android:maxLines="4" />
+
+            <TextView
+                android:id="@+id/cdate1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textStyle="italic"
+                android:fontFamily="@font/regular"
+                android:maxLines="2" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

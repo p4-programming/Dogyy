@@ -65,26 +65,29 @@
                 android:textSize="16sp" />
 
             <RadioGroup
-                android:id="@+id/rg_dp"
+                android:id="@+id/radio_group1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
             <RadioButton
-                android:id="@+id/nsCheck"
+                android:id="@+id/send_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
                 android:buttonTint="@color/on_boarding_blue"
                 android:text="@string/stof_nbys"
                 android:textSize="16sp" />
+
             <RadioButton
-                android:id="@+id/sfCheck"
+                android:id="@+id/send_to_frd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
                 android:buttonTint="@color/on_boarding_blue"
                 android:text="@string/send_to_friend"
                 android:textSize="16sp" />
+
             </RadioGroup>
             <TextView
                 android:id="@+id/tvCurrentLocation"
@@ -168,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/regular"
+                android:buttonTint="@color/on_boarding_blue"
                 android:text="@string/agree_to_distress"
                 android:textSize="16sp" />
 

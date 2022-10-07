@@ -29,7 +29,6 @@ import com.bnb.doggydoo.utils.MultipartFile
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -40,13 +39,9 @@ class SOSMainFragment : Fragment() {
     private var uri: Uri? = null
     private val args: SOSMainFragmentArgs by navArgs()
     private var hashMap:HashMap<String,String> = HashMap<String,String>()
-//    val petDescription = args.description
-//    val distressType = args.type
+    private var notificationType = "0"
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         CommonMethod.makeTransparentStatusBar(activity?.window)
 
@@ -56,10 +51,11 @@ class SOSMainFragment : Fragment() {
 
         val pin_latitude = args.lattitude
         val pin_longitude = args.longitude
+        val notificationType = args.notificationType
 
         if (!pin_latitude.isNullOrEmpty() && !pin_longitude.isNullOrEmpty()) {
             //addDistressPetFirebase(CommonMethod.getTimeStamp(),pin_latitude, pin_longitude)
-            addDistressPetAPI(pin_latitude, pin_longitude)
+            addDistressPetAPI(pin_latitude, pin_longitude, notificationType)
         }
         return binding.root
     }
@@ -69,21 +65,33 @@ class SOSMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // val pinLatitude = arguments!!.getString("latitude")
-
+        
         binding.apply {
             tvCurrentLocation.setOnClickListener {
                 if (binding.rbCheck.isChecked) {
+                    if(binding.sendAll.isChecked){
+                        //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
 
-                    //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
-                    
-                    addDistressPetAPI(MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
-                    
-//                    startActivity(
-//                        Intent(requireContext(), ConfirmsoslocationActivity::class.java)
-//                            .putExtra("pin_lat", MyApp.getSharedPref().userLat)
-//                            .putExtra("pin_long", MyApp.getSharedPref().userLong)
-//                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                    )
+                        notificationType = "1"
+                         addDistressPetAPI(
+                             MyApp.getSharedPref().userLat,
+                             MyApp.getSharedPref().userLong,
+                             notificationType
+                         )
+
+                    }else if (binding.sendToFrd.isChecked){
+                        //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
+
+                        notificationType = "0"
+                        addDistressPetAPI(
+                            MyApp.getSharedPref().userLat,
+                            MyApp.getSharedPref().userLong,
+                            notificationType
+                        )
+
+                    }else{
+                        Toast.makeText(context,"Please select at least one",Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     Toast.makeText(
                         context,
@@ -91,7 +99,6 @@ class SOSMainFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
 
             tvDropPin.setOnClickListener {
@@ -99,18 +106,19 @@ class SOSMainFragment : Fragment() {
 
                     val petDescription = args.description
                     val distressType = args.type
+                    val uri = args.imageUri
 
-                    val action = SOSMainFragmentDirections.actionSOSMainFragmentToPinMapFragment(petDescription,distressType)
+                    val action = SOSMainFragmentDirections.actionSOSMainFragmentToPinMapFragment(petDescription,distressType,uri.toString(),notificationType)
                     requireView().findNavController().navigate(action)
+                    Log.d("Deepak","Action : $action")
 
 //                    requireView().findNavController()
 //                        .navigate(R.id.action_SOSMainFragment_to_pin_Map_Fragment)
-
 //                    startActivity(
 //                        Intent(requireContext(), SOSMapActivity::class.java)
 //                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //                    )
-                    // Log.d("TAG", "onViewCreated: "+ pinLatitude)
+//                    Log.d("TAG", "onViewCreated: "+ pinLatitude)
 
                 } else {
                     Toast.makeText(
@@ -155,14 +163,19 @@ class SOSMainFragment : Fragment() {
         }
     }
 
-    private fun addDistressPetAPI(pinLatitude: String, pinLongitude: String) {
+    private fun addDistressPetAPI(
+        pinLatitude: String,
+        pinLongitude: String,
+        notificationType: String
+    ) {
         myDogViewModel.getDistressPetData(
             MyApp.getSharedPref().userId,
-            "current description",
+            args.description,
             pinLatitude,
             pinLongitude,
             MultipartFile.prepareFilePart(requireContext(), "pet_image[]", uri),
-            args.type
+            args.type,
+            notificationType
         )
             .observe(requireActivity(), Observer {
                 when (it.status) {
@@ -193,16 +206,52 @@ class SOSMainFragment : Fragment() {
             })
     }
 
+//    private fun DistressPetRegisterAPI(pinLatitude: String, pinLongitude: String) {
+//        myDogViewModel.getDistressPetRegisterData(
+//            MyApp.getSharedPref().userId,
+//            "current description",
+//            pinLatitude,
+//            pinLongitude,
+//            MultipartFile.prepareFilePart(requireContext(), "pet_image[]", uri),
+//            args.type,
+//            "0"
+//        )
+//            .observe(requireActivity(), Observer {
+//                when (it.status) {
+//                    Result.Status.LOADING -> {
+//                        binding.progressBar.show()
+//                    }
+//                    Result.Status.SUCCESS -> {
+//                        binding.progressBar.hide()
+//                        it.data?.responseMessage?.snack(
+//                            Color.BLACK,
+//                            binding.parent
+//                        )
+//                        if (it.data?.responseCode.equals("0")) {
+//                            it.data?.responseMessage?.snack(
+//                                Color.RED,
+//                                binding.parent
+//                            )
+//                            return@Observer
+//                        }
+//                        customDialog()
+//                        //confirmDialog()
+//                    }
+//                    Result.Status.ERROR -> {
+//                        binding.progressBar.hide()
+//                        it.message?.snack(Color.RED, binding.parent)
+//                    }
+//                }
+//            })
+//    }
+
     private fun customDialog() {
         val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog,null)
         val mBuilder = AlertDialog.Builder(requireContext())
             .setView(mDialogView)
         val mAlertDialog = mBuilder.show()
-
-
         val btn = mDialogView.findViewById<TextView>(R.id.okBtn)
         btn.setOnClickListener(){
-
             HomeActivity.menuIcon.visibility = View.VISIBLE
             requireView().findNavController().navigate(R.id.action_SOSMainFragment_to_nav_home3)
             mAlertDialog.dismiss()

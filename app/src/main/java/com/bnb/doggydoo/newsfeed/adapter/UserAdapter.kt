@@ -22,7 +22,6 @@ class UserAdapter(var context: Context) :
         val binding =
             SingleItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserViewHolder(binding)
-
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
@@ -46,13 +45,9 @@ class UserAdapter(var context: Context) :
                                 .putExtra("viewuserid", data.user_id)
                                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                     }
-
                 }
             }
-
-
         }
-
     }
 
     companion object {

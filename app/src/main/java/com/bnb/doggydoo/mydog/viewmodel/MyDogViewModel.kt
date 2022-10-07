@@ -90,10 +90,12 @@ class MyDogViewModel @Inject constructor(var dogRepo: MyDogRepo) : ViewModel() {
         lattitute: String,
         longitute: String,
         profile: MultipartBody.Part,
-        type: String
+        type: String,
+        notificationType: String
     ) =
-        dogRepo.distressPetPostLiveData(user_id,pet_description,lattitute,longitute,
-            profile,type)
+        dogRepo.distressPetPostLiveData(user_id,pet_description,lattitute,longitute, profile,type,notificationType)
+
+
 
     fun getDistressPetDetailData(
         pet_id: String

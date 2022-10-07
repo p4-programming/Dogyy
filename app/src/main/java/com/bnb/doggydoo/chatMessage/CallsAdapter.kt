@@ -18,7 +18,7 @@ class CallsAdapter (var context: Context) : RecyclerView.Adapter<CallsAdapter.Re
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return 2
     }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {

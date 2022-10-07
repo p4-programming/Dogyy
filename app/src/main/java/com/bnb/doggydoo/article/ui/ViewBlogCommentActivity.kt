@@ -33,7 +33,6 @@ class ViewBlogCommentActivity : AppCompatActivity() {
         setContentView(binding.root)
         getInit()
         callCommentAPI()
-
     }
 
     private fun getInit() {

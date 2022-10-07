@@ -48,11 +48,13 @@ class SOSDistressFragment : Fragment() {
     private final val REQUEST_IMAGE_CAPTURE = 1475357526
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888
     private var distressType:String= "Lost my pet"
+    private var notificationType:String= ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,18 +68,20 @@ class SOSDistressFragment : Fragment() {
         getInit()
         setRadiogroup()
 
-        binding.ivDog.setOnClickListener({
+        binding.ivDog.setOnClickListener {
+            Log.i("TAG", "onCreateView: SANJAY SINGH!@#")
             binding.getImageFromGallery.performClick()
-        })
+        }
 
         binding.ivBack.setOnClickListener(){
             HomeActivity.menuIcon.visibility = View.VISIBLE
             requireView().findNavController().popBackStack()
         }
-
+        Log.i("TAG", "onCreateView: SANJAY SINGH")
         return view
-
     }
+
+
 
     private fun setRadiogroup() {
         binding.b1.setOnClickListener(){
@@ -118,6 +122,32 @@ class SOSDistressFragment : Fragment() {
         }
     }
 
+
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.i("TAG", "resultLuncher $result ")
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data != null) {
+                    uri = result.data?.data
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        Log.i("TAG", "OneEEEEEEEEEEEEEEEEEEEE  :")
+                        Toast.makeText(context,"If ResultLuncher",Toast.LENGTH_SHORT).show()
+                        val source =
+                            ImageDecoder.createSource(activity!!.contentResolver, uri!!)
+                        binding.ivDog.setImageBitmap(ImageDecoder.decodeBitmap(source))
+                        binding.ivDog.visibility=View.VISIBLE
+                        binding.llUploadPic.hide()
+                    } else {
+                        Log.i("TAG", "Two000000000000000000000000: ")
+                        Toast.makeText(context,"Else ResultLuncher",Toast.LENGTH_SHORT).show()
+                        binding.ivDog.setImageURI(uri)
+                        binding.ivDog.visibility=View.VISIBLE
+                        binding.llUploadPic.hide()
+                    }
+                }
+            }
+        }
+
     override fun onResume() {
         super.onResume()
         checkCameraPermission()
@@ -133,7 +163,6 @@ class SOSDistressFragment : Fragment() {
         binding.viewMyThread.setOnClickListener {
             startActivity(
                 Intent(context, MyThread::class.java)
-
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
         }
@@ -142,13 +171,12 @@ class SOSDistressFragment : Fragment() {
             if (binding.etPetDescription.text.isEmpty()) {
                 Toast.makeText(requireContext(), "Please add description.", Toast.LENGTH_SHORT).show()
             }else{
-
 //                val transaction = childFragmentManager?.beginTransaction()
 //                transaction?.replace(R.id.SOSDistressFragment, SOSMainFragment())
 //                transaction?.disallowAddToBackStack()
 //                transaction?.commit()
 
-                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType)
+                val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType,uri.toString(),notificationType)
                 requireView().findNavController().navigate(action)
             }
         }
@@ -213,6 +241,7 @@ class SOSDistressFragment : Fragment() {
 //    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.i("Sanjay", "onActivityResult: WE GOT SOMETHING")
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 val bmp = data?.extras!!["data"] as Bitmap?
@@ -227,29 +256,10 @@ class SOSDistressFragment : Fragment() {
                 )
                // binding.llUploadPic.visibility = View.GONE
                 binding.ivDog.setImageBitmap(bitmap)
+                Log.i("TAG", "onActivityResult: $bitmap")
             }
         }
     }
-
-    private var resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data != null) {
-                    uri = result.data?.data
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        val source =
-                            ImageDecoder.createSource(activity!!.contentResolver, uri!!)
-                        binding.ivDog.setImageBitmap(ImageDecoder.decodeBitmap(source))
-                        binding.ivDog.visibility=View.VISIBLE
-                        binding.llUploadPic.hide()
-                    } else {
-                        binding.ivDog.setImageURI(uri)
-                        binding.ivDog.visibility=View.VISIBLE
-                        binding.llUploadPic.hide()
-                    }
-                }
-            }
-        }
 
 
     private fun checkCameraPermission() {

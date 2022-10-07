@@ -1,5 +1,6 @@
 package com.bnb.doggydoo.sos.ui
 
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -14,9 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
 import com.bnb.doggydoo.mydog.ui.DDPActivity
+import com.bnb.doggydoo.utils.network.ApiConstant
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 
+class RecyclerAdapter(private val mContext: Context, private val DataList: ArrayList<getDistressPinByUserID.Datum>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
-class RecyclerAdapter(private val mContext:Context, private val DataList: ArrayList<getDistressPinByUserID.Datum>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
+    private var petImage: String = ""
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
@@ -29,7 +35,26 @@ class RecyclerAdapter(private val mContext:Context, private val DataList: ArrayL
 
         viewHolder.discription.text = currentitem.petDescription
         viewHolder.cdate.text = currentitem.createdDate
-       // viewHolder.dogimgs.setImageResource(currentitem.petImage.toInt())
+
+        Log.d("Deepak","items : ${currentitem.petImage} : ${currentitem.petDescription} : ${currentitem.createdDate}")
+
+        if (currentitem.petImage.isNotEmpty()) {
+            petImage = ApiConstant.PET_IMAGE_BASE_URL + currentitem.petImage
+            Log.d("Deepak","PetImageIf : $petImage")
+            Glide.with(mContext)
+                .load(petImage)
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontAnimate()
+                        .centerCrop()
+                        .dontTransform()
+                )
+                .into(viewHolder.dogimgs)
+        } else {
+            Log.d("Deepak","PetImageElse")
+            Glide.with(mContext).load(R.drawable.dummy_pet).into(viewHolder.dogimgs)
+        }
 
         viewHolder.cardll.setOnClickListener {
             mContext.startActivity(
@@ -47,13 +72,11 @@ class RecyclerAdapter(private val mContext:Context, private val DataList: ArrayL
         return DataList.size
     }
 
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val discription: TextView = view.findViewById(R.id.discription)
         val cdate: TextView = view.findViewById(R.id.cdate)
         val dogimgs: ImageView  = view.findViewById(R.id.dogimgs)
         var cardll :LinearLayout=view.findViewById(R.id.cardll)
     }
-
-
 }
+

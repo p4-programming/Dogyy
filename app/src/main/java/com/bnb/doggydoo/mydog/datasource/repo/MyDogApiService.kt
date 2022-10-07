@@ -116,12 +116,13 @@ interface MyDogApiService {
         @Part("longitute") longitute: RequestBody,
         @Part pet_image: MultipartBody.Part,
         @Part("type") type: RequestBody,
+        @Part("notificationType") notificationType: RequestBody
     ): Response<PetReminderResponse>
+
 
     @FormUrlEncoded
     @POST("AuthApi/getdistresspetdescription")
     suspend fun distressPetDetail(
         @Field("pet_id") pet_id: String
     ): Response<DistressPetResponse>
-
 }

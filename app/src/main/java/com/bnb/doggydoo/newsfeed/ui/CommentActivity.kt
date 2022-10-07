@@ -43,7 +43,6 @@ class CommentActivity : AppCompatActivity() {
         binding.rvComment.adapter = adapter
         //binding.rvComment.scrollToPosition(adapter.itemCount - 1)
 
-
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -52,9 +51,7 @@ class CommentActivity : AppCompatActivity() {
             if (binding.etComment.text.trim().isEmpty()) {
                 Toast.makeText(this, "Please mention your comment.", Toast.LENGTH_SHORT).show()
             } else {
-
                 commentPost(newsFeedId)
-
             }
         }
     }

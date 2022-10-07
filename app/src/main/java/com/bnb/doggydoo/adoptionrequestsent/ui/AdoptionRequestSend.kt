@@ -20,7 +20,6 @@ class AdoptionRequestSend : AppCompatActivity() {
             finish()
         }
 
-
         binding.requestButton.setOnClickListener {
             startActivity(
                 Intent(this, ChatMessageRequestActivity::class.java)

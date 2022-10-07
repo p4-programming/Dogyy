@@ -65,10 +65,10 @@
         android:id="@+id/rvComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rlHeader"
-        tools:listitem="@layout/single_item_user"
         android:layout_above="@+id/rlComment"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_below="@+id/rlHeader"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/single_item_user" />
 
 
     <RelativeLayout

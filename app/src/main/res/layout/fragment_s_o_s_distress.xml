@@ -71,37 +71,17 @@
             <!--            </RelativeLayout>-->
 
 
-            <androidx.cardview.widget.CardView
+            <Button
                 android:id="@+id/viewMyThread"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:layout_height="45dp"
+                android:background="@drawable/shape"
+                android:textAllCaps="false"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10sp"
-                android:clickable="true"
-                android:focusable="true"
-                android:maxHeight="200dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp">
+                android:text="View My Thread"/>
 
-
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:fontFamily="@font/regular"
-                    android:hint="View My Thread"
-                    android:maxLines="1"
-                    android:padding="12dp"
-                    android:paddingStart="20dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20dp" />
-            </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:id="@+id/llUploadPic"
@@ -124,7 +104,7 @@
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <RadioGroup
                 android:id="@+id/rg_1"

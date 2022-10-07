@@ -49,18 +49,18 @@ class ArticleDetailsActivity : AppCompatActivity() {
 
         if (intent != null)
             viewType = intent.getStringExtra("type").toString()
-        url = intent.getStringExtra("url").toString()
-        caption = intent.getStringExtra("caption").toString()
-        desc = intent.getStringExtra("description").toString()
-        likeCount = intent.getStringExtra("likeCount")!!.toInt()
-        commentCount = intent.getStringExtra("commentCount")!!.toInt()
-        newsFeedId = intent.getStringExtra("newsfeedId").toString()
-        isLiked = intent.getStringExtra("isLiked").toString()
+            url = intent.getStringExtra("url").toString()
+            caption = intent.getStringExtra("caption").toString()
+            desc = intent.getStringExtra("description").toString()
+            likeCount = intent.getStringExtra("likeCount")!!.toInt()
+            commentCount = intent.getStringExtra("commentCount")!!.toInt()
+            newsFeedId = intent.getStringExtra("newsfeedId").toString()
+            isLiked = intent.getStringExtra("isLiked").toString()
 
-        binding.tvlike1.text = likeCount.toString()
-        binding.tvComment1.text = commentCount.toString()
-        binding.tvLike.text= isLiked
-        binding.tvComment.text= commentCount.toString()
+            binding.tvlike1.text = likeCount.toString()
+            binding.tvComment1.text = commentCount.toString()
+            binding.tvLike.text= isLiked
+            binding.tvComment.text= commentCount.toString()
 
         // Toast.makeText(this, isLiked, Toast.LENGTH_SHORT).show()
         if (isLiked == "1") {

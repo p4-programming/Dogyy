@@ -381,17 +381,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                         mcurrentLat = destinationLatLng?.latitude.toString()
                         mcurrentLang = destinationLatLng?.longitude.toString()
 
-                        val destinationLocation = LatLng(
+                        val originLocation = LatLng(
                             MyApp.getSharedPref().userLat.toDouble(),
                             MyApp.getSharedPref().userLong.toDouble()
                         )
 
-                        val originLocation = place.latLng
+                        val destinationLocation = place.latLng
                         mMap!!.addMarker(MarkerOptions().position(originLocation))
                         mMap!!.addMarker(MarkerOptions().position(destinationLocation))
-                        val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
+                        val urll = getDirectionURL(originLocation,destinationLocation, apiKey)
                         GetDirection(urll).execute()
-                        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
+                        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(destinationLocation, 14F))
 
 //                        getMapDateApi(mcurrentLat, mcurrentLang, "allexplore")
 //                        MyApp.getSharedPref().userLat = mcurrentLat
@@ -488,8 +488,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 //            return
 //        }
 //        super.onActivityResult(requestCode, resultCode, data)
+                    }
+                }
+            }
+        }
     }
-                }}}}
 
 //    private fun getDirectionURL(origin:LatLng, dest:LatLng) : String{
 //        return "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=true&mode=driving&key=AIzaSyDLoE5-MCJ0Gl-q4V-5-4udXrmGiyLZxoc"
@@ -554,10 +557,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
     private fun initializeBottomSheetAdapters() {
         val name = arrayOf<String>(
+            "SOS",
             "Playdate",
             "NewsFeed",
             "Adoption",
-            "SOS",
            // "DogSitting",
            //  "Fostering",
             "Find a vet",
@@ -565,10 +568,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
           //  "Training"
         )
         val bgDrawableIds = intArrayOf(
+            R.raw.sos_doggy_lottie,
             R.raw.playdate_lottie,
             R.raw.adoption_lottie,
             R.raw.newsfeed_lottie,
-            R.raw.sos_doggy_lottie,
             R.raw.find_a_vet_lottie,
 
             R.mipmap.play_date,
@@ -581,7 +584,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             //R.mipmap.article, // article
           //  R.mipmap.training,
             )
-        
+
         bind.bottomSheetLayout.featuresRv.adapter = HomeFeatureAdapter(
             requireContext(),
             name,
@@ -591,7 +594,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 
         playDateAdapter = HomePlayDateAdapter(requireContext())
         bind.bottomSheetLayout.pladateRv.adapter = playDateAdapter
-//        getPlayDateApi()
+        getPlayDateApi()
 
         setUpNewsfeed()
     }
@@ -660,7 +663,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             viewLifecycleOwner, Observer {
                 when (it.status) {
                     Result.Status.LOADING -> {
-                      //  binding.progressBar.show()
+//                        binding.progressBar.show()
                     }
                     Result.Status.SUCCESS -> {
                       //  binding.progressBar.hide()
@@ -673,7 +676,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                     Result.Status.ERROR -> {
                        // binding.progressBar.hide()
                        // it.message?.snack(Color.RED, binding.parent)
-                        Log.d("TAG", "likePost: error")
                     }
                 }
             }
@@ -796,35 +798,35 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 })
     }
 
-    //    private fun getPlayDateApi() {
-    //        homeViewModel.getUpcomingPlayDateResponse(
-    //            MyApp.getSharedPref().userId,
-    //            currentLat,
-    //            currentLang
-    //        )
-    //            .observe(viewLifecycleOwner,
-    //                Observer {
-    //                    when (it.status) {
-    //                        Result.Status.LOADING -> {
-    //                        }
-    //                        Result.Status.SUCCESS -> {
-    //                            if (it.data!!.responseCode == "0") {
-    //                                //bind.bottomSheetLayout.noPlayDate.show()
-    //                                return@Observer
-    //                            }
-    //                            if (it.data.parkPlayDate.isEmpty()) {
-    //                                //bind.bottomSheetLayout.noPlayDate.show()
-    //                                return@Observer
-    //                            }
-    //                            //bind.bottomSheetLayout.noPlayDate.hide()
-    //                            playDateAdapter.submitList(it.data.parkPlayDate)
-    //                        }
-    //                        Result.Status.ERROR -> {
-    //                            it.message!!.snack(Color.RED, bind.root)
-    //                        }
-    //                    }
-    //                })
-    //    }
+        private fun getPlayDateApi() {
+            homeViewModel.getUpcomingPlayDateResponse(
+                MyApp.getSharedPref().userId,
+                currentLat,
+                currentLang
+            )
+                .observe(viewLifecycleOwner,
+                    Observer {
+                        when (it.status) {
+                            Result.Status.LOADING -> {
+                            }
+                            Result.Status.SUCCESS -> {
+                                if (it.data!!.responseCode == "0") {
+                                    //bind.bottomSheetLayout.noPlayDate.show()
+                                    return@Observer
+                                }
+                                if (it.data.parkPlayDate.isEmpty()) {
+                                    //bind.bottomSheetLayout.noPlayDate.show()
+                                    return@Observer
+                                }
+                                //bind.bottomSheetLayout.noPlayDate.hide()
+                                playDateAdapter.submitList(it.data.parkPlayDate)
+                            }
+                            Result.Status.ERROR -> {
+                                it.message!!.snack(Color.RED, bind.root)
+                            }
+                        }
+                    })
+        }
 
     private fun getMapDateApi(currentLat: String, currentLang: String, type: String) {
         homeViewModel.getHomeMapResponse(
@@ -879,32 +881,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                             .snippet(parkDetailList[i].parkid)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.fostering_icon))
                     )
-                }
-
-                //          sosType
-                //                            1.case "Medical emergency":
-                //                            imageName="medicalRequired"
-
-                //                            2.case "Lost My Pet":
-                //                            imageName="alert"
-
-                //                            3.case "Animal Cruelty":
-                //                            imageName="animalCrulity"
-
-                //                            4.case "Spotted Missing Dog":
-                //                            imageName="spotted-doggydoo 1"
-
-                //                            5.case "Litter report":
-                //                            imageName="litterReport"
-
-                //                            6.case "Food & Shelter":
-                //                            imageName="DoggyDoo_All_Illustrations 1"
-
-                //                            7.default:
-                //                            imageName="sos_h"
-
-
-                else if (parkDetailList[i].response_type == "pet") {
+                }else if (parkDetailList[i].response_type == "pet") {
                     if (parkDetailList[i].type == "distresspet"){
                         if (parkDetailList[i].status != null){
                             if (parkDetailList[i].status == "1") {
@@ -1069,42 +1046,42 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             mMap!!.animateCamera(CameraUpdateFactory.zoomTo(18f))
         }
 
-//        mMap!!.setInfoWindowAdapter(object : InfoWindowAdapter {
-//            override fun getInfoWindow(marker: Marker): View? {
-//                return null
-//            }
-///
+        mMap!!.setInfoWindowAdapter(object : InfoWindowAdapter {
+            override fun getInfoWindow(marker: Marker): View? {
+                return null
+            }
 
-//            @SuppressLint("SetTextI18n")
-//            override fun getInfoContents(marker: Marker): View? {
-////                val v = View.inflate(requireContext(), R.layout.single_snap_user, null)
-////                // set widget of your custom_layout like below
-////                val parkName: TextView = v.findViewById(R.id.userName) as TextView
-////                val parkAddress: TextView = v.findViewById(R.id.userDistance) as TextView
-////                val parkadd: TextView = v.findViewById(R.id.userDistance1) as TextView
-////                parkName.text = marker.title
-//                val geocoder = Geocoder(context, Locale.getDefault())
-//                val addresses: List<Address> = geocoder.getFromLocation(
-//                    marker.position.latitude,
-//                    marker.position.longitude,
-//                    1
-//                )
-//
-//                if(addresses.isNotEmpty()) {
-//                    val address: String? = addresses[0].getAddressLine(0)
-//                    val city: String? = addresses[0].getLocality()
-//                    val state: String? = addresses[0].getAdminArea()
-//                    val zip: String? = addresses[0].getPostalCode()
-//                    val country: String? = addresses[0].getCountryName()
-////                    try {
-////                        parkAddress.text = "$city, $state"
-////                        parkadd.text = "$country, $zip"
-////                    } catch (e: Exception) {
-////                    }
-//                }
-//                return null
-//            }
-//        })
+
+            @SuppressLint("SetTextI18n")
+            override fun getInfoContents(marker: Marker): View? {
+                val v = View.inflate(requireContext(), R.layout.single_snap_user, null)
+                // set widget of your custom_layout like below
+                val parkName: TextView = v.findViewById(R.id.userName) as TextView
+                val parkAddress: TextView = v.findViewById(R.id.userDistance) as TextView
+                val parkadd: TextView = v.findViewById(R.id.userDistance1) as TextView
+                parkName.text = marker.title
+                val geocoder = Geocoder(context, Locale.getDefault())
+                val addresses: List<Address> = geocoder.getFromLocation(
+                    marker.position.latitude,
+                    marker.position.longitude,
+                    1
+                )
+
+                if(addresses.isNotEmpty()) {
+                    val address: String? = addresses[0].getAddressLine(0)
+                    val city: String? = addresses[0].getLocality()
+                    val state: String? = addresses[0].getAdminArea()
+                    val zip: String? = addresses[0].getPostalCode()
+                    val country: String? = addresses[0].getCountryName()
+                    try {
+                        parkAddress.text = "$city, $state"
+                        parkadd.text = "$country, $zip"
+                    } catch (e: Exception) {
+                    }
+                }
+                return v
+            }
+        })
 
         mMap!!.setOnMarkerClickListener { marker ->
             val markerName = marker.title
@@ -1177,9 +1154,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 }
             false
         }
-
-
-
     }
 
 //    private fun setMapStyle(map: GoogleMap) {
@@ -1208,7 +1182,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
         mMap!!.uiSettings.isMyLocationButtonEnabled = false
         // mMap!!.getUiSettings().setMyLocationButtonEnabled(false);
         mapStyle = MyApp.getSharedPref().userReqType
-
 
 
         if (mapStyle.isEmpty()) {

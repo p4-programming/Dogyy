@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bnb.doggydoo.R
@@ -28,7 +29,6 @@ class DDPActivity : AppCompatActivity() {
     private val bind get() = binding!!
     private lateinit var myDogViewModel: MyDogViewModel
     private var petId: String = ""
-    private var userId: String = ""
     private var petImage: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,23 +45,16 @@ class DDPActivity : AppCompatActivity() {
         myDogViewModel = ViewModelProvider(this).get(MyDogViewModel::class.java)
         petId = intent.getStringExtra("petId").toString()
 
-
-        /* val viewPager = binding.sliderviewpager
-         adapter = ImageViewPagerAdapter(this)
-         viewPager.adapter = adapter
-         binding.dotsIndicator.setViewPager2(viewPager)*/
-
         bind.ivBack.setOnClickListener {
             finish()
         }
     }
 
     fun intents(){
-        bind.resolved.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext,MarkResolved::class.java))
-        })
+        bind.resolved.setOnClickListener {
+            startActivity(Intent(applicationContext, MarkResolved::class.java))
+        }
     }
-
 
     private fun callGetDogDescriptionAPI(){
         myDogViewModel.getPetDescriptionData(petId, MyApp.getSharedPref().userId)
@@ -85,25 +78,28 @@ class DDPActivity : AppCompatActivity() {
                         bind.progressBar.hide()
                         it.message?.snack(Color.RED, bind.parent)
                     }
-            }})
+                }
+            })
     }
 
     @SuppressLint("SetTextI18n")
     private fun setDataInUI(data: PetDescriptionResponse) {
         petId = data.petdetail.id
-        userId = data.userdetail.id
         bind.tvdiscription.text = data.petdetail.pet_description
 
         if (data.petImage.isNotEmpty()) {
             petImage = ApiConstant.PET_IMAGE_BASE_URL + data.petImage[0]
+            Log.d("Deepak","PetImage : $petImage")
             bind.dogimg.loadImageFromString(
                 this,
                 ApiConstant.PET_IMAGE_BASE_URL + data.petImage[0]
             )
             bind.dogimg.show()
         } else {
+            Log.d("Deepak","PetImageelse : $petImage")
             Glide.with(this).load(R.drawable.dummy_pet).into(bind.dogimg)
         }
+        Log.d("Deepak","items : ${data.petdetail.id} : ${data.userdetail.id} : ${data.petdetail.pet_description} : ${data.petImage}")
     }
 
     override fun onResume() {

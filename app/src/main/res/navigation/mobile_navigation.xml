@@ -105,6 +105,13 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="notificationType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SOSDistressFragment"
@@ -127,6 +134,13 @@
             app:argType="string" />
         <argument
             android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="notificationType"
             app:argType="string" />
     </fragment>
 

@@ -261,8 +261,6 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
             val address: String = addresses[0].getAddressLine(0)
             binding.tvAddress.text = address
         }
-
-
     }
 
     private fun confirmPinOption(lat: String, longg: String) {
@@ -290,8 +288,10 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
 
             val petDescription = args.description
             val distressType = args.type
+            val uri = args.imageUri
+            val notificationType = args.notificationType
 
-            val action = Pin_Map_FragmentDirections.actionPinMapFragmentToSOSMainFragment(lat,longg,petDescription, distressType)
+            val action = Pin_Map_FragmentDirections.actionPinMapFragmentToSOSMainFragment(lat,longg,petDescription,distressType,uri.toString(),notificationType)
             requireView().findNavController().navigate(action)
 
 //            startActivity(
@@ -302,10 +302,6 @@ class Pin_Map_Fragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickLi
 //            )
             dialog.dismiss()
         }
-
-
         dialog.show()
     }
-
-
 }

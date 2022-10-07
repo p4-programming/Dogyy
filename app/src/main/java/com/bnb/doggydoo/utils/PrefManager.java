@@ -162,5 +162,4 @@ public class PrefManager {
     public String getType(){
         return pref.getString(TYPE,"");
     }
-
 }

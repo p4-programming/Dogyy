@@ -43,6 +43,7 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
     private var pinLatitude: String = ""
     private var pinLongitude: String = ""
     private var type: String = ""
+    private var notificationType: String = ""
     private val myDogViewModel: MyDogViewModel by viewModels()
     private val REQUEST_PERMISSION = 100
     private var uri: Uri? = null
@@ -84,7 +85,6 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
             } else {
                 addDistressPetAPI()
             }
-
         }
 
         binding.ivDog.setOnClickListener {
@@ -180,7 +180,8 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
             pinLatitude,
             pinLongitude,
             MultipartFile.prepareFilePart(this, "pet_image[]", uri),
-            type
+            type,
+            notificationType
         )
             .observe(this, Observer {
                 when (it.status) {
