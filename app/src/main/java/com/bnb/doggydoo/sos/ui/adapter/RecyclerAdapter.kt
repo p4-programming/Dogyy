@@ -1,4 +1,4 @@
-package com.bnb.doggydoo.sos.ui
+package com.bnb.doggydoo.sos.ui.adapter
 
 
 import android.content.Context
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
 import com.bnb.doggydoo.mydog.ui.DDPActivity
+import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.network.ApiConstant
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -32,11 +33,10 @@ class RecyclerAdapter(private val mContext: Context, private val DataList: Array
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val currentitem = DataList[position]
-
+        Log.d("Deepak","Petid : ${currentitem.id}")
+        Log.d("Deepak","Userid : ${MyApp.getSharedPref().userId}")
         viewHolder.discription.text = currentitem.petDescription
         viewHolder.cdate.text = currentitem.createdDate
-
-        Log.d("Deepak","items : ${currentitem.petImage} : ${currentitem.petDescription} : ${currentitem.createdDate}")
 
         if (currentitem.petImage.isNotEmpty()) {
             petImage = ApiConstant.PET_IMAGE_BASE_URL + currentitem.petImage

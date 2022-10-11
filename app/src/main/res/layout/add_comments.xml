@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="@color/dark_transparent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_sheet_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/cmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/medium"
+                    android:padding="10dp"
+                    android:text="Comments"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivDoLike"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/black_heartt"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toRightOf="@+id/ivDoLike"
+                    android:fontFamily="@font/regular"
+                    android:text="0"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/single_item_user" />
+
+        <RelativeLayout
+            android:id="@+id/rlComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#F6F6F6"
+            android:elevation="10dp">
+
+            <EditText
+                android:id="@+id/etComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toStartOf="@+id/ivSend"
+                android:background="@drawable/edittext_bg"
+                android:hint="Type your comment"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:padding="15dp" />
+
+            <ImageView
+                android:id="@+id/ivSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/arrow_up" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

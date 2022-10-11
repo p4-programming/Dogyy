@@ -1,44 +1,30 @@
 package com.bnb.doggydoo.sos.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
-import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.FragmentCommentsBinding
-import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
-import com.bnb.doggydoo.myprofile.datasource.model.profile.NewUploadData
-import com.bnb.doggydoo.myprofile.datasource.model.profile.UserDetail
-import com.bnb.doggydoo.newsfeed.adapter.UserAdapter
-import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedCommentDetail
-import com.bnb.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
 import com.bnb.doggydoo.sos.ui.adapter.CommentAdapter
-import com.bnb.doggydoo.utils.helper.Result
+import com.bnb.doggydoo.sos.ui.model.CommentModels
+import com.bnb.doggydoo.utils.MyApp
+import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class CommentsFragment : Fragment() {
 
     private var _binding: FragmentCommentsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var newsFeedViewModel: NewsFeedViewModel
-    private var newsFeedId: String = "null"
-    private var name: String = ""
-    private var mobile: String = ""
-    private var pic: String = ""
-    private var cdate: String = ""
-    private lateinit var recyclerAdapter: CommentAdapter
-    private lateinit var DataList: ArrayList<NewsFeedCommentDetail>
-    private lateinit var id: NewUploadData
+    private lateinit var DataList: ArrayList<CommentModels>
+    private var petId: String = "129"
+    private var UserId: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,66 +32,42 @@ class CommentsFragment : Fragment() {
     ): View? {
         _binding = FragmentCommentsBinding.inflate(layoutInflater)
         setHasOptionsMenu(true)
-        getInit()
-        getComment()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.rvComment.setHasFixedSize(true)
+        UserId = MyApp.getSharedPref().userId
         binding.rvComment.layoutManager = LinearLayoutManager(context)
-        DataList = ArrayList()
+        binding.rvComment.setHasFixedSize(true)
+        DataList = arrayListOf()
+        getData()
     }
 
-    private fun getInit() {
-        newsFeedViewModel = ViewModelProvider(this).get(NewsFeedViewModel::class.java)
-        newsFeedId = id.id
-        Log.d("Deepak","NewsFeedId : $newsFeedId")
-
-    }
-
-    private fun getComment() {
-        newsFeedViewModel.newsFeedCommentList(newsFeedId).observe (
-            viewLifecycleOwner, Observer {
-                when (it.status) {
-                    Result.Status.LOADING -> {
-                        binding.progressBar.show()
-                    }
-                    Result.Status.SUCCESS -> {
-                        binding.progressBar.hide()
-
-                        if (it.data!!.responseCode == ("0")) {
-                            return@Observer
+    private fun getData(){
+        binding.progressBar.show()
+        FirebaseDatabase.getInstance().getReference("comments").child(petId).orderByChild("userID").equalTo(UserId).addValueEventListener(
+            object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.i("TAG", "onDataChange: TEST :: $snapshot")
+                    DataList.clear()
+                    if (snapshot.exists()){
+                        for (userSnapshot in snapshot.children){
+                            val user = userSnapshot.getValue(CommentModels::class.java)
+                            DataList.add(user!!)
                         }
-//                        adapter.submitList(it.data.newsfeedcommentList)
-                        Dataset(it.data.newsfeedcommentList)
-                    }
-                    Result.Status.ERROR -> {
                         binding.progressBar.hide()
-                        it.message?.snack(Color.RED, binding.parent)
+                        val mAdapter = CommentAdapter(context!!,DataList)
+                        binding.rvComment.adapter = mAdapter
                     }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context,"Error $error",Toast.LENGTH_SHORT).show()
                 }
             }
         )
     }
-
-
-    private fun Dataset(sdata: List<NewsFeedCommentDetail>){
-        DataList.clear()
-        name = sdata[0].username
-        pic = sdata[0].userphoto
-        cdate = sdata[0].createon
-        mobile = sdata[0].comment
-
-        DataList.addAll(sdata)
-        recyclerAdapter = CommentAdapter(context!!,DataList)
-        binding.rvComment.adapter = recyclerAdapter
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }
+
+

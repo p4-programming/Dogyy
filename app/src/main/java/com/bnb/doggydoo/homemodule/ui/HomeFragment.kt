@@ -133,11 +133,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             .getApplicationInfo(context!!.packageName, PackageManager.GET_META_DATA)
         val value = ai.metaData["com.google.android.geo.API_KEY"]
         apiKey = value.toString()
-//       val mGoogleApiClient = GoogleApiClient.Builder(requireContext())
-//            .addConnectionCallbacks(this@HomeFragment)
-//            .addOnConnectionFailedListener(requireContext())
-//            .addApi(LocationServices.API)
-//            .build()
+
+    //       val mGoogleApiClient = GoogleApiClient.Builder(requireContext())
+    //            .addConnectionCallbacks(this@HomeFragment)
+    //            .addOnConnectionFailedListener(requireContext())
+    //            .addApi(LocationServices.API)
+    //            .build()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -151,7 +152,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
             )
         }
         bind.Place.text=null
-
     }
 
 //    private fun getUrl(origin: LatLng, dest: LatLng, directionMode: String): String? {
@@ -650,7 +650,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
 //                        likePost(blockUserId, "2")
 //                    }
 //                }
-//
 //            }
 //
 //            binding.rvUploadedItem.adapter = adapter
@@ -1289,7 +1288,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback,
                 lineoption.color(Color.BLUE)
                 lineoption.geodesic(true)
             }
-            bind.recentre.performClick()
+            //bind.recentre.performClick()
             mMap!!.addPolyline(lineoption)
         }
     }

@@ -191,7 +191,6 @@ class SOSDistressManager : AppCompatActivity() {
             }
             dialog.dismiss()
         }
-
         dialog.show()
     }
 

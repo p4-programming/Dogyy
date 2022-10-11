@@ -1,11 +1,9 @@
 package com.bnb.doggydoo.sos.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +12,13 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.FragmentThreadBinding
 import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
 import com.bnb.doggydoo.mydog.viewmodel.MyDogViewModel
+import com.bnb.doggydoo.sos.ui.adapter.RecyclerAdapter
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +37,6 @@ class ThreadFragment : Fragment() {
         private lateinit var recyclerAdapter: RecyclerAdapter
         private lateinit var DataList: ArrayList<getDistressPinByUserID.Datum>
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
             _binding = FragmentThreadBinding.inflate(layoutInflater)
             setHasOptionsMenu(true)
@@ -52,7 +49,6 @@ class ThreadFragment : Fragment() {
 
         getInit()
         callGetDogDescriptionAPI()
-
 
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.layoutManager = LinearLayoutManager(context)

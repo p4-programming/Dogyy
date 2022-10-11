@@ -1,13 +1,25 @@
 package com.bnb.doggydoo.mydog.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
 import com.bnb.doggydoo.commonutility.loadImageFromString
@@ -16,6 +28,9 @@ import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.ActivityDdpactivityBinding
 import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.PetDescriptionResponse
 import com.bnb.doggydoo.mydog.viewmodel.MyDogViewModel
+import com.bnb.doggydoo.newsfeed.adapter.UserAdapter
+import com.bnb.doggydoo.newsfeed.ui.CommentActivity
+import com.bnb.doggydoo.newsfeed.viewmodel.NewsFeedViewModel
 import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.bnb.doggydoo.utils.network.ApiConstant
@@ -53,6 +68,11 @@ class DDPActivity : AppCompatActivity() {
     fun intents(){
         bind.resolved.setOnClickListener {
             startActivity(Intent(applicationContext, MarkResolved::class.java))
+        }
+
+
+        bind.comments.setOnClickListener {
+            ReadAndWriteCommment()
         }
     }
 
@@ -99,7 +119,15 @@ class DDPActivity : AppCompatActivity() {
             Log.d("Deepak","PetImageelse : $petImage")
             Glide.with(this).load(R.drawable.dummy_pet).into(bind.dogimg)
         }
-        Log.d("Deepak","items : ${data.petdetail.id} : ${data.userdetail.id} : ${data.petdetail.pet_description} : ${data.petImage}")
+    }
+
+    private fun ReadAndWriteCommment() {
+        val dialog = Dialog(this@DDPActivity, R.style.Theme_Dialog)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.add_comments)
+
+        dialog.show()
     }
 
     override fun onResume() {

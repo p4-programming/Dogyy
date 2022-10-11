@@ -52,25 +52,6 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!--            <RelativeLayout-->
-            <!--                android:id="@+id/rlview"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content">-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/tvConfirm1"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_centerHorizontal="true"-->
-            <!--                    android:fontFamily="@font/medium"-->
-            <!--                    android:text="View My Thread"-->
-            <!--                    android:layout_marginBottom="20dp"-->
-            <!--                    android:textAppearance="?android:textAppearanceMedium"-->
-            <!--                    android:textColor="@color/cal" />-->
-
-            <!--            </RelativeLayout>-->
-
-
             <Button
                 android:id="@+id/viewMyThread"
                 android:layout_width="match_parent"
@@ -81,7 +62,6 @@
                 android:textSize="18sp"
                 android:layout_gravity="center"
                 android:text="View My Thread"/>
-
 
             <RelativeLayout
                 android:id="@+id/llUploadPic"

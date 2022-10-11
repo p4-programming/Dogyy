@@ -1,10 +1,11 @@
-package com.bnb.doggydoo.sos.ui
+package com.bnb.doggydoo.sos.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bnb.doggydoo.chatMessage.CallsFragment
+import com.bnb.doggydoo.sos.ui.CommentsFragment
+import com.bnb.doggydoo.sos.ui.ThreadFragment
 
 class ThreadSecAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

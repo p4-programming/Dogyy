@@ -47,19 +47,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/quantum_grey"
                 android:fontFamily="@font/bold"
-                android:maxLines="4" />
+                android:maxLines="4"
+                android:textColor="@color/quantum_grey" />
 
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textStyle="italic"
-                android:visibility="gone"
                 android:fontFamily="@font/regular"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:textStyle="italic"
+                android:visibility="gone" />
 
         </LinearLayout>
 
