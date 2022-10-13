@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -84,7 +85,7 @@ class PetProfileActivity : AppCompatActivity() {
 
 
     private fun callGetDogDescriptionAPI() {
-        System.out.println("ped id>>" + petId.toString())
+        System.out.println("ped id>>" + petId)
         System.out.println("ped id>>" + MyApp.getSharedPref().userId)
         myDogViewModel.getPetDescriptionData(petId, MyApp.getSharedPref().userId)
             .observe(this, Observer {
@@ -118,7 +119,7 @@ class PetProfileActivity : AppCompatActivity() {
         userId = data.userdetail.id
         binding.petName.text = data.petdetail.pet_name + "," + data.petdetail.pet_gender
         binding.breedAge.text =
-            "${data.petdetail.breed}, ${data.petdetail.pet_age} year, ${data.petdetail.pet_age_month} month old"
+            "${data.petdetail.breed}, ${data.petdetail.pet_age} year, ${data.petdetail.pet_age_month} months old"
 
         if (data.petdetail.pet_gender == "male") {
             binding.ivGender.setImageResource(R.drawable.gender_male)
@@ -150,7 +151,6 @@ class PetProfileActivity : AppCompatActivity() {
             )
             binding.dogImage.show()
         } else {
-
             Glide.with(this).load(R.drawable.dummy_pet).into(binding.dogImage)
            // binding.dogImage.setImageResource(R.drawable.dummy_pet)
         }

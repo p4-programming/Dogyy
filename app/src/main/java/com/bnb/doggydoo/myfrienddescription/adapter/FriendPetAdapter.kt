@@ -1,5 +1,6 @@
 package com.bnb.doggydoo.myfrienddescription.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
@@ -48,6 +49,7 @@ class FriendPetAdapter(
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(detail: MyPetDetail) {
             binding.apply {
                 binding.petName.text = detail.pet_name

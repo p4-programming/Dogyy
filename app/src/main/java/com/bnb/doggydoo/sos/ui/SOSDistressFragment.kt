@@ -31,6 +31,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.hide
+import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.databinding.FragmentSOSDistressBinding
 import com.bnb.doggydoo.homemodule.ui.HomeActivity
 import com.bnb.doggydoo.utils.CommonMethod
@@ -44,16 +45,13 @@ class SOSDistressFragment : Fragment() {
     private val binding get() = _binding!!
     private val REQUEST_PERMISSION = 100
     private var uri: Uri? = null
+    private lateinit var bitmap: Bitmap
     private lateinit var navController: NavController
     private final val REQUEST_IMAGE_CAPTURE = 1475357526
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888
     private var distressType:String= "Lost my pet"
     private var notificationType:String= ""
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -122,25 +120,21 @@ class SOSDistressFragment : Fragment() {
         }
     }
 
-
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             Log.i("TAG", "resultLuncher $result ")
             if (result.resultCode == Activity.RESULT_OK) {
                 if (result.data != null) {
-                    uri = result.data?.data
+                    val data = result.data?.data
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        Log.i("TAG", "OneEEEEEEEEEEEEEEEEEEEE  :")
-                        Toast.makeText(context,"If ResultLuncher",Toast.LENGTH_SHORT).show()
-                        val source =
-                            ImageDecoder.createSource(activity!!.contentResolver, uri!!)
-                        binding.ivDog.setImageBitmap(ImageDecoder.decodeBitmap(source))
+                        val source = ImageDecoder.createSource(activity!!.contentResolver, data!!)
+                        bitmap = ImageDecoder.decodeBitmap(source)
+                        binding.ivDog.setImageBitmap(bitmap)
                         binding.ivDog.visibility=View.VISIBLE
                         binding.llUploadPic.hide()
                     } else {
-                        Log.i("TAG", "Two000000000000000000000000: ")
                         Toast.makeText(context,"Else ResultLuncher",Toast.LENGTH_SHORT).show()
-                        binding.ivDog.setImageURI(uri)
+                        binding.ivDog.setImageURI(result.data?.data)
                         binding.ivDog.visibility=View.VISIBLE
                         binding.llUploadPic.hide()
                     }
@@ -175,9 +169,9 @@ class SOSDistressFragment : Fragment() {
 //                transaction?.replace(R.id.SOSDistressFragment, SOSMainFragment())
 //                transaction?.disallowAddToBackStack()
 //                transaction?.commit()
-
                 val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType,uri.toString(),notificationType)
                 requireView().findNavController().navigate(action)
+                Log.i("TAG", "getInit: $action")
             }
         }
 

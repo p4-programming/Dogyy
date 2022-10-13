@@ -339,10 +339,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.bnb.doggydoo.sos.ui.SOSDistressManager"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name="com.bnb.doggydoo.sos.ui.ConfirmsoslocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
