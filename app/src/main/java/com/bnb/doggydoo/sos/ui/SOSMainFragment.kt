@@ -30,6 +30,7 @@ import com.bnb.doggydoo.utils.MyApp
 import com.bnb.doggydoo.utils.helper.Result
 import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 
 @AndroidEntryPoint
@@ -168,6 +169,8 @@ class SOSMainFragment : Fragment() {
         pinLongitude: String,
         notificationType: String
     ) {
+        Log.i("TAG", "addDistressPetAPI1: ${args.description}")
+        Log.i("TAG", "addDistressPetAPI2: ${args.imageUri} ")
         myDogViewModel.getDistressPetData(
             MyApp.getSharedPref().userId,
             args.description,
@@ -206,45 +209,6 @@ class SOSMainFragment : Fragment() {
             })
     }
 
-//    private fun DistressPetRegisterAPI(pinLatitude: String, pinLongitude: String) {
-//        myDogViewModel.getDistressPetRegisterData(
-//            MyApp.getSharedPref().userId,
-//            "current description",
-//            pinLatitude,
-//            pinLongitude,
-//            MultipartFile.prepareFilePart(requireContext(), "pet_image[]", uri),
-//            args.type,
-//            "0"
-//        )
-//            .observe(requireActivity(), Observer {
-//                when (it.status) {
-//                    Result.Status.LOADING -> {
-//                        binding.progressBar.show()
-//                    }
-//                    Result.Status.SUCCESS -> {
-//                        binding.progressBar.hide()
-//                        it.data?.responseMessage?.snack(
-//                            Color.BLACK,
-//                            binding.parent
-//                        )
-//                        if (it.data?.responseCode.equals("0")) {
-//                            it.data?.responseMessage?.snack(
-//                                Color.RED,
-//                                binding.parent
-//                            )
-//                            return@Observer
-//                        }
-//                        customDialog()
-//                        //confirmDialog()
-//                    }
-//                    Result.Status.ERROR -> {
-//                        binding.progressBar.hide()
-//                        it.message?.snack(Color.RED, binding.parent)
-//                    }
-//                }
-//            })
-//    }
-
     private fun customDialog() {
         val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog,null)
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -259,38 +223,37 @@ class SOSMainFragment : Fragment() {
     }
 
 
-
-    fun confirmDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("SOS")
-        builder.setMessage("Thank you for your contribution towards helping a pet/stray in need")
-
-
-//        builder.setPositiveButton("OK", DialogInterface.OnClickListener(
-//            Toast.makeText(requireContext(),"This is ok",Toast.LENGTH_LONG).show()
-//        ))
-
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-
-            HomeActivity.menuIcon.visibility = View.VISIBLE
-            requireView().findNavController().navigate(R.id.action_SOSMainFragment_to_nav_home3)
-            //finish()
-        }
-
-        /* builder.setNegativeButton(android.R.string.no) { dialog, which ->
-             Toast.makeText(
-                 applicationContext,
-                 android.R.string.no, Toast.LENGTH_SHORT
-             ).show()
-         }
-
-         builder.setNeutralButton("Maybe") { dialog, which ->
-             Toast.makeText(
-                 applicationContext,
-                 "Maybe", Toast.LENGTH_SHORT
-             ).show()
-         }*/
-
-        builder.show()
-    }
+//    fun confirmDialog() {
+//        val builder = AlertDialog.Builder(requireContext())
+//        builder.setTitle("SOS")
+//        builder.setMessage("Thank you for your contribution towards helping a pet/stray in need")
+//
+//
+////        builder.setPositiveButton("OK", DialogInterface.OnClickListener(
+////            Toast.makeText(requireContext(),"This is ok",Toast.LENGTH_LONG).show()
+////        ))
+//
+//        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+//
+//            HomeActivity.menuIcon.visibility = View.VISIBLE
+//            requireView().findNavController().navigate(R.id.action_SOSMainFragment_to_nav_home3)
+//            //finish()
+//        }
+//
+//        /* builder.setNegativeButton(android.R.string.no) { dialog, which ->
+//             Toast.makeText(
+//                 applicationContext,
+//                 android.R.string.no, Toast.LENGTH_SHORT
+//             ).show()
+//         }
+//
+//         builder.setNeutralButton("Maybe") { dialog, which ->
+//             Toast.makeText(
+//                 applicationContext,
+//                 "Maybe", Toast.LENGTH_SHORT
+//             ).show()
+//         }*/
+//
+//        builder.show()
+//    }
 }

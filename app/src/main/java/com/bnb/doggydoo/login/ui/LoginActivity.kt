@@ -119,7 +119,6 @@ class LoginActivity : AppCompatActivity() {
                 finallongi = location.longitude
             }
         }
-
     }
 
     override fun onRequestPermissionsResult(

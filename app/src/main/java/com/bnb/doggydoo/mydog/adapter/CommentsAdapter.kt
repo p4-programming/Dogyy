@@ -1,25 +1,20 @@
-package com.bnb.doggydoo.sos.ui.adapter
+package com.bnb.doggydoo.mydog.adapter
 
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bnb.doggydoo.R
 import com.bnb.doggydoo.commonutility.loadImageFromString
-import com.bnb.doggydoo.mydog.datasource.model.getDistressPinByUserID
 import com.bnb.doggydoo.myprofile.ui.MyProfileActivity
-import com.bnb.doggydoo.newsfeed.datasource.model.NewsFeedCommentDetail
 import com.bnb.doggydoo.sos.ui.model.CommentModels
-import com.bnb.doggydoo.utils.network.ApiConstant
 
-class CommentAdapter(private val mContext: Context, private val DataList: ArrayList<CommentModels>) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class CommentsAdapter(private val mContext: Context, private val DataList: ArrayList<CommentModels>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -138,7 +138,7 @@ class SOSDistressManager : AppCompatActivity() {
             } else if (pinLatitude.isEmpty() || pinLongitude.isEmpty()) {
                 Toast.makeText(this, "Please pin location again.", Toast.LENGTH_SHORT).show()
             } else {
-                addDistressPetAPI()
+//                addDistressPetAPI()
             }
         }
 

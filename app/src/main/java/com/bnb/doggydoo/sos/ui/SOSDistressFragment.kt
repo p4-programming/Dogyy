@@ -51,10 +51,6 @@ class SOSDistressFragment : Fragment() {
     private var notificationType:String= ""
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -175,9 +171,9 @@ class SOSDistressFragment : Fragment() {
 //                transaction?.replace(R.id.SOSDistressFragment, SOSMainFragment())
 //                transaction?.disallowAddToBackStack()
 //                transaction?.commit()
-
                 val action = SOSDistressFragmentDirections.actionSOSDistressFragmentToSOSMainFragment(null,null,binding.etPetDescription.text.toString(),distressType,uri.toString(),notificationType)
                 requireView().findNavController().navigate(action)
+                Log.i("TAG", "getInit: $action")
             }
         }
 

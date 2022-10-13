@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val TAG = "reminderScreen"
+
 
 @AndroidEntryPoint
 class SetReminder : AppCompatActivity() {

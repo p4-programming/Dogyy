@@ -56,12 +56,12 @@
                 android:id="@+id/viewMyThread"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@drawable/shape"
-                android:textAllCaps="false"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp"
                 android:layout_gravity="center"
-                android:text="View My Thread"/>
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape"
+                android:text="View My Thread"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
             <RelativeLayout
                 android:id="@+id/llUploadPic"
@@ -84,7 +84,7 @@
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RadioGroup
                 android:id="@+id/rg_1"
