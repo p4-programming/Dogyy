@@ -25,7 +25,6 @@ import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.ActivityDdpactivityBinding
 import com.bnb.doggydoo.mydog.adapter.CommentsAdapter
-import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.DistressPetResponse
 import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.PetDescriptionResponse
 import com.bnb.doggydoo.mydog.viewmodel.MyDogViewModel
 import com.bnb.doggydoo.newsfeed.adapter.UserAdapter
@@ -70,6 +69,7 @@ class DDPActivity : AppCompatActivity() {
         //  ivsend = findViewById<ImageView>(R.id.sendcmt)
         getInit()
         callGetDogDescriptionAPI()
+
     }
 
     private fun getInit() {
@@ -84,28 +84,30 @@ class DDPActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, MarkResolved::class.java))
         }
 
-        //  bind.comments.setOnClickListener {
+        //        bind.comments.setOnClickListener {
         //     ReadAndWriteCommment()
         //  }
     }
 
     private fun callGetDogDescriptionAPI() {
-        myDogViewModel.getDistressPetDetailData(petId)
+        Log.i("TAG", "callGetDogDescriptionAPI: $petId")
+        myDogViewModel.getPetDescriptionData("464", "526")
             .observe(this, Observer {
+                Log.i("TAG", "callGetDogDescriptionAPI:SANJAY1234 ---- ${it}")
                 when (it.status) {
                     Result.Status.LOADING -> {
                         bind.progressBar.show()
                     }
                     Result.Status.SUCCESS -> {
                         bind.progressBar.hide()
-                        if (it.data?.responseCode.equals("0")) {
-                            it.data?.responseMessage?.snack(
-                                Color.RED,
-                                bind.parent
-                            )
-                            return@Observer
-                        }
-                        setDataInUI(it.data!!)
+//                        if (it.data?.responseCode.equals("0")) {
+//                            it.data?.responseMessage?.snack(
+//                                Color.RED,
+//                                bind.parent
+//                            )
+//                            return@Observer
+//                        }
+//                        setDataInUI(it.data)
                     }
                     Result.Status.ERROR -> {
                         bind.progressBar.hide()
@@ -116,18 +118,10 @@ class DDPActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setDataInUI(data: DistressPetResponse) {
-        bind.tvdiscription.text = data.distressPetdetail.pet_description
+    private fun setDataInUI(data: PetDescriptionResponse?) {
 
-        if (data.distressPetdetail.petImage.isNotEmpty()){
-            petImage = ApiConstant.PET_IMAGE_BASE_URL + data.distressPetdetail.petImage[0]
-            Log.d("Deepak","PetImage $petImage")
-            bind.dogimg.loadImageFromString(this,petImage)
-            bind.dogimg.show()
-        }else{
-            Log.d("Deepak","Else of image")
-            Glide.with(this).load(R.drawable.dummy_pet).into(bind.dogimg)
-        }
+        Log.d("Deepak","Description : ${data!!.petdetail.pet_description}")
+
     }
 
 //    private fun ReadAndWriteCommment() {
@@ -138,7 +132,7 @@ class DDPActivity : AppCompatActivity() {
 //        DataList = arrayListOf()
 //  //      rvComents!!.layoutManager = LinearLayoutManager(context)
 ////        rvComents!!.setHasFixedSize(true)
-
+//
 //        //ivsend = findViewById(R.id.sendcmt)
 //        //        cmt = findViewById(R.id.etComments)
 
@@ -184,8 +178,4 @@ class DDPActivity : AppCompatActivity() {
 //        )
 //    }
 
-    override fun onResume() {
-        super.onResume()
-        callGetDogDescriptionAPI()
-    }
 }
