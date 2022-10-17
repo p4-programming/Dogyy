@@ -52,7 +52,6 @@ class SOSDistressFragment : Fragment() {
     private var distressType:String= "Lost my pet"
     private var notificationType:String= ""
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -191,9 +190,7 @@ class SOSDistressFragment : Fragment() {
         val gallery = dialog.findViewById<View>(R.id.ivGallery) as ImageView
 
         camera.setOnClickListener {
-
             dispatchTakePictureIntent()
-
 //            ImagePicker.with(this)
 //                .cameraOnly()
 //                .crop()                    //Crop image(Optional), Check Customization for more option
@@ -203,7 +200,6 @@ class SOSDistressFragment : Fragment() {
 //                    300
 //                )    //Final image resolution will be less than 1080 x 1080(Optional)
 //                .start()
-
             dialog.dismiss()
         }
 
@@ -255,7 +251,6 @@ class SOSDistressFragment : Fragment() {
         }
     }
 
-
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
@@ -267,10 +262,10 @@ class SOSDistressFragment : Fragment() {
             )
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
 

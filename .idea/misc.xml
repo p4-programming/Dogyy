@@ -221,6 +221,7 @@
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/activity_upload_photo_article.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/activity_userprofile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/activity_view_blog_comment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/activity_viewall.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/actvity_dogsitting_detail.xml" value="0.10104166666666667" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/add_comments.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/chat.xml" value="0.25416666666666665" />
@@ -257,7 +258,7 @@
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_play_date_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_play_date_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_request.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_s_o_s_distress.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_s_o_s_distress.xml" value="0.264" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_setting.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_sos_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/agrah/AndroidStudioProjects/DoggyDoo-Android/app/src/main/res/layout/fragment_sos_main.xml" value="0.25416666666666665" />
