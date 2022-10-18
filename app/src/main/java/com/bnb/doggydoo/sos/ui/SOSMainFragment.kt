@@ -45,9 +45,7 @@ class SOSMainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         CommonMethod.makeTransparentStatusBar(activity?.window)
-
         binding = FragmentSosMainBinding.inflate(layoutInflater)
-
         HomeActivity.menuIcon.visibility = View.GONE
 
         val pin_latitude = args.lattitude
@@ -72,17 +70,14 @@ class SOSMainFragment : Fragment() {
                 if (binding.rbCheck.isChecked) {
                     if(binding.sendAll.isChecked){
                         //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
-
                         notificationType = "1"
                          addDistressPetAPI(
                              MyApp.getSharedPref().userLat,
                              MyApp.getSharedPref().userLong,
                              notificationType
                          )
-
                     }else if (binding.sendToFrd.isChecked){
                         //addDistressPetFirebase(CommonMethod.getTimeStamp(),MyApp.getSharedPref().userLat, MyApp.getSharedPref().userLong)
-
                         notificationType = "0"
                         addDistressPetAPI(
                             MyApp.getSharedPref().userLat,
@@ -109,7 +104,7 @@ class SOSMainFragment : Fragment() {
                     val distressType = args.type
                     val uri = args.imageUri
 
-                    val action = SOSMainFragmentDirections.actionSOSMainFragmentToPinMapFragment(petDescription,distressType,uri.toString(),notificationType)
+                    val action = SOSMainFragmentDirections.actionSOSMainFragmentToPinMapFragment(petDescription,distressType,uri,notificationType)
                     requireView().findNavController().navigate(action)
                     Log.d("Deepak","Action : $action")
 
@@ -164,21 +159,15 @@ class SOSMainFragment : Fragment() {
         }
     }
 
-    private fun addDistressPetAPI(
-        pinLatitude: String,
-        pinLongitude: String,
-        notificationType: String
-    ) {
-        Log.i("TAG", "addDistressPetAPI1: ${args.description}")
-        Log.i("TAG", "addDistressPetAPI2: ${args.imageUri} ")
+    private fun addDistressPetAPI(pinLatitude: String, pinLongitude: String, notificationType: String) {
         myDogViewModel.getDistressPetData(
             MyApp.getSharedPref().userId,
             args.description,
             pinLatitude,
             pinLongitude,
-            MultipartFile.prepareFilePart(requireContext(), "pet_image", uri),
             args.type,
-            notificationType
+            notificationType,
+            MultipartFile.prepareFilePart(context, "pet_image[]", uri),
         )
             .observe(requireActivity(), Observer {
                 when (it.status) {

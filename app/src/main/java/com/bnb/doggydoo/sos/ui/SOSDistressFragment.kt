@@ -35,6 +35,7 @@ import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.databinding.FragmentSOSDistressBinding
 import com.bnb.doggydoo.homemodule.ui.HomeActivity
 import com.bnb.doggydoo.utils.CommonMethod
+import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.ByteArrayOutputStream
 
 
@@ -56,6 +57,7 @@ class SOSDistressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("TAG", "onCreateView: ")
         CommonMethod.makeTransparentStatusBar(activity?.window)
         _binding = FragmentSOSDistressBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -70,7 +72,7 @@ class SOSDistressFragment : Fragment() {
             binding.getImageFromGallery.performClick()
         }
 
-        binding.ivBack.setOnClickListener(){
+        binding.ivBack.setOnClickListener{
             HomeActivity.menuIcon.visibility = View.VISIBLE
             requireView().findNavController().popBackStack()
         }
@@ -79,6 +81,17 @@ class SOSDistressFragment : Fragment() {
     }
 
 
+    private fun checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireContext() as Activity,
+                arrayOf(Manifest.permission.CAMERA),
+                REQUEST_PERMISSION
+            )
+        }
+    }
 
     private fun setRadiogroup() {
         binding.b1.setOnClickListener(){
@@ -119,28 +132,6 @@ class SOSDistressFragment : Fragment() {
         }
     }
 
-    private var resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            Log.i("TAG", "resultLuncher $result ")
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data != null) {
-                    val data = result.data?.data
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        val source = ImageDecoder.createSource(activity!!.contentResolver, data!!)
-                        bitmap = ImageDecoder.decodeBitmap(source)
-                        binding.ivDog.setImageBitmap(bitmap)
-                        binding.ivDog.visibility=View.VISIBLE
-                        binding.llUploadPic.hide()
-                    } else {
-                        Toast.makeText(context,"Else ResultLuncher",Toast.LENGTH_SHORT).show()
-                        binding.ivDog.setImageURI(result.data?.data)
-                        binding.ivDog.visibility=View.VISIBLE
-                        binding.llUploadPic.hide()
-                    }
-                }
-            }
-        }
-
     override fun onResume() {
         super.onResume()
         checkCameraPermission()
@@ -180,7 +171,7 @@ class SOSDistressFragment : Fragment() {
     }
 
     private fun ChooseOption() {
-        val dialog = Dialog(requireContext(), R.style.Theme_Dialog)
+        val dialog = Dialog(context!!, R.style.Theme_Dialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.choose_image_option)
@@ -190,19 +181,13 @@ class SOSDistressFragment : Fragment() {
         val gallery = dialog.findViewById<View>(R.id.ivGallery) as ImageView
 
         camera.setOnClickListener {
-            dispatchTakePictureIntent()
-//            ImagePicker.with(this)
-//                .cameraOnly()
-//                .crop()                    //Crop image(Optional), Check Customization for more option
-//                .compress(500)            //Final image size will be less than 1 MB(Optional)
-//                .maxResultSize(
-//                    300,
-//                    300
-//                )    //Final image resolution will be less than 1080 x 1080(Optional)
-//                .start()
+            ImagePicker.with(this)
+                .cameraOnly()
+                .crop()
+                .compress(500)
+                .start()
             dialog.dismiss()
         }
-
         gallery.setOnClickListener {
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
                 this.type = "image/*"
@@ -213,55 +198,80 @@ class SOSDistressFragment : Fragment() {
         dialog.show()
     }
 
-    private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        try {
-            requireActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-        } catch (e: ActivityNotFoundException) {
-             Toast.makeText(requireContext(),"error in camera",Toast.LENGTH_LONG).show()
-            // display error state to the user
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data != null) {
+                    uri = result.data?.data
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        val source = ImageDecoder.createSource(activity!!.contentResolver, uri!!)
+                        bitmap = ImageDecoder.decodeBitmap(source)
+                        binding.ivDog.setImageBitmap(bitmap)
+                        binding.ivDog.visibility=View.VISIBLE
+                        binding.llUploadPic.hide()
+                    } else {
+                        binding.ivDog.setImageURI(result.data?.data)
+                        binding.ivDog.visibility=View.VISIBLE
+                        binding.llUploadPic.hide()
+                    }
+                }
+            }
+        }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+            uri = data?.data!!
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                val source = ImageDecoder.createSource(activity!!.contentResolver, uri!!)
+                binding.ivDog.setImageBitmap(ImageDecoder.decodeBitmap(source))
+            } else {
+                binding.ivDog.setImageURI(uri)
+            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
 
+
+
+
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            val imageBitmap = data?.extras?.get("data") as Bitmap
-//            binding.ivDog.setImageBitmap(imageBitmap)
+//        Log.i("TAG", "onActivityResult: WE GOT SOMETHING1")
+//        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            if (resultCode == Activity.RESULT_OK) {
+//                val bmp = data?.extras!!["data"] as Bitmap?
+//                val stream = ByteArrayOutputStream()
+//                bmp!!.compress(Bitmap.CompressFormat.PNG, 100, stream)
+//                val byteArray: ByteArray = stream.toByteArray()
+//
+//                // convert byte array to Bitmap
+//                val bitmap = BitmapFactory.decodeByteArray(
+//                    byteArray, 0,
+//                    byteArray.size
+//                )
+//                //  binding.llUploadPic.visibility = View.GONE
+//                binding.ivDog.setImageBitmap(bitmap)
+//                Log.i("TAG", "onActivityResult: WE GOT SOMETHING2  -----> $bitmap")
+//            }
 //        }
 //    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.i("Sanjay", "onActivityResult: WE GOT SOMETHING")
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                val bmp = data?.extras!!["data"] as Bitmap?
-                val stream = ByteArrayOutputStream()
-                bmp!!.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                val byteArray: ByteArray = stream.toByteArray()
-
-                // convert byte array to Bitmap
-                val bitmap = BitmapFactory.decodeByteArray(
-                    byteArray, 0,
-                    byteArray.size
-                )
-               // binding.llUploadPic.visibility = View.GONE
-                binding.ivDog.setImageBitmap(bitmap)
-                Log.i("TAG", "onActivityResult: $bitmap")
-            }
-        }
-    }
-
-    private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireContext() as Activity,
-                arrayOf(Manifest.permission.CAMERA),
-                REQUEST_PERMISSION
-            )
-        }
-    }
+//    private fun dispatchTakePictureIntent() {
+//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        try {
+//            requireActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+//        } catch (e: ActivityNotFoundException) {
+//             Toast.makeText(requireContext(),"error in camera",Toast.LENGTH_LONG).show()
+//            // display error state to the user
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -15,7 +15,6 @@ class MyDogViewModel @Inject constructor(var dogRepo: MyDogRepo) : ViewModel() {
     fun getPetDescriptionData(pet_id: String, user_id: String) =
         dogRepo.updatePetDescriptionPostLiveData(pet_id, user_id)
 
-
     fun getPetDescriptionDatas(user_id: String) =
         dogRepo.getalldistresspetbyuserid(user_id)
 
@@ -89,11 +88,11 @@ class MyDogViewModel @Inject constructor(var dogRepo: MyDogRepo) : ViewModel() {
         pet_description: String,
         lattitute: String,
         longitute: String,
-        profile: MultipartBody.Part,
         type: String,
-        notificationType: String
+        notificationType: String,
+        profile: MultipartBody.Part
     ) =
-        dogRepo.distressPetPostLiveData(user_id,pet_description,lattitute,longitute, profile,type,notificationType)
+        dogRepo.distressPetPostLiveData(user_id,pet_description,lattitute,longitute,type,notificationType,profile)
 
 
     fun getDistressPetDetailData(

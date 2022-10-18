@@ -25,6 +25,7 @@ import com.bnb.doggydoo.commonutility.show
 import com.bnb.doggydoo.commonutility.snack
 import com.bnb.doggydoo.databinding.ActivityDdpactivityBinding
 import com.bnb.doggydoo.mydog.adapter.CommentsAdapter
+import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.DistressPetResponse
 import com.bnb.doggydoo.mydog.datasource.model.petdescriptionmodel.PetDescriptionResponse
 import com.bnb.doggydoo.mydog.viewmodel.MyDogViewModel
 import com.bnb.doggydoo.newsfeed.adapter.UserAdapter
@@ -39,6 +40,8 @@ import com.bnb.doggydoo.utils.helper.Result
 import com.bnb.doggydoo.utils.network.ApiConstant
 import com.bnb.doggydoo.videocall.ApplicationController.context
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -69,7 +72,6 @@ class DDPActivity : AppCompatActivity() {
         //  ivsend = findViewById<ImageView>(R.id.sendcmt)
         getInit()
         callGetDogDescriptionAPI()
-
     }
 
     private fun getInit() {
@@ -90,24 +92,22 @@ class DDPActivity : AppCompatActivity() {
     }
 
     private fun callGetDogDescriptionAPI() {
-        Log.i("TAG", "callGetDogDescriptionAPI: $petId")
-        myDogViewModel.getPetDescriptionData("464", "526")
+        myDogViewModel.getDistressPetDetailData(petId)
             .observe(this, Observer {
-                Log.i("TAG", "callGetDogDescriptionAPI:SANJAY1234 ---- ${it}")
                 when (it.status) {
                     Result.Status.LOADING -> {
                         bind.progressBar.show()
                     }
                     Result.Status.SUCCESS -> {
                         bind.progressBar.hide()
-//                        if (it.data?.responseCode.equals("0")) {
-//                            it.data?.responseMessage?.snack(
-//                                Color.RED,
-//                                bind.parent
-//                            )
-//                            return@Observer
-//                        }
-//                        setDataInUI(it.data)
+                        if (it.data?.responseCode.equals("0")) {
+                            it.data?.responseMessage?.snack(
+                                Color.RED,
+                                bind.parent
+                            )
+                            return@Observer
+                        }
+                        setDataInUI(it.data!!)
                     }
                     Result.Status.ERROR -> {
                         bind.progressBar.hide()
@@ -117,11 +117,17 @@ class DDPActivity : AppCompatActivity() {
             })
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setDataInUI(data: PetDescriptionResponse?) {
+    private fun setDataInUI(data: DistressPetResponse) {
+       bind.tvdiscription.text = data.distressPetdetail.pet_description
 
-        Log.d("Deepak","Description : ${data!!.petdetail.pet_description}")
+        val petimg = data.distressPetdetail.petImage.toString()
+        val petimgs = petimg.replace("[","").replace("]","")
 
+        if (petimgs.isNotEmpty()) {
+            bind.dogimg.loadImageFromString(this@DDPActivity, ApiConstant.PET_IMAGE_BASE_URL + petimgs)
+        } else {
+            Glide.with(context).load(R.drawable.dummy_pet).into(bind.dogimg)
+        }
     }
 
 //    private fun ReadAndWriteCommment() {

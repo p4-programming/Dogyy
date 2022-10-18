@@ -114,9 +114,9 @@ interface MyDogApiService {
         @Part("pet_description") pet_name: RequestBody,
         @Part("lattitute") lattitute: RequestBody,
         @Part("longitute") longitute: RequestBody,
-        @Part pet_image: MultipartBody.Part,
         @Part("type") type: RequestBody,
-        @Part("notificationType") notificationType: RequestBody
+        @Part("notificationType") notificationType: RequestBody,
+        @Part pet_image: MultipartBody.Part,
     ): Response<PetReminderResponse>
 
 

@@ -53,8 +53,7 @@ class UploadPhotoActivity : AppCompatActivity() {
         val picturePath = cursor.getString(columnIndex)
         cursor.close()
 
-        val bitmap =
-            ThumbnailUtils.createVideoThumbnail(picturePath, MediaStore.Video.Thumbnails.MICRO_KIND)
+        val bitmap = ThumbnailUtils.createVideoThumbnail(picturePath, MediaStore.Video.Thumbnails.MICRO_KIND)
         binding.image.setImageBitmap(bitmap)
     }
 
@@ -76,7 +75,6 @@ class UploadPhotoActivity : AppCompatActivity() {
             } else {
                 binding.image.setImageResource(R.drawable.ic_baseline_videocam_24)
             }
-
         }
         binding.backButton.setOnClickListener {
             finish()
@@ -89,7 +87,6 @@ class UploadPhotoActivity : AppCompatActivity() {
             } else {
                 callUploadDocAPI()
             }
-
         }
     }
 
@@ -153,7 +150,6 @@ class UploadPhotoActivity : AppCompatActivity() {
                 }
             })
         }
-
     }
 
     override fun onDestroy() {

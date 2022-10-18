@@ -369,7 +369,6 @@ class EditProfileActivity : AppCompatActivity() {
                             binding.tvAvailable.visibility = View.VISIBLE
                             binding.progressBar1.hide()
                         }
-
                     }
                     Result.Status.ERROR -> {
                         binding.progressBar1.hide()
@@ -418,14 +417,9 @@ class EditProfileActivity : AppCompatActivity() {
         binding.tvLatitude.text = profileResponse.userdetails[0].lattitute
         binding.tvLongitude.text = profileResponse.userdetails[0].longitute
 
-        binding.userImage.loadImageFromString(
-            this,
-            ApiConstant.PROFILE_IMAGE_BASE_URL + MyApp.getSharedPref().userImage
+        binding.userImage.loadImageFromString(this, ApiConstant.PROFILE_IMAGE_BASE_URL + MyApp.getSharedPref().userImage
         )
-
-
     }
-
 
     private fun editUserProfileAPI() {
         myProfileViewModel.getEditUserData(

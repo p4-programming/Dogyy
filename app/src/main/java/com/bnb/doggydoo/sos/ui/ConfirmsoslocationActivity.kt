@@ -179,9 +179,9 @@ class ConfirmsoslocationActivity : AppCompatActivity() {
             binding.etPetDescription.text.toString(),
             pinLatitude,
             pinLongitude,
-            MultipartFile.prepareFilePart(this, "pet_image[]", uri),
             type,
-            notificationType
+            notificationType,
+            MultipartFile.prepareFilePart(this, "pet_image", uri)
         )
             .observe(this, Observer {
                 when (it.status) {
